@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v2';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -11,6 +11,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20260815-personal', date: '2026-08-15', title: '개인 · 공덕 약속 (대학)', time: '', category: 'personal' },
+  { id: 'doc-20260816-friends', date: '2026-08-16', title: '개인 · 고등학교 한국화 친구들 약속', time: '13:00', category: 'personal' },
   { id: 'doc-20260816-english', date: '2026-08-16', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260818-craft', date: '2026-08-18', title: '공예 기획 · 실무교육 1강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260819-heritage', date: '2026-08-19', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
