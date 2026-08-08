@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v6';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v7';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -41,9 +41,10 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260917-english', date: '2026-09-17', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20260920-english', date: '2026-09-20', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260923-heritage', date: '2026-09-23', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
-  { id: 'doc-20260924-holiday', date: '2026-09-24', title: '추석', time: '', category: 'holiday' },
+  { id: 'doc-20260924-holiday', date: '2026-09-24', title: '추석 연휴', time: '', category: 'holiday' },
   { id: 'doc-20260924-english', date: '2026-09-24', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20260925-holiday', date: '2026-09-25', title: '추석', time: '', category: 'holiday' },
+  { id: 'doc-20260926-holiday', date: '2026-09-26', title: '추석 연휴', time: '', category: 'holiday' },
   { id: 'doc-20260927-english', date: '2026-09-27', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260930-heritage', date: '2026-09-30', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
   { id: 'doc-20261001-heritage', date: '2026-10-01', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
@@ -63,7 +64,26 @@ const DOC_SCHEDULE = [
   { id: 'doc-20261022-english', date: '2026-10-22', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20261023-mother-birthday', date: '2026-10-23', title: '엄마 생일', time: '', category: 'personal' },
   { id: 'doc-20261029-exam', date: '2026-10-29', title: 'IELTS 시험', time: '', category: 'exam' },
-  { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' }
+  { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' },
+  { id: 'holiday-20260101', date: '2026-01-01', title: '신정', time: '', category: 'holiday' },
+  { id: 'holiday-20260216', date: '2026-02-16', title: '설날 연휴', time: '', category: 'holiday' },
+  { id: 'holiday-20260217', date: '2026-02-17', title: '설날', time: '', category: 'holiday' },
+  { id: 'holiday-20260218', date: '2026-02-18', title: '설날 연휴', time: '', category: 'holiday' },
+  { id: 'holiday-20260301', date: '2026-03-01', title: '삼일절', time: '', category: 'holiday' },
+  { id: 'holiday-20260302', date: '2026-03-02', title: '삼일절 대체공휴일', time: '', category: 'holiday' },
+  { id: 'holiday-20260501', date: '2026-05-01', title: '노동절', time: '', category: 'holiday' },
+  { id: 'holiday-20260505', date: '2026-05-05', title: '어린이날', time: '', category: 'holiday' },
+  { id: 'holiday-20260524', date: '2026-05-24', title: '부처님오신날', time: '', category: 'holiday' },
+  { id: 'holiday-20260525', date: '2026-05-25', title: '부처님오신날 대체공휴일', time: '', category: 'holiday' },
+  { id: 'holiday-20260603', date: '2026-06-03', title: '제9회 전국동시지방선거', time: '', category: 'holiday' },
+  { id: 'holiday-20260606', date: '2026-06-06', title: '현충일', time: '', category: 'holiday' },
+  { id: 'holiday-20260717', date: '2026-07-17', title: '제헌절', time: '', category: 'holiday' },
+  { id: 'holiday-20260815', date: '2026-08-15', title: '광복절', time: '', category: 'holiday' },
+  { id: 'holiday-20260817', date: '2026-08-17', title: '광복절 대체공휴일', time: '', category: 'holiday' },
+  { id: 'holiday-20261003', date: '2026-10-03', title: '개천절', time: '', category: 'holiday' },
+  { id: 'holiday-20261005', date: '2026-10-05', title: '개천절 대체공휴일', time: '', category: 'holiday' },
+  { id: 'holiday-20261009', date: '2026-10-09', title: '한글날', time: '', category: 'holiday' },
+  { id: 'holiday-20261225', date: '2026-12-25', title: '크리스마스', time: '', category: 'holiday' }
 ];
 
 const MONTH_THEMES = [
@@ -176,7 +196,9 @@ function calendarMarkup() {
   for (let day = 1; day <= lastDay; day += 1) {
     const key = dateKey(year, month, day);
     const events = state.schedule.filter(item => item.date === key).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
-    cells.push(`<button class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}" type="button" data-calendar-date="${key}">
+    const isHoliday = events.some(item => item.category === 'holiday');
+    const isSunday = new Date(year, month, day).getDay() === 0;
+    cells.push(`<button class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}${isHoliday ? ' holiday-date' : ''}${isSunday ? ' sunday' : ''}" type="button" data-calendar-date="${key}">
       <span>${day}</span>
       <div class="calendar-events">${events.slice(0, 2).map(item => `<small class="event-${escapeHtml(item.category || 'manual')}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</small>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
     </button>`);
