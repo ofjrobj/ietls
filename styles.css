@@ -161,6 +161,10 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .calendar-weekdays { border-bottom: 1px solid var(--line); }
 .calendar-weekdays span { padding: 9px 4px; color: var(--muted); text-align: center; font-size: 11px; }
 .calendar-day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   min-width: 0;
   min-height: 100px;
   padding: 9px;
@@ -181,7 +185,7 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .calendar-day.holiday-date > span { color: #e53935; font-weight: 600; }
 .calendar-day.today.sunday > span,
 .calendar-day.today.holiday-date > span { background: #e53935; color: #fff; }
-.calendar-events { display: grid; gap: 3px; margin-top: 6px; }
+.calendar-events { display: grid; width: 100%; gap: 3px; margin-top: 6px; }
 .calendar-events small { overflow: hidden; color: var(--accent); font-size: 10px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
 .calendar-events small::before { content: ''; display: inline-block; width: 5px; height: 5px; margin: 0 4px 1px 0; border-radius: 50%; background: currentColor; }
 .calendar-events .event-craft { color: #356fa8; }
