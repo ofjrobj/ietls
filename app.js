@@ -1,7 +1,67 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808';
 const app = document.getElementById('app');
+
+const DOC_SCHEDULE = [
+  { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
+  { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 공통교육 1강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 신촌 약속 (예지 언니)', time: '', category: 'personal' },
+  { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260815-personal', date: '2026-08-15', title: '개인 · 공덕 약속 (대학)', time: '', category: 'personal' },
+  { id: 'doc-20260816-english', date: '2026-08-16', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260818-craft', date: '2026-08-18', title: '공예 기획 · 실무교육 1강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260819-heritage', date: '2026-08-19', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
+  { id: 'doc-20260820-heritage', date: '2026-08-20', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
+  { id: 'doc-20260820-english', date: '2026-08-20', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260821-heritage', date: '2026-08-21', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
+  { id: 'doc-20260823-english', date: '2026-08-23', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260825-craft', date: '2026-08-25', title: '공예 기획 · 실무교육 2강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260826-heritage', date: '2026-08-26', title: '디지털헤리티지 공주 · 심화 직무교육', time: '', category: 'heritage' },
+  { id: 'doc-20260827-heritage', date: '2026-08-27', title: '디지털헤리티지 공주 · 심화 직무교육', time: '', category: 'heritage' },
+  { id: 'doc-20260827-english', date: '2026-08-27', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260830-english', date: '2026-08-30', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260901-craft', date: '2026-09-01', title: '공예 기획 · 실무교육 3강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260902-heritage', date: '2026-09-02', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260903-heritage', date: '2026-09-03', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260903-english', date: '2026-09-03', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260906-english', date: '2026-09-06', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260908-craft', date: '2026-09-08', title: '공예 기획 · 실무교육 4강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260909-heritage', date: '2026-09-09', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260910-heritage', date: '2026-09-10', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260910-english', date: '2026-09-10', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260913-english', date: '2026-09-13', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260915-craft', date: '2026-09-15', title: '공예 기획 · 실무교육 5강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260916-heritage', date: '2026-09-16', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260917-heritage', date: '2026-09-17', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260917-english', date: '2026-09-17', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260920-english', date: '2026-09-20', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260923-heritage', date: '2026-09-23', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20260924-holiday', date: '2026-09-24', title: '추석', time: '', category: 'holiday' },
+  { id: 'doc-20260924-english', date: '2026-09-24', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260925-holiday', date: '2026-09-25', title: '추석', time: '', category: 'holiday' },
+  { id: 'doc-20260927-english', date: '2026-09-27', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260930-heritage', date: '2026-09-30', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261001-heritage', date: '2026-10-01', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261001-english', date: '2026-10-01', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20261004-english', date: '2026-10-04', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20261006-craft', date: '2026-10-06', title: '공예 기획 · 실무교육 6강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20261007-heritage', date: '2026-10-07', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261008-heritage', date: '2026-10-08', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261008-english', date: '2026-10-08', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20261011-english', date: '2026-10-11', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20261013-craft', date: '2026-10-13', title: '공예 기획 · 심화워크숍', time: '13:00–17:00', category: 'craft' },
+  { id: 'doc-20261014-heritage', date: '2026-10-14', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261015-heritage', date: '2026-10-15', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
+  { id: 'doc-20261015-english', date: '2026-10-15', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20261018-english', date: '2026-10-18', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20261021-heritage', date: '2026-10-21', title: '디지털헤리티지 공주 · 프로젝트 종료', time: '', category: 'heritage' },
+  { id: 'doc-20261022-english', date: '2026-10-22', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20261029-exam', date: '2026-10-29', title: 'IELTS 시험', time: '', category: 'exam' },
+  { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' }
+];
 
 function resetLegacyDataOnce() {
   if (localStorage.getItem(RESET_KEY)) return;
@@ -13,6 +73,7 @@ function resetLegacyDataOnce() {
 }
 
 resetLegacyDataOnce();
+seedDocumentSchedule();
 
 function loadState() {
   try {
@@ -28,6 +89,18 @@ function loadState() {
 
 function saveState(state) {
   localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+function seedDocumentSchedule() {
+  if (localStorage.getItem(DOC_SCHEDULE_KEY)) return;
+  const state = loadState();
+  const existing = new Set(state.schedule.map(item => `${item.date}|${item.time || ''}|${item.title}`));
+  DOC_SCHEDULE.forEach(item => {
+    const signature = `${item.date}|${item.time || ''}|${item.title}`;
+    if (!existing.has(signature)) state.schedule.push(item);
+  });
+  saveState(state);
+  localStorage.setItem(DOC_SCHEDULE_KEY, 'done');
 }
 
 function escapeHtml(value = '') {
@@ -78,7 +151,7 @@ function calendarMarkup() {
     const events = state.schedule.filter(item => item.date === key).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
     cells.push(`<button class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}" type="button" data-calendar-date="${key}">
       <span>${day}</span>
-      <div class="calendar-events">${events.slice(0, 2).map(item => `<small>${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</small>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
+      <div class="calendar-events">${events.slice(0, 2).map(item => `<small class="event-${escapeHtml(item.category || 'manual')}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</small>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
     </button>`);
   }
 
@@ -135,7 +208,8 @@ function bindCalendar() {
       id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
       date: selectedDate,
       title: String(data.get('title')).trim(),
-      time: String(data.get('time')).trim()
+      time: String(data.get('time')).trim(),
+      category: 'manual'
     });
     saveState(state);
     renderHome();
