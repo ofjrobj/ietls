@@ -101,6 +101,11 @@ const MONTH_THEMES = [
   { accent: '#425b82', soft: '#e1e7f0' }
 ];
 
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
 function applyMonthTheme(month) {
   const theme = MONTH_THEMES[month] || MONTH_THEMES[7];
   document.documentElement.style.setProperty('--accent', theme.accent);
@@ -273,12 +278,13 @@ function bindCalendar() {
 
 function renderHome() {
   applyMonthTheme(calendarCursor.getMonth());
+  const today = new Date();
   app.innerHTML = `
     <section class="hero">
       <div class="hero-copy">
-        <h1>29 October<br>2026</h1>
+        <h1>${today.getDate()} ${MONTH_NAMES[today.getMonth()]}<br>${today.getFullYear()}</h1>
       </div>
-      <div class="dday-card"><span>IELTS TEST</span><strong>${getDday()}</strong><small>목표 Overall 6.5</small></div>
+      <div class="dday-card"><span>IELTS TEST</span><strong>${getDday()}</strong><div class="dday-meta"><small>목표 Overall 6.5</small><small>시험일 29 October 2026</small></div></div>
     </section>
     ${calendarMarkup()}`;
   bindCalendar();
