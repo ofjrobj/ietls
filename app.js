@@ -64,6 +64,27 @@ const DOC_SCHEDULE = [
   { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' }
 ];
 
+const MONTH_THEMES = [
+  { accent: '#385b7a', soft: '#e1e9f0' },
+  { accent: '#a65370', soft: '#f1e1e7' },
+  { accent: '#4e7654', soft: '#e2ece3' },
+  { accent: '#72608f', soft: '#e9e4f0' },
+  { accent: '#9b792f', soft: '#f2ead5' },
+  { accent: '#36777b', soft: '#dfecee' },
+  { accent: '#3f6698', soft: '#e0e8f2' },
+  { accent: '#1f5c46', soft: '#e1ece5' },
+  { accent: '#c46a2d', soft: '#f5e4d7' },
+  { accent: '#b64b45', soft: '#f3dfdc' },
+  { accent: '#70588c', soft: '#e9e3f0' },
+  { accent: '#425b82', soft: '#e1e7f0' }
+];
+
+function applyMonthTheme(month) {
+  const theme = MONTH_THEMES[month] || MONTH_THEMES[7];
+  document.documentElement.style.setProperty('--accent', theme.accent);
+  document.documentElement.style.setProperty('--accent-soft', theme.soft);
+}
+
 function resetLegacyDataOnce() {
   if (localStorage.getItem(RESET_KEY)) return;
   Object.keys(localStorage)
@@ -135,6 +156,7 @@ function pageHead(name, description) {
 const initialDate = new Date();
 let calendarCursor = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1);
 let selectedDate = todayValue();
+applyMonthTheme(initialDate.getMonth());
 
 function dateKey(year, month, day) {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
@@ -226,12 +248,11 @@ function bindCalendar() {
 }
 
 function renderHome() {
+  applyMonthTheme(calendarCursor.getMonth());
   app.innerHTML = `
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">New start</p>
         <h1>29 October<br>2026</h1>
-        <p class="lede">시험일에 맞춰 새로 시작합니다. 현재 공부 방식에 필요한 항목만 남겼습니다.</p>
       </div>
       <div class="dday-card"><span>IELTS TEST</span><strong>${getDday()}</strong><small>목표 Overall 6.5</small></div>
     </section>
