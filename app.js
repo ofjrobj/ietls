@@ -16,9 +16,13 @@ resetLegacyDataOnce();
 
 function loadState() {
   try {
-    return JSON.parse(localStorage.getItem(STATE_KEY)) || { speaking: [] };
+    const saved = JSON.parse(localStorage.getItem(STATE_KEY)) || {};
+    return {
+      speaking: Array.isArray(saved.speaking) ? saved.speaking : [],
+      schedule: Array.isArray(saved.schedule) ? saved.schedule : []
+    };
   } catch {
-    return { speaking: [] };
+    return { speaking: [], schedule: [] };
   }
 }
 
@@ -52,6 +56,98 @@ function pageHead(name, description) {
   return `<header class="page-head"><p class="eyebrow">IELTS 6.5</p><h1>${name}</h1><p class="lede">${description}</p></header>`;
 }
 
+const initialDate = new Date();
+let calendarCursor = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1);
+let selectedDate = todayValue();
+
+function dateKey(year, month, day) {
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+function calendarMarkup() {
+  const state = loadState();
+  const year = calendarCursor.getFullYear();
+  const month = calendarCursor.getMonth();
+  const firstOffset = (new Date(year, month, 1).getDay() + 6) % 7;
+  const lastDay = new Date(year, month + 1, 0).getDate();
+  const cells = [];
+
+  for (let i = 0; i < firstOffset; i += 1) cells.push('<div class="calendar-day blank" aria-hidden="true"></div>');
+  for (let day = 1; day <= lastDay; day += 1) {
+    const key = dateKey(year, month, day);
+    const events = state.schedule.filter(item => item.date === key).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+    cells.push(`<button class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}" type="button" data-calendar-date="${key}">
+      <span>${day}</span>
+      <div class="calendar-events">${events.slice(0, 2).map(item => `<small>${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</small>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
+    </button>`);
+  }
+
+  const selectedEvents = state.schedule
+    .filter(item => item.date === selectedDate)
+    .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+
+  return `<section class="calendar-card">
+    <div class="calendar-head">
+      <h2>Schedule</h2>
+      <div class="calendar-controls">
+        <button class="secondary icon-button" id="calendar-prev" type="button" aria-label="이전 달">‹</button>
+        <strong>${year}년 ${month + 1}월</strong>
+        <button class="secondary icon-button" id="calendar-next" type="button" aria-label="다음 달">›</button>
+      </div>
+    </div>
+    <div class="calendar-weekdays"><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span></div>
+    <div class="calendar-grid">${cells.join('')}</div>
+    <div class="schedule-editor">
+      <div>
+        <p class="eyebrow">${escapeHtml(selectedDate)}</p>
+        <h3>선택한 날짜의 일정</h3>
+        <div class="schedule-list">${selectedEvents.length ? selectedEvents.map(item => `<div class="schedule-item"><span>${item.time ? `<time>${escapeHtml(item.time)}</time>` : ''}${escapeHtml(item.title)}</span><button class="danger" type="button" data-delete-schedule="${escapeHtml(item.id)}">삭제</button></div>`).join('') : '<p class="empty">등록된 일정이 없습니다.</p>'}</div>
+      </div>
+      <form id="schedule-form">
+        <label>일정<input name="title" maxlength="80" placeholder="일정을 입력하세요" required></label>
+        <label>시간<input name="time" type="time"></label>
+        <button type="submit">일정 추가</button>
+      </form>
+    </div>
+  </section>`;
+}
+
+function bindCalendar() {
+  document.getElementById('calendar-prev').addEventListener('click', () => {
+    calendarCursor = new Date(calendarCursor.getFullYear(), calendarCursor.getMonth() - 1, 1);
+    selectedDate = dateKey(calendarCursor.getFullYear(), calendarCursor.getMonth(), 1);
+    renderHome();
+  });
+  document.getElementById('calendar-next').addEventListener('click', () => {
+    calendarCursor = new Date(calendarCursor.getFullYear(), calendarCursor.getMonth() + 1, 1);
+    selectedDate = dateKey(calendarCursor.getFullYear(), calendarCursor.getMonth(), 1);
+    renderHome();
+  });
+  document.querySelectorAll('[data-calendar-date]').forEach(button => button.addEventListener('click', () => {
+    selectedDate = button.dataset.calendarDate;
+    renderHome();
+  }));
+  document.getElementById('schedule-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const state = loadState();
+    state.schedule.push({
+      id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
+      date: selectedDate,
+      title: String(data.get('title')).trim(),
+      time: String(data.get('time')).trim()
+    });
+    saveState(state);
+    renderHome();
+  });
+  document.querySelectorAll('[data-delete-schedule]').forEach(button => button.addEventListener('click', () => {
+    const state = loadState();
+    state.schedule = state.schedule.filter(item => item.id !== button.dataset.deleteSchedule);
+    saveState(state);
+    renderHome();
+  }));
+}
+
 function renderHome() {
   app.innerHTML = `
     <section class="hero">
@@ -62,12 +158,8 @@ function renderHome() {
       </div>
       <div class="dday-card"><span>IELTS TEST</span><strong>${getDday()}</strong><small>목표 Overall 6.5</small></div>
     </section>
-    <h2 class="section-title">Study</h2>
-    <section class="card-grid">
-      <article class="card"><h3>Speaking</h3><p>Cambly 수업과 개인 연습 내용을 기록합니다.</p><a class="text-link" href="#speaking">기록하기</a></article>
-      <article class="card"><h3>Reading</h3><p>별도 계획표 없이 사용하는 자료로 공부합니다.</p><a class="text-link" href="#reading">열기</a></article>
-      <article class="card"><h3>Listening</h3><p>별도 계획표 없이 사용하는 자료로 공부합니다.</p><a class="text-link" href="#listening">열기</a></article>
-    </section>`;
+    ${calendarMarkup()}`;
+  bindCalendar();
 }
 
 function renderSpeaking() {
