@@ -1,0 +1,26 @@
+{
+  "version": "v189_task1_expression_docx_refresh",
+  "source_docx": "IELTS_Task1_expressions_compact_vertical_highlighted.docx",
+  "task1_expression_items": 190,
+  "categories": {
+    "all": "전체",
+    "rise": "상승 표현",
+    "recovery": "회복 표현",
+    "fall": "하락 표현",
+    "stability": "변동·유지 표현",
+    "modifier": "수치 수식어",
+    "ranking": "순위·최고치·최저치",
+    "overtaking": "역전·추월",
+    "gap": "격차·동률·접근",
+    "comparison": "비교·연결·인과",
+    "impact": "영향·정도",
+    "analysis": "수치 의미 부여",
+    "pattern": "핵심 문장 패턴"
+  },
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ],
+  "behaviour": "Task 1 phrase English-expression input mode shows Korean example hints instead of English examples; the general vocabulary English-word input mode also hides English examples and shows Korean example hints."
+}

@@ -1,0 +1,27 @@
+{
+  "version": "v191_part1_part2_vocab_test_split",
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ],
+  "phrase_tab_structure": {
+    "part1": {
+      "label": "Part 1 단어·구문",
+      "source": "IELTS_Task1_구문_암기표_재정리본.docx",
+      "test": "Task 1 표현 시험"
+    },
+    "part2": {
+      "label": "Part 2 단어·표현",
+      "source": "IELTS_필수_핵심_동사_명사_통합본.docx",
+      "test": "동사·명사 묶음 표현 시험",
+      "answer_format": "improve productivity 같은 묶음 표현 전체"
+    }
+  },
+  "behaviour": [
+    "Vocabulary > 구문 탭에서 Part 1과 Part 2를 버튼으로 분리함.",
+    "Part 1 화면에는 Task 1 구문 시험만 표시함.",
+    "Part 2 화면에는 IELTS 필수 핵심 동사·명사 통합본 기반 시험만 표시함.",
+    "각 시험의 세션과 오답 반복 흐름을 서로 분리함."
+  ]
+}

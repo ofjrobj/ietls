@@ -1,0 +1,25 @@
+{
+  "version": "v195_fifty_item_rolling_test",
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ],
+  "applied_to": [
+    "Vocabulary > 구문 > Part 1 단어·구문 시험",
+    "Vocabulary > 구문 > Part 2 단어·표현 시험"
+  ],
+  "batch_size": 50,
+  "behaviour": {
+    "first_round": "선택한 범위에서 50개만 출제",
+    "after_grading": "맞힌 항목은 다음 회차에서 제외하고, 틀린 항목은 유지하며, 빈 개수만큼 새 항목을 추가",
+    "example": "50개 중 10개 정답이면 다음 회차는 틀린 40개 + 새 항목 10개",
+    "when_no_new_items": "새 항목이 없으면 남은 오답만 출제",
+    "manual_weak_checkbox": "다시 보기 체크 항목은 맞아도 다음 회차에 유지"
+  },
+  "source_item_counts": {
+    "part1_task1_expression_items": 190,
+    "part2_writing_collocation_items": 338
+  },
+  "cache_version": "v195"
+}

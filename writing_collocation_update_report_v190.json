@@ -1,0 +1,127 @@
+{
+  "version": "v190_writing_collocation_phrase_test",
+  "source_docx": "IELTS_필수_핵심_동사_명사_통합본.docx",
+  "writing_collocation_items": 238,
+  "categories": {
+    "all": "전체",
+    "coreVerb": "필수 동사+명사 표현",
+    "advantageDisadvantage": "장점·단점 동사 구문",
+    "problemSolution": "문제·해결책 동사 구문",
+    "causeEffect": "원인·결과 동사 구문",
+    "opinionArgument": "의견·찬반 동사 구문",
+    "nounExpression": "필수 명사 표현",
+    "educationTechnologyNoun": "교육·기술 명사 구문",
+    "environmentSocietyNoun": "환경·사회 명사 구문",
+    "economyHealthNoun": "경제·건강 명사 구문"
+  },
+  "category_counts": {
+    "all": 238,
+    "coreVerb": 103,
+    "advantageDisadvantage": 6,
+    "problemSolution": 5,
+    "causeEffect": 5,
+    "opinionArgument": 5,
+    "nounExpression": 99,
+    "educationTechnologyNoun": 5,
+    "environmentSocietyNoun": 5,
+    "economyHealthNoun": 5
+  },
+  "sample_items": [
+    {
+      "cat": "coreVerb",
+      "expression": "improve productivity",
+      "meaning": "생산성 개선하다, 향상시키다",
+      "example": "Technology improves productivity.",
+      "exampleKo": "기술은 / 생산성을 향상시킨다.",
+      "source": "필수 핵심 동사",
+      "note": "improve + productivity"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "enhance learning opportunities",
+      "meaning": "학습 기회 높이다, 향상시키다",
+      "example": "Online courses enhance learning opportunities.",
+      "exampleKo": "온라인 과정은 / 학습 기회를 높인다.",
+      "source": "필수 핵심 동사",
+      "note": "enhance + learning opportunities"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "increase employment prospects",
+      "meaning": "취업 전망 증가시키다",
+      "example": "Education increases employment prospects.",
+      "exampleKo": "교육은 / 취업 전망을 증가시킨다.",
+      "source": "필수 핵심 동사",
+      "note": "increase + employment prospects"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "reduce environmental pollution",
+      "meaning": "환경 오염 줄이다, 감소시키다",
+      "example": "Public transport reduces pollution.",
+      "exampleKo": "대중교통은 / 오염을 줄인다.",
+      "source": "필수 핵심 동사",
+      "note": "reduce + environmental pollution"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "decrease labor costs",
+      "meaning": "인건비 감소시키다",
+      "example": "Automation decreases labor costs.",
+      "exampleKo": "자동화는 / 인건비를 감소시킨다.",
+      "source": "필수 핵심 동사",
+      "note": "decrease + labor costs"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "affect human behavior",
+      "meaning": "인간 행동 영향을 미치다",
+      "example": "Social media affects people's behavior.",
+      "exampleKo": "소셜 미디어는 / 사람들의 행동에 영향을 미친다.",
+      "source": "필수 핵심 동사",
+      "note": "affect + human behavior"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "influence consumer choices",
+      "meaning": "소비자 선택 영향을 주다",
+      "example": "Advertising influences consumer choices.",
+      "exampleKo": "광고는 / 소비자의 선택에 영향을 미친다.",
+      "source": "필수 핵심 동사",
+      "note": "influence + consumer choices"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "encourage creativity and innovation",
+      "meaning": "창의성과 혁신 장려하다, 부추기다",
+      "example": "Schools encourage creativity.",
+      "exampleKo": "학교는 / 창의성을 장려한다.",
+      "source": "필수 핵심 동사",
+      "note": "encourage + creativity and innovation"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "promote economic growth",
+      "meaning": "경제 성장 촉진하다, 홍보하다",
+      "example": "Governments promote economic growth.",
+      "exampleKo": "정부는 / 경제 성장을 촉진한다.",
+      "source": "필수 핵심 동사",
+      "note": "promote + economic growth"
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "support child development",
+      "meaning": "아동 발달 지지하다, 지원하다",
+      "example": "Parents should support their children.",
+      "exampleKo": "부모는 / 자녀를 지원해야 한다.",
+      "source": "필수 핵심 동사",
+      "note": "support + child development"
+    }
+  ],
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ],
+  "behaviour": "Vocabulary > 구문 탭에 Writing 동사·명사 표현 시험을 추가함. 영어 표현 답안은 improve productivity 같은 묶음 표현 전체를 기준으로 채점함."
+}

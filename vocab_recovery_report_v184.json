@@ -1,0 +1,8 @@
+{
+  "version": "v184_vocab_recovery_no_fake_examples",
+  "generated_placeholder_examples_stripped_from_file": 1807,
+  "file_total_words": 2102,
+  "file_missing_meaning_after_restore": 1892,
+  "file_missing_example_after_stripping_fake": 1788,
+  "note": "기존 뜻은 덮어쓰지 않으며, v181-v183에서 생성된 반복 예문은 자동 제거합니다. 브라우저 localStorage 단어장은 마이그레이션 전 백업을 vocabBankBackupBeforeRecovery에 저장합니다."
+}

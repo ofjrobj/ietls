@@ -1,0 +1,8 @@
+{
+  "restored_from": "ielts_standalone_site_v09.zip",
+  "total_vocabulary_entries": 2049,
+  "study_ready_with_meaning_and_example": 102,
+  "word_only_entries_from_original_csv": 1947,
+  "bad_grouped_or_sentence_like_entries_sample": [],
+  "note": "v10-v12 accidentally replaced the full vocabulary bank with the 4/11 curated 100-word set. v13 restores the 2,049-word bank and forces localStorage reset with a new vocabulary version."
+}

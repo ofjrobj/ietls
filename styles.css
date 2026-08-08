@@ -1,0 +1,4914 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap');
+
+:root{
+  --fs-1:12px;
+  --fs-2:14px;
+  --fs-3:18px;
+  --fs-4:28px;
+  --bg:#ffffff;
+  --ink:#222222;
+  --muted:#777777;
+  --soft:#f8f8f6;
+  --line:#dddddd;
+  --line-dark:#aaaaaa;
+  --black:#111111;
+  --red:#a43a32;
+  --green:#2f7650;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:var(--fs-2);
+  line-height:1.65;
+  word-break:keep-all;
+}
+
+a{color:inherit;text-decoration:none;}
+button,input,textarea,select{font-family:'Noto Sans KR',sans-serif;font-size:var(--fs-2);}
+
+.jy-ielts{
+  width:100%;
+  max-width:1040px;
+  margin:0 auto;
+  padding:0 20px 80px;
+}
+
+.jy-nav{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:18px 0 16px;
+  margin-bottom:24px;
+  border-bottom:1px solid var(--line);
+  background:#fff;
+}
+
+.jy-logo{
+  font-size:var(--fs-3);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  white-space:nowrap;
+}
+
+.jy-logo-meta{
+  display:inline-block;
+  margin-left:8px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:400;
+  text-decoration:none;
+}
+
+.jy-menu{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px;
+}
+
+.jy-menu a{
+  padding:6px 8px;
+  border-bottom:1px solid transparent;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+.jy-menu a.active{
+  color:var(--ink);
+  border-bottom-color:var(--ink);
+  font-weight:600;
+}
+
+.jy-menu a.school-link{color:rgba(16,136,84,.75);}
+
+.jy-top{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);
+  gap:18px;
+  align-items:stretch;
+  margin-bottom:22px;
+}
+
+.jy-titlebox,.jy-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:18px;
+  margin-bottom:22px;
+}
+
+.jy-titlebox,.jy-page-head{background:var(--soft);}
+
+.jy-title,.jy-page-title{
+  margin:0;
+  font-size:var(--fs-4);
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:-.03em;
+}
+
+.jy-section-title{
+  margin:36px 0 14px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+  font-size:var(--fs-3);
+  font-weight:600;
+}
+
+.jy-card-title{
+  margin:0 0 14px;
+  font-size:var(--fs-3);
+  line-height:1.35;
+  font-weight:600;
+}
+
+.jy-small{color:var(--muted);font-size:var(--fs-1);}
+.jy-value{font-size:var(--fs-4);line-height:1.2;font-weight:600;margin:6px 0;}
+
+.jy-grid-2{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:16px;}
+.jy-grid-3{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:12px;}
+.jy-grid-4{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:10px;}
+.jy-mini-card{border:1px solid var(--line);background:#fff;padding:14px;cursor:pointer;}
+
+.jy-list{display:grid;gap:0;}
+.jy-check{
+  display:grid;
+  grid-template-columns:22px minmax(0,1fr) auto;
+  gap:10px;
+  align-items:start;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-check:last-child{border-bottom:0;}
+.jy-box{
+  width:18px;
+  height:18px;
+  margin-top:3px;
+  border:1px solid var(--line-dark);
+  background:#fff;
+}
+.jy-box.clickable{cursor:pointer;}
+.jy-box.done{background:var(--black);border-color:var(--black);}
+.jy-check span{font-size:var(--fs-2);}
+.jy-check span.done{color:var(--muted);text-decoration:line-through;}
+.jy-check.important span{color:var(--red);font-weight:600;}
+.jy-check.custom span{color:var(--green);font-weight:500;}
+
+.jy-progress{
+  width:100%;
+  height:8px;
+  border:1px solid var(--line);
+  background:#fff;
+  margin:8px 0 10px;
+}
+.jy-progress span{
+  display:block;
+  height:100%;
+  background:var(--black);
+  width:0;
+  transition:width .2s ease;
+}
+
+.jy-codes{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;}
+.jy-code{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  padding:6px 9px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  font-size:var(--fs-1);
+  font-weight:600;
+  cursor:pointer;
+  border-radius:0;
+  color:var(--ink);
+}
+.jy-code.done{background:var(--black);border-color:var(--black);color:#fff;}
+
+.jy-btns{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.jy-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:8px 14px;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  color:var(--ink);
+  cursor:pointer;
+  font-size:var(--fs-2);
+  line-height:1.4;
+}
+.jy-btn.dark{background:var(--black);color:#fff;border-color:var(--black);}
+.jy-btn:hover{background:var(--soft);}
+.jy-btn.dark:hover{background:#333;}
+.jy-delete{min-height:28px;padding:4px 8px;font-size:var(--fs-1);}
+
+.jy-input,.jy-textarea,.jy-select{
+  width:100%;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  padding:10px;
+  color:var(--ink);
+}
+.jy-textarea{min-height:180px;resize:vertical;}
+.jy-field{margin-bottom:12px;}
+.jy-label{display:block;margin-bottom:6px;color:var(--muted);font-size:var(--fs-1);}
+
+.jy-table-scroll{width:100%;overflow-x:auto;}
+.jy-table{width:100%;border-collapse:collapse;border:1px solid var(--line);background:#fff;}
+.jy-table th,.jy-table td{
+  padding:9px;
+  border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);
+  vertical-align:top;
+  text-align:left;
+  font-size:var(--fs-1);
+  line-height:1.55;
+}
+.jy-table th{background:var(--soft);font-weight:600;}
+.jy-table th:last-child,.jy-table td:last-child{border-right:0;}
+
+.jy-note{
+  border-left:3px solid var(--black);
+  background:var(--soft);
+  padding:12px;
+  margin:12px 0;
+  font-size:var(--fs-2);
+  white-space:pre-wrap;
+}
+
+.jy-submitted{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:12px;
+  margin-top:12px;
+  white-space:pre-wrap;
+}
+
+.jy-daily-plan{display:grid;gap:10px;}
+.jy-daily-row{border:1px solid var(--line);background:#fff;padding:12px;}
+.jy-daily-row strong{display:block;margin-bottom:4px;font-weight:600;}
+
+.jy-status-list{display:grid;gap:0;}
+.jy-status-item{
+  display:grid;
+  grid-template-columns:22px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-status-item:last-child{border-bottom:0;}
+.jy-status-box{
+  width:18px;
+  height:18px;
+  margin-top:3px;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  cursor:pointer;
+}
+.jy-status-box.done{background:var(--black);border-color:var(--black);}
+.jy-status-item strong{display:block;margin-bottom:2px;font-size:var(--fs-2);font-weight:600;}
+.jy-status-item span{color:var(--muted);font-size:var(--fs-1);}
+.jy-section-link{color:var(--green);text-decoration:underline;text-underline-offset:3px;}
+
+.jy-word-table th:nth-child(1),.jy-word-table td:nth-child(1){width:52px;text-align:center;}
+.jy-word-table th:nth-child(2),.jy-word-table td:nth-child(2){min-width:150px;}
+.jy-word-table th:nth-child(3),.jy-word-table td:nth-child(3){min-width:180px;}
+.jy-word-table th:nth-child(4),.jy-word-table td:nth-child(4){min-width:260px;}
+
+.jy-test-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:16px 0 12px;}
+
+.jy-book-grid{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:16px;}
+.jy-book-card{border:1px solid var(--line);background:#fff;padding:16px;min-height:300px;}
+.jy-book-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px;}
+.jy-book-title{margin:0;font-size:var(--fs-3);font-weight:600;}
+.jy-page-counter{color:var(--muted);font-size:var(--fs-1);}
+.jy-page-card{min-height:180px;background:var(--soft);border:1px solid var(--line);padding:14px;white-space:pre-wrap;font-size:var(--fs-2);}
+.jy-page-meta{margin-bottom:8px;color:var(--muted);font-size:var(--fs-1);}
+.jy-book-controls{display:flex;justify-content:space-between;gap:8px;margin-top:12px;}
+.jy-book-controls .jy-btn{min-height:34px;padding:6px 10px;font-size:var(--fs-1);}
+
+.jy-school-summary{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:12px;margin-bottom:22px;}
+.jy-school-mini,.jy-school-goal{border:1px solid var(--line);background:#fff;padding:14px;}
+.jy-school-goal{background:var(--soft);}
+.jy-school-mini strong,.jy-school-goal strong{display:block;margin-bottom:8px;font-size:var(--fs-3);font-weight:600;}
+.jy-school-mini p,.jy-school-goal p{margin:0;color:var(--muted);font-size:var(--fs-1);}
+
+.jy-hidden{display:none !important;}
+
+@media(max-width:820px){
+  .jy-ielts{padding-left:14px;padding-right:14px;}
+  .jy-nav{align-items:flex-start;flex-direction:column;}
+  .jy-menu{justify-content:flex-start;}
+  .jy-top,.jy-grid-2,.jy-grid-3,.jy-grid-4,.jy-book-grid,.jy-school-summary{grid-template-columns:1fr;}
+}
+
+/* v02 vocab upload */
+#vocab-paste{
+  min-height:160px;
+  white-space:pre;
+}
+
+/* v03 vocab mastery */
+.jy-mastered{
+  opacity:.45;
+  background:var(--soft);
+}
+.jy-correct{
+  background:rgba(47,118,80,.08);
+}
+.jy-wrong{
+  background:rgba(164,58,50,.08);
+}
+#vocab-paste{
+  min-height:180px;
+  white-space:pre;
+}
+
+/* v04 requested layout */
+.jy-ielts{
+  padding-top:28px;
+}
+.jy-book-grid-single{
+  grid-template-columns:minmax(0,1fr);
+}
+.jy-note-tabs{
+  margin:0;
+}
+.jy-note-tabs .jy-btn{
+  min-height:34px;
+  padding:6px 10px;
+}
+@media(max-width:820px){
+  .jy-ielts{
+    padding-top:18px;
+  }
+}
+
+/* v05 memorise colour only */
+.jy-memorised-row{
+  background:rgba(47,118,80,.10);
+}
+
+/* v07 study-ready vocab */
+.jy-word-table td:nth-child(3),
+.jy-word-table td:nth-child(4){
+  white-space:normal;
+}
+
+/* v08 graduate schedule and home lecture checklist */
+.jy-lecture-checklist{
+  margin-top:10px;
+}
+.jy-school-mini p{
+  line-height:1.55;
+}
+
+/* v11 skill todo */
+#section-todo-list .jy-note{
+  margin:0;
+}
+
+/* v12 home schedule and integrated todos */
+.jy-section-added-todos{
+  margin-top:10px;
+}
+#full-schedule-panel{
+  margin-top:12px;
+}
+.jy-schedule-table th,
+.jy-schedule-table td{
+  white-space:normal;
+}
+
+/* v14 mini ddays */
+.jy-mini-ddays{
+  margin:4px 0 10px;
+  padding-top:2px;
+}
+.jy-mini-ddays p{
+  margin:2px 0;
+  color:var(--green);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+
+/* v15 per lecture notes and proof */
+.jy-lecture-status-list{
+  display:grid;
+  gap:6px;
+  margin-top:10px;
+}
+.jy-lecture-status-row{
+  display:grid;
+  grid-template-columns:54px minmax(70px,1fr) minmax(70px,1fr);
+  gap:8px;
+  align-items:center;
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:7px 9px;
+  font-size:var(--fs-1);
+}
+.jy-lecture-status-row span{
+  color:var(--muted);
+}
+.jy-lecture-status-row span.done{
+  color:var(--green);
+  font-weight:600;
+}
+.jy-lecture-cards{
+  display:grid;
+  gap:14px;
+  margin-bottom:22px;
+}
+.jy-lecture-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:16px;
+}
+.jy-lecture-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+  margin-bottom:12px;
+}
+.jy-lecture-card-head p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-lecture-note-input{
+  min-height:140px;
+}
+.jy-proof-view{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:10px;
+  min-height:120px;
+  margin-top:8px;
+}
+.jy-proof-view img{
+  display:block;
+  max-width:100%;
+  max-height:220px;
+  object-fit:contain;
+  margin-top:8px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+@media(max-width:820px){
+  .jy-lecture-card-head{
+    flex-direction:column;
+  }
+}
+
+/* v16 home lecture checklist */
+.jy-home-lecture-list{
+  margin-top:10px;
+}
+.jy-home-lecture-item{
+  grid-template-columns:22px minmax(0,1fr);
+}
+.jy-home-lecture-item span{
+  color:var(--ink);
+  font-weight:400;
+}
+.jy-home-lecture-item span.done{
+  color:var(--muted);
+}
+.jy-home-lecture-item small{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:400;
+}
+
+/* v17 skill notes only */
+.jy-submitted{
+  margin-bottom:10px;
+}
+
+/* v18 linked lecture notes */
+.jy-lecture-note-linked{
+  border-left:3px solid var(--green);
+}
+
+/* v19 balanced home study grid */
+.jy-study-check-grid{
+  grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);
+}
+.jy-today-lecture-card{
+  min-width:0;
+}
+.jy-today-task-card{
+  min-width:0;
+}
+@media(max-width:820px){
+  .jy-study-check-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v20 skill lecture note form */
+#skill-lecture-note-text{
+  min-height:150px;
+}
+
+
+/* v22 header, school schedule, skill tasks */
+.jy-logo{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.jy-logo-main{
+  display:inline-block;
+  font-size:var(--fs-3);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.jy-logo-meta{
+  display:block;
+  margin-left:0;
+  color:var(--muted);
+  font-size:var(--fs-0);
+  font-weight:400;
+  line-height:1.35;
+  text-decoration:none;
+}
+.jy-nav{
+  align-items:flex-start;
+}
+.jy-hero-titlebox{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:260px;
+  text-align:center;
+}
+.jy-deadline-table tr.jy-dday-soon td,
+.jy-deadline-table tr.jy-dday-soon th{
+  background:#edf7f1;
+}
+.jy-deadline-table tr.jy-dday-past td,
+.jy-deadline-table tr.jy-dday-past th{
+  color:var(--muted);
+  background:#fafafa;
+}
+.jy-time-card{
+  margin-bottom:14px;
+}
+.jy-time-card p{
+  margin:6px 0 0;
+  color:var(--muted);
+}
+.jy-school-detail-table td{
+  vertical-align:top;
+}
+.jy-skill-task-list .jy-daily-row{
+  margin-top:8px;
+}
+@media(max-width:820px){
+  .jy-logo-meta{
+    white-space:normal;
+  }
+  .jy-hero-titlebox{
+    min-height:180px;
+  }
+}
+
+
+/* v24 CSM focused school page */
+.jy-csm-main{
+  border-color:#cfe5d9;
+}
+.jy-csm-main .jy-grid-3{
+  margin-top:12px;
+}
+.jy-school-hidden{
+  display:none;
+}
+
+
+/* v27 school schedule refinement */
+.jy-table td.jy-important-cell,
+.jy-table th.jy-important-cell{
+  background:#f6ead2;
+  font-weight:600;
+}
+.jy-deadline-table tr.jy-dday-past td.jy-important-cell{
+  background:#f4f0e8;
+  color:var(--muted);
+}
+.jy-card .jy-btns a.jy-btn{
+  text-decoration:none;
+}
+
+/* v34 mock test management */
+.jy-mock-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.jy-mock-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+  margin-bottom:12px;
+}
+.jy-mock-status-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(120px,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.jy-mock-status-card{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:10px;
+}
+.jy-mock-status-card strong{
+  display:block;
+  margin-bottom:6px;
+  font-weight:600;
+}
+.jy-mock-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:3px 8px;
+  border:1px solid var(--line-dark);
+  color:var(--muted);
+  background:#fff;
+  font-size:var(--fs-1);
+}
+.jy-mock-badge.done{
+  color:#fff;
+  background:var(--green);
+  border-color:var(--green);
+}
+.jy-mock-part{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:14px;
+}
+.jy-mock-part h4{
+  margin:0 0 10px;
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-mock-short{
+  min-height:100px;
+}
+.jy-mock-audio-box{
+  margin-top:10px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:10px;
+}
+.jy-mock-audio-box audio{
+  display:block;
+  width:100%;
+  margin:8px 0;
+}
+.jy-mock-table .jy-textarea{
+  min-height:90px;
+}
+.jy-mock-solve-card{
+  width:100%;
+  text-align:left;
+  cursor:pointer;
+}
+.jy-mock-solve-card .jy-mock-badge{
+  margin-right:6px;
+  margin-top:4px;
+}
+.jy-reading-time-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(120px,1fr));
+  gap:8px;
+}
+.jy-mock-file-card{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:14px;
+}
+.jy-mock-file-preview{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:10px;
+  min-height:90px;
+  margin-top:10px;
+}
+.jy-mock-file-preview img{
+  display:block;
+  max-width:100%;
+  max-height:360px;
+  object-fit:contain;
+  margin-top:8px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+@media(max-width:820px){
+  .jy-mock-head{
+    flex-direction:column;
+  }
+  .jy-mock-status-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .jy-reading-time-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* v35 compact mock guide */
+.jy-mock-guide-table th{
+  width:120px;
+}
+.jy-mock-guide-table th,
+.jy-mock-guide-table td{
+  padding:8px 10px;
+}
+
+
+/* v36 mock test time comparison */
+.jy-time-label-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:6px;
+}
+.jy-time-label-row .jy-label{
+  margin-bottom:0;
+}
+.jy-time-status{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  margin:0;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+  white-space:nowrap;
+}
+.jy-time-status.good{
+  border-color:rgba(47,118,80,.35);
+  background:rgba(47,118,80,.10);
+  color:var(--green);
+  font-weight:600;
+}
+.jy-time-status.bad{
+  border-color:rgba(164,58,50,.35);
+  background:rgba(164,58,50,.10);
+  color:var(--red);
+  font-weight:600;
+}
+.jy-mock-time-input{
+  margin-bottom:0;
+}
+
+/* v36 keep-data writing word count and correction view */
+.jy-writing-textarea{
+  min-height:180px;
+}
+.jy-word-count{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  margin:6px 0 0;
+  padding:3px 8px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-word-count.good{
+  border-color:rgba(47,118,80,.35);
+  background:rgba(47,118,80,.10);
+  color:var(--green);
+  font-weight:600;
+}
+.jy-word-count.bad{
+  border-color:rgba(164,58,50,.35);
+  background:rgba(164,58,50,.10);
+  color:var(--red);
+  font-weight:600;
+}
+.jy-writing-check-result{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:14px;
+  margin-top:12px;
+}
+.jy-writing-check-result h4{
+  margin:0 0 8px;
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-writing-correction-item{
+  border-top:1px solid var(--line);
+  padding-top:10px;
+  margin-top:10px;
+}
+.jy-writing-diff-line{
+  margin:0;
+  line-height:2.05;
+}
+.jy-writing-same{
+  color:var(--ink);
+}
+.jy-writing-change{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  vertical-align:top;
+  margin:0 2px 4px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-writing-old{
+  color:var(--muted);
+  text-decoration:line-through;
+  line-height:1.2;
+}
+.jy-writing-new{
+  color:var(--green);
+  font-size:var(--fs-1);
+  font-weight:600;
+  line-height:1.25;
+}
+.jy-writing-insert{
+  display:inline;
+  color:var(--green);
+  font-size:var(--fs-1);
+  font-weight:600;
+  margin:0 2px;
+}
+.jy-writing-delete{
+  display:inline;
+  color:var(--muted);
+  text-decoration:line-through;
+  margin:0 2px;
+}
+
+/* v43 split writing and speaking time records */
+.jy-time-split-grid{
+  display:grid;
+  gap:8px;
+}
+.jy-writing-time-grid{
+  grid-template-columns:repeat(2,minmax(120px,1fr));
+}
+.jy-speaking-time-grid{
+  grid-template-columns:repeat(3,minmax(100px,1fr));
+}
+@media(max-width:820px){
+  .jy-writing-time-grid,
+  .jy-speaking-time-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v44 speaking single time and scripts */
+.jy-speaking-script-field{
+  margin-top:10px;
+  margin-bottom:0;
+}
+.jy-speaking-script{
+  min-height:120px;
+}
+
+/* v47 vertical mock sections and speaking scripts */
+.jy-mock-section-list,
+.jy-speaking-part-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+.jy-speaking-bulk-card{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:14px;
+  margin-bottom:16px;
+}
+.jy-speaking-table-paste{
+  min-height:96px;
+  white-space:pre;
+  overflow:auto;
+}
+.jy-speaking-part-card{
+  padding:18px;
+}
+.jy-speaking-script-field{
+  margin-top:14px;
+}
+.jy-speaking-script{
+  min-height:170px;
+  white-space:pre-wrap;
+}
+textarea.jy-auto-grow{
+  overflow:hidden;
+}
+.jy-mock-short.jy-auto-grow{
+  min-height:110px;
+}
+
+/* v50 speaking transcript check */
+.jy-speaking-script-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+  margin-top:14px;
+}
+.jy-speaking-check-box{
+  border:1px solid var(--line);
+  background:var(--soft);
+  padding:12px;
+  min-height:170px;
+}
+.jy-speaking-check-box strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+@media(max-width:820px){
+  .jy-speaking-script-layout{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v51 mock score cards */
+.jy-mock-score-card{
+  cursor:default;
+}
+.jy-mock-score-card .jy-field{
+  margin:8px 0 0;
+}
+.jy-mock-score-input{
+  min-height:36px;
+}
+
+/* v53 floating unknown vocabulary */
+.jy-vocab-extra{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-quick-vocab{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:320px;
+  max-width:calc(100vw - 28px);
+  z-index:9999;
+  background:#fff;
+  border:1px solid var(--line-dark);
+  box-shadow:0 8px 22px rgba(0,0,0,.10);
+}
+.jy-quick-vocab-panel{
+  display:block;
+  padding:12px;
+}
+.jy-quick-vocab.collapsed{
+  width:auto;
+  border-color:var(--black);
+}
+.jy-quick-vocab.collapsed .jy-quick-vocab-panel{
+  display:none;
+}
+.jy-quick-vocab-tab{
+  display:none;
+  min-width:56px;
+  padding:9px 12px;
+  background:var(--black);
+  color:#fff;
+  font-size:var(--fs-1);
+  font-weight:600;
+  cursor:pointer;
+  text-align:center;
+}
+.jy-quick-vocab.collapsed .jy-quick-vocab-tab{
+  display:block;
+}
+.jy-quick-vocab-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:10px;
+  cursor:move;
+  user-select:none;
+}
+.jy-quick-vocab-head strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-quick-vocab-row{
+  display:grid;
+  grid-template-columns:minmax(105px,1fr) auto auto auto;
+  align-items:center;
+  gap:6px;
+  margin-bottom:10px;
+}
+.jy-quick-vocab-bank-status{
+  display:none;
+  color:var(--red);
+  font-size:var(--fs-1);
+  font-weight:600;
+  line-height:1.35;
+  white-space:nowrap;
+}
+.jy-quick-vocab-bank-status.active{
+  display:inline-block;
+}
+.jy-quick-vocab-word-input{
+  min-height:38px;
+  height:38px;
+  resize:vertical;
+  line-height:1.45;
+  padding:8px;
+}
+.jy-quick-vocab-status{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  margin:-4px 0 6px;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-quick-vocab-result .jy-label{
+  margin-top:7px;
+  margin-bottom:3px;
+}
+.jy-quick-vocab-result .jy-input{
+  min-height:32px;
+  padding:7px 8px;
+}
+.jy-quick-vocab-result .jy-textarea{
+  min-height:66px;
+  padding:7px 8px;
+}
+.jy-quick-vocab-result .jy-btn{
+  width:100%;
+  margin-top:8px;
+}
+.jy-quick-vocab-list{
+  margin-top:10px;
+  max-height:160px;
+  overflow:auto;
+  border-top:1px solid var(--line);
+}
+.jy-quick-vocab-item{
+  display:block;
+  width:100%;
+  padding:8px 0;
+  border:0;
+  border-bottom:1px solid var(--line);
+  background:transparent;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.jy-quick-vocab-item:hover{
+  background:var(--soft);
+}
+.jy-quick-vocab-item strong{
+  display:block;
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-quick-vocab-existing-badge{
+  display:inline-block;
+  margin-left:6px;
+  color:var(--red);
+  font-style:normal;
+  font-size:10px;
+  font-weight:600;
+  vertical-align:baseline;
+}
+.jy-quick-vocab-item span,
+.jy-quick-vocab-empty{
+  display:block;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+@media(max-width:820px){
+  .jy-quick-vocab{
+    right:10px;
+    bottom:10px;
+    width:300px;
+  }
+}
+
+/* v54 GPT search and rich wrong-note editor */
+.jy-chatgpt-search{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  width:300px;
+  max-width:calc(100vw - 28px);
+  z-index:9998;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  box-shadow:0 8px 22px rgba(0,0,0,.10);
+  padding:12px;
+}
+.jy-chatgpt-search-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+.jy-chatgpt-search-head strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-chatgpt-search-body{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:6px;
+}
+.jy-chatgpt-search-open{
+  position:fixed;
+  left:18px;
+  bottom:18px;
+  z-index:9998;
+  min-width:54px;
+  min-height:38px;
+  border:1px solid var(--black);
+  background:var(--black);
+  color:#fff;
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:var(--fs-1);
+  font-weight:600;
+  cursor:pointer;
+}
+.jy-review-source-grid{
+  display:grid;
+  grid-template-columns:minmax(240px,.55fr) minmax(0,1.45fr);
+  gap:14px;
+  align-items:start;
+}
+.jy-review-editor-wrap{
+  min-width:0;
+}
+.jy-rich-toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:8px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  margin-bottom:8px;
+}
+.jy-rich-btn{
+  min-height:30px;
+  padding:4px 8px;
+  font-size:var(--fs-1);
+}
+.jy-rich-select{
+  width:auto;
+  min-height:30px;
+  padding:4px 8px;
+  font-size:var(--fs-1);
+}
+.jy-rich-colour-label{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-height:30px;
+  padding:4px 7px;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-rich-colour-label input{
+  width:24px;
+  height:22px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-rich-editor{
+  width:100%;
+  min-height:260px;
+  max-height:520px;
+  overflow:auto;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  padding:12px;
+  line-height:1.65;
+  white-space:normal;
+}
+.jy-rich-editor:empty:before{
+  content:attr(data-placeholder);
+  color:#aaa;
+}
+.jy-rich-editor p{
+  margin:0 0 8px;
+}
+.jy-rich-editor ul,
+.jy-rich-editor ol{
+  margin:0 0 8px 22px;
+  padding:0;
+}
+.jy-rich-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:8px 0;
+}
+.jy-rich-table td,
+.jy-rich-table th{
+  min-width:80px;
+  border:1px solid var(--line-dark);
+  padding:7px;
+  vertical-align:top;
+}
+.jy-review-editor-actions{
+  margin-top:8px;
+  margin-bottom:4px;
+}
+@media(max-width:820px){
+  .jy-review-source-grid{
+    grid-template-columns:1fr;
+  }
+  .jy-chatgpt-search{
+    left:10px;
+    bottom:10px;
+    width:290px;
+  }
+  .jy-chatgpt-search-open{
+    left:10px;
+    bottom:10px;
+  }
+}
+
+/* v56 compact review editor and editable tables */
+.jy-review-editor-card{
+  padding:14px;
+}
+.jy-review-topline{
+  display:grid;
+  grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);
+  gap:10px;
+  align-items:start;
+  margin-bottom:10px;
+}
+.jy-review-file-inline{
+  min-width:0;
+}
+.jy-review-file-input{
+  min-height:32px;
+  padding:6px 8px;
+  font-size:var(--fs-1);
+}
+.jy-review-file-preview-compact{
+  min-height:0;
+  margin-top:6px;
+  padding:8px;
+}
+.jy-review-file-preview-compact:empty{
+  display:none;
+}
+.jy-rich-toolbar{
+  margin-bottom:0;
+  align-content:flex-start;
+}
+.jy-rich-editor{
+  min-height:280px;
+  max-height:none;
+  overflow:visible;
+  resize:vertical;
+}
+.jy-rich-table{
+  width:auto;
+  max-width:100%;
+  table-layout:auto;
+}
+.jy-rich-table td,
+.jy-rich-table th{
+  min-width:90px;
+  min-height:34px;
+  resize:both;
+  overflow:auto;
+  position:relative;
+}
+.jy-rich-table td:focus,
+.jy-rich-table th:focus{
+  outline:1px solid var(--black);
+  outline-offset:-1px;
+}
+@media(max-width:820px){
+  .jy-review-topline{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v57 review editor cleanup and sticky toolbar */
+.jy-review-sticky-bar{
+  position:sticky;
+  top:8px;
+  z-index:40;
+  display:grid;
+  grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);
+  gap:10px;
+  align-items:start;
+  margin-bottom:10px;
+  padding:8px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-review-sticky-bar .jy-rich-toolbar{
+  margin-bottom:0;
+  border-color:var(--line);
+  background:var(--soft);
+}
+.jy-review-sticky-bar .jy-label{
+  margin-bottom:4px;
+}
+@media(max-width:820px){
+  .jy-review-sticky-bar{
+    position:static;
+    grid-template-columns:1fr;
+  }
+}
+
+/* v58 carried schedule, working quick vocab, collapsible mock sections */
+.jy-collapsible-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:8px;
+  margin-bottom:12px;
+}
+.jy-collapsible-head .jy-card-title{
+  margin:0;
+}
+.jy-collapsible-body.jy-hidden{
+  display:none !important;
+}
+.jy-quick-vocab-word-input{
+  resize:none;
+}
+.jy-quick-vocab-status:empty{
+  display:none;
+}
+
+/* v60 target score and latest mock comparison */
+.jy-score-grid{
+  margin-bottom:22px;
+}
+.jy-target-score-card{
+  cursor:pointer;
+}
+.jy-latest-score{
+  margin-top:10px;
+  padding-top:9px;
+  border-top:1px solid var(--line);
+}
+.jy-latest-score span{
+  display:block;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-latest-score strong{
+  display:block;
+  margin-top:2px;
+  font-size:var(--fs-3);
+  line-height:1.35;
+  font-weight:600;
+}
+.jy-latest-score small{
+  display:block;
+  margin-top:3px;
+  color:var(--red);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-latest-score small.good{
+  color:var(--green);
+  font-weight:600;
+}
+
+/* v66 today unknown vocabulary auto highlight */
+.jy-today-vocab-mark{
+  background:rgba(255,182,193,.35);
+  border-radius:2px;
+  padding:0 1px;
+}
+
+/* v70 simplified study timer */
+.jy-btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+.jy-study-home{
+  margin-bottom:22px;
+}
+.jy-study-home-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.jy-study-home-head .jy-card-title{
+  margin:0;
+}
+.jy-study-compare{
+  display:grid;
+  gap:8px;
+  margin:8px 0;
+}
+.jy-study-compare-row{
+  display:grid;
+  grid-template-columns:86px minmax(0,1fr);
+  gap:8px;
+  align-items:center;
+}
+.jy-study-compare-label{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+}
+.jy-study-compare-label span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-study-compare-label strong{
+  font-size:var(--fs-1);
+  font-weight:600;
+  line-height:1.35;
+}
+.jy-study-compare-bar{
+  margin:0;
+  height:9px;
+}
+.jy-study-yesterday-bar span{
+  background:var(--line-dark);
+}
+.jy-study-timer{
+  position:fixed;
+  left:18px;
+  bottom:118px;
+  width:330px;
+  max-width:calc(100vw - 28px);
+  max-height:calc(100vh - 150px);
+  overflow:auto;
+  z-index:9999;
+  border:1px solid var(--line-dark);
+  background:#fff;
+  box-shadow:0 8px 22px rgba(0,0,0,.10);
+  padding:12px;
+}
+.jy-study-timer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+.jy-study-timer-head strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-study-live{
+  margin:8px 0 6px;
+  padding:8px 9px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-study-live.active{
+  border-color:rgba(47,118,80,.35);
+  background:rgba(47,118,80,.08);
+  color:var(--green);
+  font-weight:600;
+}
+.jy-study-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:8px 0 10px;
+}
+.jy-study-buttons .jy-btn{
+  width:100%;
+  min-height:36px;
+}
+.jy-study-timetable{
+  border-top:1px solid var(--line);
+  margin-top:8px;
+  padding-top:8px;
+}
+.jy-study-timetable-title{
+  margin-bottom:6px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-study-session-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+  padding:7px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-study-session-row:last-child{
+  border-bottom:0;
+}
+.jy-study-session-row strong{
+  display:inline-block;
+  min-width:28px;
+  margin-right:4px;
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-study-session-row span{
+  color:var(--ink);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-study-session-current span{
+  color:var(--green);
+  font-weight:600;
+}
+.jy-study-session-actions{
+  display:flex;
+  gap:4px;
+}
+.jy-study-empty{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  padding:8px 0;
+}
+.jy-study-manage{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:10px 0 0;
+}
+.jy-study-manage .jy-btn{
+  width:100%;
+  min-height:34px;
+  font-size:var(--fs-1);
+}
+.jy-study-timer-open{
+  position:fixed;
+  left:18px;
+  bottom:66px;
+  z-index:9998;
+  min-width:54px;
+  min-height:38px;
+  border:1px solid var(--black);
+  background:#fff;
+  color:var(--black);
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:var(--fs-1);
+  font-weight:600;
+  cursor:pointer;
+}
+@media(max-width:820px){
+  .jy-study-home-head{
+    flex-direction:column;
+  }
+  .jy-study-timer{
+    left:10px;
+    bottom:112px;
+    width:300px;
+  }
+  .jy-study-timer-open{
+    left:10px;
+    bottom:62px;
+  }
+  .jy-study-compare-row{
+    grid-template-columns:78px minmax(0,1fr);
+  }
+}
+body:has(#jy-chatgpt-search:not(.jy-hidden)) .jy-study-timer-open{
+  bottom:142px;
+}
+body:has(#jy-chatgpt-search:not(.jy-hidden)) .jy-study-timer{
+  bottom:180px;
+}
+@media(max-width:820px){
+  body:has(#jy-chatgpt-search:not(.jy-hidden)) .jy-study-timer-open{
+    bottom:136px;
+  }
+  body:has(#jy-chatgpt-search:not(.jy-hidden)) .jy-study-timer{
+    bottom:172px;
+  }
+}
+
+
+/* v72 vocabulary reveal correction, mock review submit sync, quick pronunciation */
+.jy-vocab-hidden-text{
+  display:inline-block;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+.jy-vocab-example-blank{
+  color:var(--ink);
+  letter-spacing:.03em;
+}
+.jy-quick-vocab-pronounce{
+  min-width:48px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.jy-quick-vocab-bank-status{
+  margin:-4px 0 6px;
+}
+
+/* v73 vocabulary memorisation practice */
+.jy-vocab-practice-input{
+  min-height:34px;
+  padding:7px 8px;
+  font-size:var(--fs-1);
+}
+.jy-vocab-practice-input::placeholder{
+  color:#999;
+}
+.jy-vocab-example-blank{
+  font-weight:500;
+  letter-spacing:.02em;
+}
+.jy-vocab-hidden-text{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+/* v74 vocabulary grading */
+.jy-vocab-practice-wrap{
+  display:grid;
+  gap:4px;
+}
+.jy-vocab-practice-input.correct{
+  border-color:rgba(47,118,80,.65);
+  background:rgba(47,118,80,.06);
+}
+.jy-vocab-practice-input.wrong{
+  border-color:rgba(164,58,50,.75);
+  background:rgba(164,58,50,.07);
+}
+.jy-vocab-practice-result{
+  display:none;
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-vocab-practice-result.active{
+  display:block;
+}
+.jy-vocab-practice-result.correct{
+  color:var(--green);
+  font-weight:600;
+}
+.jy-vocab-practice-result.wrong{
+  color:var(--red);
+  font-weight:600;
+}
+.jy-vocab-grade-status{
+  margin:6px 0 10px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+
+/* v80 vocabulary two-step memorisation */
+.jy-vocab-memory-check{
+  display:block;
+  margin:0 0 4px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+  white-space:nowrap;
+}
+.jy-vocab-memory-check input{
+  margin-right:4px;
+  vertical-align:-2px;
+}
+.jy-vocab-fully-memorised-row td{
+  background:rgba(47,118,80,.12);
+}
+.jy-vocab-fully-memorised-row td:nth-child(2),
+.jy-vocab-fully-memorised-row td:nth-child(3){
+  color:var(--green);
+  font-weight:600;
+}
+
+
+/* v81 vocabulary reset and semantic grading */
+.jy-vocab-practice-result.correct.active,
+.jy-vocab-practice-result.wrong.active{
+  white-space:normal;
+}
+
+/* v83 cafe problem-solving timer */
+.jy-section-solve-card{
+  margin-bottom:22px;
+}
+.jy-section-solve-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+.jy-section-solve-head .jy-card-title{
+  margin:0;
+}
+.jy-section-solve-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+  padding:7px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-section-solve-row:last-child{
+  border-bottom:0;
+}
+.jy-section-solve-row span{
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-section-solve-row strong{
+  display:inline-block;
+  min-width:24px;
+  font-weight:600;
+}
+@media(max-width:820px){
+  .jy-section-solve-head,
+  .jy-section-solve-row{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v84 compact cafe problem-solving timer placement */
+.jy-section-solve-compact{
+  padding:10px 12px;
+  margin-bottom:14px;
+}
+.jy-section-solve-line{
+  display:grid;
+  grid-template-columns:auto minmax(120px,1fr) auto;
+  gap:8px;
+  align-items:center;
+}
+.jy-section-solve-line strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+  white-space:nowrap;
+}
+.jy-section-solve-line .jy-time-status{
+  justify-self:start;
+  margin:0;
+}
+.jy-section-solve-buttons{
+  display:flex;
+  gap:6px;
+  justify-content:flex-end;
+}
+.jy-section-solve-buttons .jy-btn{
+  min-height:30px;
+  padding:5px 10px;
+  font-size:var(--fs-1);
+}
+.jy-section-solve-list{
+  margin-top:8px;
+  padding-top:6px;
+  border-top:1px solid var(--line);
+}
+.jy-section-solve-compact .jy-section-solve-row{
+  padding:4px 0;
+}
+.jy-section-solve-compact .jy-delete{
+  min-height:24px;
+  padding:3px 7px;
+}
+@media(max-width:820px){
+  .jy-section-solve-line{
+    grid-template-columns:1fr;
+    align-items:start;
+  }
+  .jy-section-solve-line .jy-time-status{
+    justify-self:start;
+  }
+  .jy-section-solve-buttons{
+    justify-content:flex-start;
+  }
+}
+
+
+/* v89 separated review draft storage and recovery */
+.jy-review-recovery{
+  margin-top:8px;
+  padding:8px;
+  border:1px solid var(--line);
+  background:var(--soft);
+}
+.jy-review-recovery summary{
+  cursor:pointer;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-review-recovery-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+/* v96 minimal review toolbar, hot-pink shape marks, multi-meaning vocab field */
+.jy-rich-shape-btn{
+  border-color:rgba(255,20,147,.45);
+  color:#c90073;
+}
+.jy-rich-shape{
+  position:relative;
+  display:inline-block;
+  padding:.05em .22em;
+  margin:0 .03em;
+  z-index:0;
+}
+.jy-rich-shape::after{
+  content:"";
+  position:absolute;
+  left:-.2em;
+  right:-.2em;
+  top:-.25em;
+  bottom:-.25em;
+  pointer-events:none;
+  z-index:2;
+  border:1.3px solid #ff1493;
+}
+.jy-rich-shape-ellipse::after{
+  border-radius:999px;
+}
+.jy-rich-shape-rectangle::after{
+  border-radius:2px;
+}
+.jy-rich-shape-triangle::after{
+  border:0;
+  left:-.32em;
+  right:-.32em;
+  top:-.46em;
+  bottom:-.32em;
+  background:no-repeat center/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70' preserveAspectRatio='none'%3E%3Cpolygon points='50,3 97,67 3,67' fill='none' stroke='%23ff1493' stroke-width='2.7' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+}
+.jy-quick-vocab-meaning{
+  min-height:72px;
+  resize:vertical;
+}
+
+
+/* v99 grammar notes, clean menu, schedule date controls */
+.jy-nav{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:start;
+  gap:18px;
+}
+.jy-menu{
+  gap:5px;
+  align-items:center;
+}
+.jy-menu a{
+  padding:5px 7px;
+  border:1px solid transparent;
+  line-height:1.25;
+}
+.jy-menu a.active{
+  background:var(--black);
+  border-color:var(--black);
+  color:#fff;
+}
+.jy-menu a.school-link.active{
+  color:#fff;
+}
+.jy-date-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+}
+.jy-date-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:flex-end;
+}
+.jy-date-buttons .jy-btn{
+  min-height:30px;
+  padding:5px 9px;
+  font-size:var(--fs-1);
+}
+.jy-grammar-editor-card{
+  background:#fffdf0;
+}
+.jy-grammar-editor-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.jy-grammar-editor-head .jy-card-title{
+  margin:0;
+}
+.jy-grammar-title{
+  margin-bottom:8px;
+  background:#fffdf4;
+}
+.jy-grammar-paper,
+.jy-grammar-page-card{
+  background:#fff8d9;
+  background-image:linear-gradient(to bottom, rgba(0,0,0,.055) 1px, transparent 1px);
+  background-size:100% 30px;
+  border-color:#e4d69a;
+  min-height:360px;
+  line-height:30px;
+}
+.jy-grammar-paper:empty:before{
+  content:attr(data-placeholder);
+  color:#b4a76b;
+}
+.jy-grammar-book{
+  background:#fffdf0;
+  border-color:#e4d69a;
+}
+.jy-grammar-trash summary{
+  cursor:pointer;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-grammar-trash-list{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+.jy-grammar-trash-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+  padding:7px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-grammar-trash-row span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+@media(max-width:820px){
+  .jy-nav{
+    grid-template-columns:1fr;
+  }
+  .jy-menu{
+    justify-content:flex-start;
+  }
+  .jy-date-controls{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-date-buttons{
+    justify-content:flex-start;
+  }
+  .jy-grammar-trash-row{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v101 two-line menu and single grammar notebook */
+.jy-nav{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:start;
+  gap:22px;
+}
+.jy-menu{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:flex-start;
+  gap:10px;
+}
+.jy-menu-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:18px;
+}
+.jy-menu a{
+  padding:2px 0 6px;
+  border:0;
+  border-bottom:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  font-size:var(--fs-2);
+  line-height:1.25;
+}
+.jy-menu a.active{
+  background:transparent;
+  border-color:var(--black);
+  color:var(--ink);
+  font-weight:600;
+}
+.jy-menu a.school-link.active{
+  color:var(--green);
+  border-bottom-color:var(--green);
+}
+.jy-grammar-single-page{
+  padding:14px;
+}
+.jy-grammar-single-page .jy-book-top{
+  margin-bottom:10px;
+}
+.jy-grammar-single-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:10px;
+}
+.jy-grammar-single-actions .jy-btns{
+  margin:0;
+}
+.jy-grammar-trash-inline{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(0,0,0,.08);
+}
+@media(max-width:820px){
+  .jy-nav{
+    grid-template-columns:1fr;
+  }
+  .jy-menu,
+  .jy-menu-row{
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
+  .jy-menu-row{
+    gap:12px;
+  }
+  .jy-menu a{
+    font-size:var(--fs-1);
+  }
+}
+
+
+
+/* v103 grammar rich toolbar */
+.jy-grammar-toolbar-wrap{
+  margin:8px 0 0;
+}
+.jy-grammar-toolbar-wrap .jy-rich-toolbar{
+  margin-bottom:8px;
+  position:sticky;
+  top:8px;
+  z-index:35;
+}
+.jy-grammar-paper{
+  min-height:420px;
+}
+#grammar-note-status:empty{
+  display:none;
+}
+
+/* v106 lecture note rich editor and photo gallery */
+.jy-lecture-editor-card{
+  background:#fff8fb;
+  border-color:#f1c9d6;
+}
+.jy-lecture-sticky-bar{
+  background:#fff8fb;
+  border-color:#f1c9d6;
+}
+.jy-lecture-rich-toolbar{
+  background:#fff1f6;
+  border-color:#f1c9d6;
+}
+.jy-lecture-rich-toolbar .jy-rich-colour-label,
+.jy-lecture-rich-toolbar .jy-btn,
+.jy-lecture-rich-toolbar .jy-select{
+  border-color:#eab8c8;
+}
+.jy-lecture-rich-editor{
+  min-height:260px;
+  border-color:#eab8c8;
+  background:#fff;
+}
+.jy-lecture-rich-editor:empty:before{
+  content:attr(data-placeholder);
+  color:#b98a9b;
+}
+.jy-lecture-photo-field{
+  margin-top:12px;
+  padding:12px;
+  border:1px solid #f1c9d6;
+  background:#fffafd;
+}
+.jy-lecture-proof-gallery-empty{
+  margin-top:8px;
+  padding:10px;
+  border:1px solid #f1c9d6;
+  background:#fff;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-lecture-proof-gallery{
+  margin-top:10px;
+}
+.jy-lecture-proof-track{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:4px 0 8px;
+}
+.jy-lecture-proof-item{
+  flex:0 0 min(340px, 86vw);
+  scroll-snap-align:start;
+  margin:0;
+  border:1px solid #f1c9d6;
+  background:#fff;
+  padding:8px;
+}
+.jy-lecture-proof-item img{
+  display:block;
+  width:100%;
+  max-height:260px;
+  object-fit:contain;
+  background:#fff;
+}
+.jy-lecture-proof-item figcaption{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.4;
+}
+.jy-lecture-proof-controls{
+  margin-top:4px;
+}
+@media(max-width:820px){
+  .jy-lecture-proof-item{
+    flex-basis:86vw;
+  }
+}
+
+
+/* v109 schedule correction: keep 037~039 on 2026-05-14 and move 040 onward to 2026-05-15 */
+
+
+/* v110 notes cleanup: cumulative submitted notes are shown in Notes page only */
+
+/* v111 lecture proof PDF upload and gallery */
+.jy-lecture-proof-pdf-item{
+  min-height:330px;
+}
+.jy-lecture-proof-pdf{
+  display:block;
+  width:100%;
+  height:260px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-lecture-proof-pdf-fallback,
+.jy-lecture-proof-file-box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:220px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-lecture-proof-item figcaption a{
+  color:var(--green);
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+
+/* v112 large file storage: IndexedDB loading state */
+.jy-proof-loading{
+  min-height:220px;
+  background:var(--soft);
+}
+.jy-lecture-proof-item img.jy-proof-loading{
+  border:1px solid var(--line);
+}
+.jy-lecture-proof-pdf.jy-proof-loading::before{
+  content:"파일 불러오는 중";
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+
+/* v113 one-page proof carousel and PDF page rendering */
+.jy-lecture-proof-gallery{
+  max-width:560px;
+}
+.jy-lecture-proof-viewport{
+  width:100%;
+  overflow:hidden;
+  border:1px solid #f1c9d6;
+  background:#fff;
+}
+.jy-lecture-proof-track{
+  display:flex;
+  width:100%;
+  overflow-x:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:0;
+  gap:0;
+}
+.jy-lecture-proof-item{
+  flex:0 0 100%;
+  width:100%;
+  max-width:100%;
+  min-height:360px;
+  margin:0;
+  padding:10px;
+  border:0;
+  scroll-snap-align:start;
+}
+.jy-lecture-proof-item img{
+  display:block;
+  width:100%;
+  max-height:520px;
+  object-fit:contain;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-lecture-proof-pdf{
+  width:100%;
+  height:520px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-lecture-proof-controls{
+  align-items:center;
+  justify-content:space-between;
+  margin-top:8px;
+}
+.jy-proof-counter{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+@media(max-width:820px){
+  .jy-lecture-proof-gallery{
+    max-width:100%;
+  }
+  .jy-lecture-proof-item{
+    min-height:300px;
+  }
+  .jy-lecture-proof-item img,
+  .jy-lecture-proof-pdf{
+    max-height:420px;
+    height:420px;
+  }
+}
+
+
+/* v115 full-width proof carousel and PDF page fallback */
+.jy-lecture-proof-gallery{
+  width:100%;
+  max-width:100%;
+}
+.jy-lecture-proof-item{
+  min-height:640px;
+  padding:12px;
+}
+.jy-lecture-proof-item img{
+  max-height:780px;
+}
+.jy-lecture-proof-pdf{
+  height:780px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-lecture-proof-pdf-item{
+  min-height:840px;
+}
+@media(max-width:820px){
+  .jy-lecture-proof-item{
+    min-height:460px;
+  }
+  .jy-lecture-proof-item img,
+  .jy-lecture-proof-pdf{
+    max-height:560px;
+    height:560px;
+  }
+  .jy-lecture-proof-pdf-item{
+    min-height:620px;
+  }
+}
+
+/* v115 schedule wording cleanup */
+
+
+/* v116 PDF pages: large one-page viewer, original PDF opened inside page */
+.jy-lecture-proof-original{
+  width:100%;
+  margin:10px 0 12px;
+  padding:10px;
+  border:1px solid #f1c9d6;
+  background:#fff;
+}
+.jy-proof-original-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:8px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-proof-original-head strong{
+  color:var(--ink);
+  font-size:var(--fs-2);
+  font-weight:600;
+  white-space:nowrap;
+}
+.jy-lecture-proof-full-pdf{
+  display:block;
+  width:100%;
+  height:820px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-proof-original-link{
+  display:inline-block;
+  margin-top:6px;
+  color:var(--green);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  font-size:var(--fs-1);
+}
+.jy-lecture-proof-viewport{
+  width:100%;
+  min-height:720px;
+}
+.jy-lecture-proof-item{
+  min-height:720px;
+}
+.jy-lecture-proof-item img{
+  width:100%;
+  max-height:900px;
+  object-fit:contain;
+}
+.jy-proof-counter{
+  text-align:center;
+}
+@media(max-width:820px){
+  .jy-lecture-proof-full-pdf{
+    height:560px;
+  }
+  .jy-lecture-proof-viewport,
+  .jy-lecture-proof-item{
+    min-height:520px;
+  }
+  .jy-lecture-proof-item img{
+    max-height:620px;
+  }
+}
+
+/* v116 schedule correction */
+
+/* v117 lecture note schedule rows and inline PDF page rendering */
+.jy-lecture-note-schedule-row{
+  background:#fffafd;
+}
+.jy-lecture-note-schedule-row .jy-box,
+.jy-lecture-note-schedule-row .jy-code{
+  border-color:#eab8c8;
+}
+.jy-lecture-proof-pdf-page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:640px;
+  border:1px solid var(--line);
+  background:#fff;
+  overflow:auto;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-lecture-proof-pdf-canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  background:#fff;
+}
+.jy-lecture-proof-pdf-object{
+  display:block;
+  width:100%;
+  height:760px;
+  border:0;
+  background:#fff;
+}
+@media(max-width:820px){
+  .jy-lecture-proof-pdf-page{
+    min-height:480px;
+  }
+  .jy-lecture-proof-pdf-object{
+    height:540px;
+  }
+}
+
+
+/* v118 two-page proof viewer and green personal tasks */
+.jy-lecture-proof-spread{
+  flex:0 0 100%;
+  width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  scroll-snap-align:start;
+  padding:12px;
+  background:#fff;
+}
+.jy-lecture-proof-spread .jy-lecture-proof-item{
+  flex:none;
+  width:100%;
+  min-height:640px;
+  padding:10px;
+  border:1px solid #f1c9d6;
+  background:#fff;
+  scroll-snap-align:none;
+}
+.jy-lecture-proof-item-empty{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  background:var(--soft);
+}
+.jy-lecture-proof-spread .jy-lecture-proof-pdf-page{
+  min-height:600px;
+}
+.jy-check.custom .jy-box.done + span,
+.jy-check.custom span.done{
+  color:var(--muted);
+}
+@media(max-width:820px){
+  .jy-lecture-proof-spread{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:10px;
+  }
+  .jy-lecture-proof-spread .jy-lecture-proof-item{
+    min-height:440px;
+  }
+  .jy-lecture-proof-spread .jy-lecture-proof-pdf-page{
+    min-height:420px;
+  }
+}
+
+
+/* v119 mock close button and schedule status cleanup */
+.jy-mock-head-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.jy-mock-closed .jy-note{
+  margin:0;
+}
+.jy-lecture-status-row span.done{
+  color:var(--green);
+  font-weight:600;
+}
+
+
+/* v120 proof controls text cleanup */
+
+/* v123 button-controlled file magnifier for uploaded photos and PDF pages */
+.jy-file-magnify-source{
+  cursor:default;
+}
+.jy-file-magnifier-active .jy-file-magnify-source{
+  cursor:zoom-in;
+}
+.jy-file-magnifier-control{
+  margin-top:6px;
+  display:flex;
+  justify-content:flex-end;
+}
+.jy-file-magnifier-toggle{
+  min-height:28px;
+  padding:4px 9px;
+  font-size:var(--fs-1);
+}
+.jy-file-magnifier-toggle[aria-pressed="true"]{
+  background:var(--black);
+  border-color:var(--black);
+  color:#fff;
+}
+.jy-file-magnifier-inline-card{
+  width:100%;
+}
+.jy-file-magnifier{
+  position:fixed;
+  z-index:10050;
+  border:1px solid var(--black);
+  background:#fff no-repeat;
+  box-shadow:0 10px 26px rgba(0,0,0,.22);
+  pointer-events:none;
+  border-radius:999px;
+}
+.jy-file-magnifier::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:1px;
+  height:1px;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(0,0,0,.45);
+  border-radius:999px;
+}
+.jy-mock-review-pdf-canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:540px;
+  object-fit:contain;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-mock-review-pdf-object{
+  display:block;
+  width:100%;
+  height:420px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+@media(max-width:820px){
+  .jy-mock-review-pdf-canvas{
+    max-height:420px;
+  }
+  .jy-mock-review-pdf-object{
+    height:320px;
+  }
+}
+
+/* v124 button hierarchy and single gallery magnifier */
+.jy-btn{
+  min-height:34px;
+  padding:7px 12px;
+  border:1px solid #cfcfcf;
+  border-radius:6px;
+  background:#fff;
+  color:var(--ink);
+  font-weight:500;
+  line-height:1.35;
+  white-space:nowrap;
+  box-shadow:none;
+  transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+.jy-btn:hover{
+  background:var(--soft);
+  border-color:#999;
+}
+.jy-btn.dark{
+  background:var(--black);
+  border-color:var(--black);
+  color:#fff;
+}
+.jy-btn.dark:hover{
+  background:#333;
+  border-color:#333;
+}
+.jy-btn:focus-visible{
+  outline:2px solid rgba(17,17,17,.28);
+  outline-offset:2px;
+}
+.jy-btns{
+  gap:6px;
+  align-items:center;
+}
+.jy-delete{
+  min-height:28px;
+  padding:4px 8px;
+  border-color:transparent;
+  background:transparent;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-delete:hover{
+  border-color:rgba(164,58,50,.20);
+  background:rgba(164,58,50,.06);
+  color:var(--red);
+}
+.jy-rich-toolbar .jy-btn,
+.jy-rich-toolbar .jy-rich-btn,
+.jy-rich-toolbar .jy-rich-select,
+.jy-date-buttons .jy-btn,
+.jy-book-controls .jy-btn,
+.jy-note-tabs .jy-btn,
+.jy-study-manage .jy-btn,
+.jy-study-buttons .jy-btn,
+.jy-section-solve-buttons .jy-btn{
+  min-height:30px;
+  padding:5px 9px;
+  border-radius:4px;
+  font-size:var(--fs-1);
+}
+.jy-file-magnifier-control{
+  margin-top:8px;
+  display:flex;
+  justify-content:flex-end;
+}
+.jy-file-magnifier-toggle{
+  min-width:64px;
+  min-height:32px;
+  padding:6px 11px;
+  font-size:var(--fs-1);
+}
+.jy-file-magnifier-toggle[aria-pressed="true"]{
+  background:var(--black);
+  border-color:var(--black);
+  color:#fff;
+}
+.jy-lecture-proof-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px solid var(--line);
+}
+.jy-proof-nav-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.jy-lecture-proof-controls .jy-file-magnifier-toggle{
+  margin-left:auto;
+}
+@media(max-width:820px){
+  .jy-lecture-proof-controls{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-lecture-proof-controls .jy-file-magnifier-toggle{
+    margin-left:0;
+  }
+}
+
+/* v125 homepage readability, button hierarchy, scholarship status cleanup */
+:root{
+  --fs-1:12px;
+  --fs-2:14px;
+  --fs-3:17px;
+  --fs-4:26px;
+  --soft:#fafafa;
+  --line:#e4e4e4;
+  --line-dark:#b8b8b8;
+}
+html,body{
+  line-height:1.58;
+  letter-spacing:-.01em;
+}
+.jy-ielts{
+  max-width:1080px;
+}
+.jy-titlebox,.jy-card{
+  padding:18px 20px;
+  margin-bottom:18px;
+  border-color:var(--line);
+}
+.jy-section-title{
+  margin:30px 0 12px;
+  font-size:18px;
+  letter-spacing:-.02em;
+}
+.jy-card-title{
+  font-size:17px;
+  margin-bottom:10px;
+}
+.jy-small,
+.jy-page-meta{
+  line-height:1.45;
+}
+.jy-btn{
+  min-height:34px;
+  padding:7px 13px;
+  border:1px solid #d6d6d6;
+  border-radius:7px;
+  background:#fff;
+  color:#222;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.3;
+}
+.jy-btn:hover{
+  background:#f7f7f7;
+  border-color:#999;
+}
+.jy-btn.dark{
+  background:#111;
+  border-color:#111;
+  color:#fff;
+}
+.jy-delete{
+  min-height:28px;
+  padding:4px 8px;
+  border-color:transparent;
+  background:transparent;
+  color:#777;
+  font-size:12px;
+}
+.jy-btns{
+  gap:7px;
+}
+.jy-home-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+  gap:16px;
+  align-items:stretch;
+  margin-bottom:20px;
+}
+.jy-home-title-card,
+.jy-home-dday-card{
+  margin-bottom:0;
+}
+.jy-home-title-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:190px;
+  background:#f8f8f6;
+}
+.jy-kicker{
+  margin:0 0 8px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.02em;
+}
+.jy-home-subtitle{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+.jy-home-dday-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.jy-home-stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+}
+.jy-home-stat span{
+  color:var(--muted);
+  font-size:13px;
+}
+.jy-home-stat strong{
+  font-size:34px;
+  line-height:1;
+  font-weight:600;
+  letter-spacing:-.04em;
+}
+.jy-home-progress{
+  margin:14px 0 8px;
+}
+.jy-mini-ddays{
+  margin:12px 0 0;
+  padding:10px 0 0;
+  border-top:1px solid var(--line);
+}
+.jy-mini-ddays strong{
+  display:block;
+  margin-bottom:5px;
+  color:var(--ink);
+  font-size:12px;
+  font-weight:600;
+}
+.jy-mini-ddays p{
+  margin:3px 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+.jy-home-today-grid{
+  margin-bottom:18px;
+}
+.jy-home-focus-card{
+  min-width:0;
+}
+.jy-home-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+.jy-home-card-head .jy-card-title{
+  margin:0;
+}
+.jy-home-card-head span{
+  color:var(--muted);
+  font-size:12px;
+  white-space:nowrap;
+}
+.jy-home-task-actions{
+  margin-top:12px;
+}
+.jy-home-schedule-card .jy-home-card-head{
+  margin-bottom:0;
+}
+#full-schedule-panel{
+  margin-top:12px;
+}
+.jy-check{
+  padding:9px 0;
+  gap:9px;
+}
+.jy-box,
+.jy-status-box{
+  width:17px;
+  height:17px;
+  border-radius:3px;
+}
+.jy-table th,.jy-table td{
+  padding:8px 9px;
+  font-size:12px;
+  line-height:1.5;
+}
+.jy-lecture-proof-controls{
+  padding-top:9px;
+}
+.jy-file-magnifier-toggle{
+  min-width:72px;
+}
+@media(max-width:820px){
+  .jy-home-hero{
+    grid-template-columns:1fr;
+  }
+  .jy-home-title-card{
+    min-height:140px;
+  }
+  .jy-home-stat strong{
+    font-size:30px;
+  }
+  .jy-titlebox,.jy-card{
+    padding:15px;
+  }
+}
+
+/* v126 lecture note collapsible writer and Notes proof view */
+.jy-lecture-editor-headline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.jy-lecture-editor-headline .jy-card-title{
+  margin:0;
+}
+.jy-lecture-select-bar{
+  grid-template-columns:1fr;
+  position:static;
+  margin-bottom:10px;
+}
+.jy-lecture-toolbar-wrap{
+  position:sticky;
+  top:8px;
+  z-index:35;
+  margin-bottom:8px;
+}
+.jy-lecture-writing-panel{
+  margin-bottom:12px;
+}
+.jy-lecture-book{
+  background:#fff8fb;
+  border-color:#f1c9d6;
+}
+.jy-lecture-page-card{
+  background:#fffafd;
+  border-color:#f1c9d6;
+  white-space:normal;
+}
+.jy-page-card .jy-submitted-content{
+  white-space:normal;
+}
+.jy-note-proof-book{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid #f1c9d6;
+}
+.jy-note-proof-book .jy-lecture-proof-gallery{
+  margin-top:8px;
+}
+@media(max-width:820px){
+  .jy-lecture-editor-headline{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-lecture-toolbar-wrap{
+    position:static;
+  }
+}
+
+
+/* v127 Notes page delete controls */
+.jy-book-top-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.jy-book-top-actions .jy-delete{
+  min-height:26px;
+  padding:3px 8px;
+}
+@media(max-width:820px){
+  .jy-book-top-actions{
+    justify-content:flex-start;
+  }
+}
+
+
+/* v128 notes page: distinguish attachment carousel controls from note page controls */
+.jy-proof-arrow{
+  width:34px;
+  min-width:34px;
+  height:32px;
+  padding:0;
+  border-radius:999px;
+  font-size:18px;
+  line-height:1;
+  font-weight:600;
+}
+.jy-note-page-controls{
+  border-top:1px solid var(--line);
+  padding-top:10px;
+}
+.jy-note-page-controls .jy-btn{
+  min-width:82px;
+}
+
+/* v130 optional text, file-only notes, repeated file add */
+.jy-review-file-label{
+  margin-top:8px;
+}
+.jy-file-help{
+  margin:6px 0 8px;
+}
+#skill-review-file-gallery,
+#skill-lecture-proof-gallery{
+  margin-top:8px;
+}
+.jy-review-editor-actions .jy-btn{
+  min-width:auto;
+}
+.jy-note-proof-book .jy-mock-file-preview img{
+  display:block;
+  max-width:100%;
+  max-height:520px;
+  object-fit:contain;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-note-proof-book .jy-proof-loading{
+  min-height:120px;
+  padding:14px;
+  border:1px solid var(--line);
+  background:var(--soft);
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+
+/* v131 text pages inside note file gallery */
+.jy-proof-text-item .jy-proof-text-page{
+  width:100%;
+  min-height:600px;
+  max-height:760px;
+  overflow:auto;
+  padding:18px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  font-size:var(--fs-2);
+  line-height:1.7;
+  white-space:normal;
+}
+.jy-proof-text-page p{
+  margin:0 0 10px;
+}
+.jy-proof-text-page ul,
+.jy-proof-text-page ol{
+  margin:0 0 10px 22px;
+  padding:0;
+}
+.jy-proof-text-page table{
+  max-width:100%;
+  border-collapse:collapse;
+  margin:8px 0;
+}
+.jy-proof-text-page td,
+.jy-proof-text-page th{
+  border:1px solid var(--line-dark);
+  padding:7px;
+  vertical-align:top;
+}
+.jy-proof-nav-buttons .jy-btn{
+  min-width:34px;
+}
+@media(max-width:820px){
+  .jy-proof-text-item .jy-proof-text-page{
+    min-height:420px;
+    max-height:560px;
+  }
+}
+
+
+/* v133 note colours and collapsible writing areas */
+.jy-grammar-editor-card{
+  background:#fffdf0;
+  border-color:#eadf9e;
+}
+.jy-grammar-file-field{
+  background:#fffdf7;
+  border-color:#eadf9e;
+}
+.jy-grammar-toolbar-wrap .jy-rich-toolbar{
+  background:#fff8d9;
+  border-color:#eadf9e;
+}
+.jy-grammar-paper{
+  background:#fff8d9;
+  border-color:#eadf9e;
+}
+.jy-lecture-editor-card,
+.jy-lecture-book{
+  background:#fff8fb;
+  border-color:#f1c9d6;
+}
+.jy-lecture-photo-field{
+  background:#fffafd;
+  border-color:#f1c9d6;
+}
+.jy-lecture-rich-editor,
+.jy-lecture-page-card{
+  border-color:#f1c9d6;
+}
+.jy-wrong-editor-card{
+  background:#f4fbff;
+  border-color:#c9e5f5;
+}
+.jy-wrong-sticky-bar,
+.jy-wrong-editor-card .jy-review-sticky-bar{
+  background:#f7fcff;
+  border-color:#c9e5f5;
+}
+.jy-wrong-editor-card .jy-rich-toolbar{
+  background:#eef8ff;
+  border-color:#c9e5f5;
+}
+.jy-wrong-editor-card .jy-lecture-photo-field,
+.jy-wrong-editor-card .jy-mock-file-preview,
+.jy-wrong-rich-editor{
+  background:#fbfeff;
+  border-color:#c9e5f5;
+}
+.jy-wrong-rich-editor:empty:before{
+  content:attr(data-placeholder);
+  color:#8aa9bb;
+}
+#skill-review-writing-panel,
+#grammar-writing-panel{
+  margin-top:8px;
+}
+#skill-review-toolbar-panel .jy-rich-toolbar{
+  margin-bottom:0;
+}
+
+/* v134 compact note books, colour matched galleries, page breaks */
+.jy-editor-page-break{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:18px 0;
+  padding:7px 0;
+  border-top:1px dashed var(--line-dark);
+  border-bottom:1px dashed var(--line-dark);
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.3;
+  user-select:none;
+}
+.jy-editor-page-break span{
+  padding:0 8px;
+  background:#fff;
+}
+.jy-grammar-paper .jy-editor-page-break span{background:#fff8d9;}
+.jy-wrong-rich-editor .jy-editor-page-break span{background:#fbfeff;}
+.jy-lecture-rich-editor .jy-editor-page-break span{background:#fff;}
+
+.jy-grammar-file-field,
+.jy-grammar-file-field .jy-lecture-proof-viewport,
+.jy-grammar-file-field .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-grammar-file-field .jy-lecture-proof-controls,
+.jy-grammar-file-field .jy-lecture-proof-gallery-empty{
+  border-color:#eadf9e;
+}
+.jy-grammar-file-field .jy-lecture-proof-gallery-empty,
+.jy-grammar-file-field .jy-lecture-proof-item-empty{
+  background:#fffdf7;
+}
+.jy-wrong-editor-card .jy-lecture-photo-field,
+.jy-wrong-editor-card .jy-lecture-proof-viewport,
+.jy-wrong-editor-card .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-wrong-editor-card .jy-lecture-proof-controls,
+.jy-wrong-editor-card .jy-lecture-proof-gallery-empty{
+  border-color:#c9e5f5;
+}
+.jy-wrong-editor-card .jy-lecture-proof-gallery-empty,
+.jy-wrong-editor-card .jy-lecture-proof-item-empty{
+  background:#f7fcff;
+}
+.jy-lecture-editor-card .jy-lecture-proof-viewport,
+.jy-lecture-editor-card .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-lecture-editor-card .jy-lecture-proof-controls,
+.jy-lecture-editor-card .jy-lecture-proof-gallery-empty{
+  border-color:#f1c9d6;
+}
+.jy-lecture-editor-card .jy-lecture-proof-gallery-empty,
+.jy-lecture-editor-card .jy-lecture-proof-item-empty{
+  background:#fffafd;
+}
+
+.jy-notes-book{
+  padding:14px;
+}
+.jy-notes-book.jy-note-tone-grammar,
+.jy-note-tone-grammar.jy-page-card{
+  background:#fffdf0;
+  border-color:#eadf9e;
+}
+.jy-notes-book.jy-note-tone-lecture,
+.jy-note-tone-lecture.jy-page-card{
+  background:#fff8fb;
+  border-color:#f1c9d6;
+}
+.jy-notes-book.jy-note-tone-wrong,
+.jy-note-tone-wrong.jy-page-card{
+  background:#f4fbff;
+  border-color:#c9e5f5;
+}
+.jy-notes-book .jy-book-top{
+  padding-bottom:8px;
+  margin-bottom:10px;
+}
+.jy-notes-book .jy-page-card{
+  min-height:0;
+  padding:12px;
+}
+.jy-notes-book .jy-page-card > strong{
+  display:block;
+  margin-bottom:8px;
+}
+.jy-notes-book .jy-page-meta{
+  margin-bottom:6px;
+  line-height:1.35;
+}
+.jy-notes-book .jy-submitted-content{
+  margin:8px 0 10px;
+}
+.jy-notes-book .jy-note-proof-book{
+  margin-top:8px;
+}
+.jy-notes-book .jy-note-proof-book > .jy-page-meta{
+  display:none;
+}
+.jy-notes-book .jy-lecture-proof-gallery{
+  margin-top:4px;
+}
+.jy-notes-book .jy-lecture-proof-viewport{
+  min-height:0;
+}
+.jy-notes-book .jy-lecture-proof-spread{
+  padding:8px;
+  gap:8px;
+}
+.jy-notes-book .jy-lecture-proof-spread .jy-lecture-proof-item{
+  min-height:0;
+  padding:8px;
+}
+.jy-notes-book .jy-lecture-proof-pdf-page{
+  min-height:420px;
+}
+.jy-notes-book .jy-lecture-proof-item img{
+  max-height:620px;
+}
+.jy-notes-book .jy-proof-text-item .jy-proof-text-page{
+  min-height:420px;
+  max-height:620px;
+}
+.jy-notes-book .jy-lecture-proof-controls{
+  margin-top:6px;
+  padding-top:6px;
+}
+.jy-notes-book .jy-note-page-controls{
+  margin-top:10px;
+  padding-top:10px;
+}
+.jy-note-tone-grammar .jy-lecture-proof-viewport,
+.jy-note-tone-grammar .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-note-tone-grammar .jy-lecture-proof-controls,
+.jy-note-tone-grammar .jy-mock-file-preview,
+.jy-note-tone-grammar .jy-proof-loading{
+  border-color:#eadf9e;
+}
+.jy-note-tone-grammar .jy-lecture-proof-spread,
+.jy-note-tone-grammar .jy-proof-loading{
+  background:#fffdf7;
+}
+.jy-note-tone-lecture .jy-lecture-proof-viewport,
+.jy-note-tone-lecture .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-note-tone-lecture .jy-lecture-proof-controls,
+.jy-note-tone-lecture .jy-mock-file-preview,
+.jy-note-tone-lecture .jy-proof-loading{
+  border-color:#f1c9d6;
+}
+.jy-note-tone-lecture .jy-lecture-proof-spread,
+.jy-note-tone-lecture .jy-proof-loading{
+  background:#fffafd;
+}
+.jy-note-tone-wrong .jy-lecture-proof-viewport,
+.jy-note-tone-wrong .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-note-tone-wrong .jy-lecture-proof-controls,
+.jy-note-tone-wrong .jy-mock-file-preview,
+.jy-note-tone-wrong .jy-proof-loading{
+  border-color:#c9e5f5;
+}
+.jy-note-tone-wrong .jy-lecture-proof-spread,
+.jy-note-tone-wrong .jy-proof-loading{
+  background:#f7fcff;
+}
+.jy-file-help,
+#skill-lecture-note-status,
+#mock-review-editor-status,
+#grammar-note-status{
+  display:none !important;
+}
+@media(max-width:820px){
+  .jy-notes-book .jy-lecture-proof-pdf-page,
+  .jy-notes-book .jy-proof-text-item .jy-proof-text-page{
+    min-height:320px;
+  }
+  .jy-notes-book .jy-lecture-proof-item img{
+    max-height:460px;
+  }
+}
+
+/* v135 optional phrase practice note */
+.jy-phrase-editor-card,
+.jy-phrase-book{
+  background:#f4fbef;
+  border-color:#cfe6c4;
+}
+.jy-phrase-title,
+.jy-phrase-file-field{
+  background:#fbfff8;
+  border-color:#cfe6c4;
+}
+.jy-phrase-paper{
+  min-height:360px;
+  line-height:30px;
+  resize:vertical;
+  background:#f6ffe8;
+  background-image:linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px);
+  background-size:100% 30px;
+  border-color:#cfe6c4;
+  color:var(--ink);
+}
+.jy-phrase-paper::placeholder{
+  color:#7e9d70;
+}
+.jy-phrase-badge{
+  border-color:#cfe6c4;
+  background:#fbfff8;
+  color:#4e7f39;
+}
+.jy-phrase-file-field .jy-lecture-proof-viewport,
+.jy-phrase-file-field .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-phrase-file-field .jy-lecture-proof-controls,
+.jy-phrase-file-field .jy-lecture-proof-gallery-empty{
+  border-color:#cfe6c4;
+}
+.jy-phrase-file-field .jy-lecture-proof-gallery-empty,
+.jy-phrase-file-field .jy-lecture-proof-item-empty{
+  background:#fbfff8;
+}
+.jy-notes-book.jy-note-tone-phrase,
+.jy-note-tone-phrase.jy-page-card,
+.jy-phrase-page-card{
+  background:#f4fbef;
+  border-color:#cfe6c4;
+}
+.jy-note-tone-phrase .jy-lecture-proof-viewport,
+.jy-note-tone-phrase .jy-lecture-proof-spread .jy-lecture-proof-item,
+.jy-note-tone-phrase .jy-lecture-proof-controls,
+.jy-note-tone-phrase .jy-mock-file-preview,
+.jy-note-tone-phrase .jy-proof-loading{
+  border-color:#cfe6c4;
+}
+.jy-note-tone-phrase .jy-lecture-proof-spread,
+.jy-note-tone-phrase .jy-proof-loading{
+  background:#fbfff8;
+}
+#phrase-note-status:empty{
+  display:none;
+}
+
+/* v136 note creation button replaces page-break action buttons */
+.jy-inline-note-stack{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.jy-inline-note-stack .jy-submitted{
+  margin:0;
+}
+
+
+/* v137 per-page attachment delete and compact note actions */
+.jy-proof-caption{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.jy-proof-caption span{
+  min-width:0;
+}
+.jy-proof-delete{
+  flex:0 0 auto;
+  min-height:24px;
+  padding:2px 7px;
+  border-radius:4px;
+  font-size:11px;
+}
+.jy-review-editor-actions{
+  gap:6px;
+}
+
+/* v138 selectable one-page/two-page note writing and editable text pages */
+.jy-note-page-mode{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:0 0 8px;
+  padding:8px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-note-page-mode span{
+  margin-right:4px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-note-page-mode .jy-btn{
+  min-height:28px;
+  padding:4px 9px;
+  font-size:var(--fs-1);
+}
+.jy-note-page-writing{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.jy-note-page-writing.two{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:start;
+}
+.jy-note-page-sheet{
+  min-width:0;
+}
+.jy-note-page-label{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  margin:0 0 5px;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.3;
+}
+.jy-note-page-writing.two .jy-rich-editor,
+.jy-note-page-writing.two .jy-textarea{
+  min-height:520px;
+}
+.jy-proof-text-page[contenteditable="true"]{
+  outline:none;
+}
+.jy-proof-text-page[contenteditable="true"]:focus{
+  border-color:var(--black);
+  box-shadow:0 0 0 1px rgba(17,17,17,.14) inset;
+}
+.jy-proof-caption-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.jy-proof-save{
+  min-height:24px;
+  padding:2px 7px;
+  border-radius:4px;
+  font-size:11px;
+}
+@media(max-width:820px){
+  .jy-note-page-writing.two{
+    grid-template-columns:1fr;
+  }
+  .jy-note-page-writing.two .jy-rich-editor,
+  .jy-note-page-writing.two .jy-textarea{
+    min-height:360px;
+  }
+}
+
+
+/* v139 documented text cleanup */
+.jy-proof-caption-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.jy-proof-save,
+.jy-proof-clear-text{
+  min-height:26px;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:11px;
+}
+.jy-proof-clear-text{
+  border-color:#d6d6d6;
+  background:#fff;
+  color:var(--ink);
+}
+.jy-proof-clear-text:hover{
+  border-color:rgba(164,58,50,.25);
+  background:rgba(164,58,50,.06);
+  color:var(--red);
+}
+
+/* v141 two-page submitted note display */
+.jy-note-body-spread{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  margin-top:10px;
+}
+.jy-note-body-page{
+  min-height:420px;
+  max-height:620px;
+  overflow:auto;
+  padding:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  line-height:1.7;
+  white-space:normal;
+}
+.jy-note-body-page > span{
+  display:block;
+  margin-bottom:8px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-note-tone-grammar .jy-note-body-page{
+  border-color:#eadf9e;
+  background:#fffdf7;
+}
+.jy-note-tone-lecture .jy-note-body-page{
+  border-color:#f1c9d6;
+  background:#fffafd;
+}
+.jy-note-tone-wrong .jy-note-body-page{
+  border-color:#c9e5f5;
+  background:#f7fcff;
+}
+.jy-note-tone-phrase .jy-note-body-page{
+  border-color:#cfe6c4;
+  background:#fbfff8;
+}
+@media(max-width:820px){
+  .jy-note-body-spread{
+    grid-template-columns:1fr;
+  }
+  .jy-note-body-page{
+    min-height:320px;
+    max-height:520px;
+  }
+}
+
+
+/* v142 expanded Notes page */
+.jy-notes-all-grid{
+  gap:14px;
+}
+.jy-notes-book-expanded{
+  margin-bottom:0;
+}
+.jy-note-entry-list{
+  display:grid;
+  gap:12px;
+}
+.jy-note-entry{
+  border-top:1px solid var(--line);
+  padding-top:10px;
+}
+.jy-note-entry:first-child{
+  border-top:0;
+  padding-top:0;
+}
+.jy-note-entry-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:6px;
+}
+.jy-note-entry-page{
+  min-height:0;
+}
+
+/* v140 pencil star stamp overlay */
+.jy-pencil-star-tool{
+  border-color:rgba(255,20,147,.45);
+  color:#c90073;
+  background:#fff6fb;
+}
+.jy-pencil-star-tool.is-active,
+.jy-pencil-star-erase.is-active,
+.jy-rich-shape-btn.is-active{
+  border-color:#111;
+  color:#111;
+  box-shadow:0 0 0 1px rgba(17,17,17,.18) inset;
+}
+.jy-pencil-star-erase{
+  border-color:rgba(255,20,147,.38);
+  color:#c90073;
+  background:#fff6fb;
+}
+.jy-rich-editor,
+.jy-proof-text-page{
+  position:relative;
+}
+.jy-proof-stamp-surface{
+  position:relative;
+  width:100%;
+  min-height:40px;
+}
+.jy-proof-stamp-surface > img,
+.jy-proof-stamp-surface > .jy-lecture-proof-pdf-page,
+.jy-proof-stamp-surface > .jy-lecture-proof-file-box,
+.jy-proof-stamp-surface > .jy-proof-text-page{
+  position:relative;
+  z-index:1;
+}
+.jy-pencil-stamp-layer{
+  position:absolute;
+  inset:0;
+  z-index:6;
+  pointer-events:none;
+}
+.jy-pencil-star{
+  position:absolute;
+  transform:translate(-50%,-50%) rotate(-8deg);
+  z-index:8;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:60px;
+  height:60px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:rgba(255,20,147,.62);
+  font-size:56px;
+  line-height:1;
+  font-family:"Apple Color Emoji","Segoe UI Symbol",Georgia,serif;
+  text-shadow:.6px .6px 0 rgba(255,255,255,.55), -.6px 0 rgba(201,0,115,.24);
+  opacity:.82;
+  mix-blend-mode:multiply;
+  cursor:default;
+  pointer-events:auto;
+}
+.jy-pencil-star::after{
+  content:"";
+  position:absolute;
+  left:2px;
+  right:3px;
+  top:4px;
+  bottom:4px;
+  border-radius:45% 55% 48% 52%;
+  background:repeating-linear-gradient(-22deg, rgba(255,255,255,.22) 0 1px, rgba(255,255,255,0) 1px 4px);
+  pointer-events:none;
+}
+.jy-pencil-star-yellow,
+.jy-pencil-star-pink,
+.jy-pencil-star-green,
+.jy-pencil-star-blue{color:rgba(255,20,147,.62);}
+.jy-pencil-star-mode .jy-rich-editor,
+.jy-pencil-star-mode .jy-proof-stamp-surface{
+  cursor:crosshair;
+}
+.jy-pencil-erase-mode .jy-pencil-star{
+  cursor:pointer;
+}
+.jy-proof-text-page .jy-pencil-star,
+.jy-rich-editor .jy-pencil-star{
+  user-select:none;
+}
+
+/* v147 organised collapsed Notes page */
+.jy-notes-group-list{
+  display:grid;
+  gap:18px;
+}
+.jy-notes-group{
+  display:grid;
+  gap:10px;
+}
+.jy-notes-group-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:0 2px 8px;
+  border-bottom:1px solid var(--line);
+}
+.jy-notes-group-head h2{
+  margin:0;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.02em;
+}
+.jy-notes-group-head span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-notes-collapsible{
+  margin-bottom:0;
+}
+.jy-notes-collapsible > summary{
+  cursor:pointer;
+  list-style:none;
+}
+.jy-notes-collapsible > summary::-webkit-details-marker{
+  display:none;
+}
+.jy-notes-summary{
+  margin-bottom:0;
+}
+.jy-notes-summary::before{
+  content:'열기';
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  min-height:26px;
+  margin-right:10px;
+  padding:2px 8px;
+  border:1px solid #d6d6d6;
+  border-radius:999px;
+  background:#fff;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:500;
+}
+.jy-notes-collapsible[open] > .jy-notes-summary{
+  margin-bottom:10px;
+}
+.jy-notes-collapsible[open] > .jy-notes-summary::before{
+  content:'닫기';
+  border-color:#111;
+  color:#111;
+}
+.jy-notes-latest{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-notes-collapsible .jy-note-entry-list{
+  display:grid;
+  gap:12px;
+}
+@media(max-width:820px){
+  .jy-notes-group-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-notes-summary{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-notes-summary::before{
+    margin-right:0;
+    margin-bottom:6px;
+  }
+}
+
+/* v148 Notes page button-confirm view */
+.jy-notes-button-book{
+  margin-bottom:0;
+}
+.jy-notes-book-head{
+  margin-bottom:0;
+}
+.jy-notes-book-head .jy-book-top-actions{
+  align-items:center;
+}
+.jy-notes-closed{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.45;
+}
+.jy-note-entry-head{
+  align-items:flex-start;
+}
+.jy-note-entry-head > div:first-child{
+  display:grid;
+  gap:2px;
+  min-width:0;
+}
+.jy-note-entry-head strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+  line-height:1.45;
+}
+.jy-note-entry-head small{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-note-entry-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.jy-note-entry-page{
+  margin-top:8px;
+}
+@media(max-width:820px){
+  .jy-notes-book-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-note-entry-head{
+    flex-direction:column;
+  }
+  .jy-note-entry-actions{
+    justify-content:flex-start;
+  }
+}
+
+/* v149 Notes page: one selected note per button */
+.jy-notes-pick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(260px,1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
+.jy-notes-pick-card{
+  margin-bottom:0;
+}
+.jy-notes-pick-head,
+.jy-notes-selected-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+.jy-notes-pick-head h2,
+.jy-notes-selected-head h2{
+  margin:0;
+  font-size:var(--fs-3);
+  font-weight:600;
+  line-height:1.35;
+}
+.jy-notes-pick-head span,
+.jy-notes-selected-head span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  white-space:nowrap;
+}
+.jy-notes-pick-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.jy-notes-wait-card{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.5;
+}
+.jy-notes-selected-panel{
+  margin-top:0;
+}
+.jy-notes-button-list{
+  display:grid;
+  gap:8px;
+  margin-bottom:10px;
+}
+.jy-notes-button-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:center;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+}
+.jy-notes-button-row:first-child{
+  border-top:1px solid var(--line);
+}
+.jy-notes-button-row.active{
+  background:rgba(0,0,0,.025);
+}
+.jy-notes-button-row strong{
+  display:block;
+  font-size:var(--fs-2);
+  font-weight:600;
+  line-height:1.45;
+}
+.jy-notes-button-row small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-notes-single-view{
+  margin-top:10px;
+}
+.jy-notes-single-view > .jy-page-counter{
+  display:block;
+  margin-bottom:6px;
+}
+@media(max-width:820px){
+  .jy-notes-pick-grid{
+    grid-template-columns:1fr;
+  }
+  .jy-notes-pick-head,
+  .jy-notes-selected-head,
+  .jy-notes-button-row{
+    align-items:flex-start;
+    grid-template-columns:1fr;
+  }
+  .jy-notes-pick-head,
+  .jy-notes-selected-head{
+    flex-direction:column;
+  }
+}
+
+
+/* v150 Notes page: flat buttons only, one note opens after button click */
+.jy-notes-type-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 14px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-notes-type-bar .jy-btn{
+  min-height:34px;
+}
+.jy-notes-pick-grid,
+.jy-notes-pick-card,
+.jy-notes-wait-card,
+.jy-notes-closed{
+  display:none !important;
+}
+.jy-notes-selected-panel{
+  margin-top:0;
+}
+.jy-notes-selected-head{
+  margin-bottom:8px;
+}
+.jy-notes-button-list{
+  margin-bottom:0;
+}
+.jy-notes-button-row{
+  padding:8px 0;
+}
+.jy-notes-single-view{
+  margin-top:12px;
+}
+
+/* v151 Notes page: type button opens one connected notebook page */
+.jy-notes-type-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 14px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-notes-type-bar .jy-btn{
+  min-height:34px;
+}
+.jy-notes-selected-panel{
+  margin-top:0;
+}
+.jy-notes-selected-panel .jy-book-top{
+  margin-bottom:10px;
+}
+.jy-notes-single-view{
+  margin-top:0;
+}
+.jy-notes-button-list,
+.jy-notes-button-row,
+.jy-notes-selected-head,
+.jy-notes-pick-grid,
+.jy-notes-pick-card,
+.jy-notes-wait-card,
+.jy-notes-closed{
+  display:none !important;
+}
+
+/* v153 Notes page: connected full-size notebook viewer */
+.jy-notes-selected-panel{
+  margin-top:0;
+}
+.jy-notes-selected-panel .jy-book-top{
+  margin-bottom:10px;
+}
+.jy-notes-single-view{
+  margin-top:0;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-notes-single-view > .jy-page-meta,
+.jy-notes-single-view > strong{
+  display:block;
+  padding:0 0 8px;
+}
+.jy-notes-single-view > .jy-submitted-content,
+.jy-notes-single-view > .jy-note-body-spread{
+  padding:14px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-notes-single-view .jy-note-proof-book{
+  margin-top:0;
+  padding-top:0;
+  border-top:0;
+}
+.jy-notes-selected-panel .jy-lecture-proof-gallery{
+  width:100%;
+  max-width:100%;
+}
+.jy-notes-selected-panel .jy-lecture-proof-viewport{
+  min-height:0;
+  overflow:hidden;
+}
+.jy-notes-selected-panel .jy-lecture-proof-spread{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  padding:12px;
+}
+.jy-notes-selected-panel .jy-lecture-proof-spread .jy-lecture-proof-item{
+  min-height:0;
+  padding:10px;
+}
+.jy-notes-selected-panel .jy-proof-text-item .jy-proof-text-page{
+  min-height:720px;
+  max-height:none;
+  overflow:visible;
+}
+.jy-notes-selected-panel .jy-lecture-proof-pdf-page{
+  min-height:720px;
+}
+.jy-notes-selected-panel .jy-lecture-proof-item img{
+  max-height:none;
+}
+.jy-notes-selected-panel .jy-lecture-proof-controls{
+  margin-top:8px;
+}
+@media(max-width:820px){
+  .jy-notes-selected-panel .jy-lecture-proof-spread{
+    grid-template-columns:1fr;
+  }
+  .jy-notes-selected-panel .jy-proof-text-item .jy-proof-text-page,
+  .jy-notes-selected-panel .jy-lecture-proof-pdf-page{
+    min-height:420px;
+  }
+}
+
+/* v154 Notes view cleanup and study receipt */
+.jy-notes-selected-panel .jy-rich-toolbar,
+.jy-notes-selected-panel [data-proof-star-tool],
+.jy-notes-selected-panel [data-proof-star-erase],
+.jy-notes-selected-panel [data-rich-star],
+.jy-notes-selected-panel [data-rich-star-erase],
+.jy-notes-selected-panel [data-lecture-rich-star],
+.jy-notes-selected-panel [data-lecture-rich-star-erase]{
+  display:none !important;
+}
+.jy-notes-selected-panel .jy-proof-readonly .jy-proof-caption-actions:empty{
+  display:none;
+}
+.jy-notes-selected-panel .jy-proof-readonly .jy-proof-text-page{
+  cursor:default;
+}
+.jy-study-receipt{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+  padding:18px 16px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-family:'Noto Sans KR',sans-serif;
+}
+.jy-study-receipt-total{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:12px;
+  margin-bottom:10px;
+  border-bottom:1px dashed var(--line-dark);
+}
+.jy-study-receipt-total span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+}
+.jy-study-receipt-total strong{
+  font-size:22px;
+  line-height:1.2;
+  font-weight:600;
+}
+.jy-study-receipt-list{
+  display:grid;
+  gap:0;
+}
+.jy-study-receipt-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 0;
+  border-bottom:1px dotted var(--line);
+}
+.jy-study-receipt-row:last-child{
+  border-bottom:0;
+}
+.jy-study-receipt-row span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-study-receipt-row strong{
+  font-size:var(--fs-2);
+  font-weight:600;
+}
+.jy-study-receipt-empty{
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+
+
+/* v155 study receipt lecture progress */
+.jy-study-receipt-row span{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.jy-study-receipt-row small{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.35;
+}
+
+/* v157 Notes page: English labels, all notes visible, wrong-note grouped sections */
+.jy-notes-all-list{
+  display:grid;
+  gap:18px;
+}
+.jy-notes-all-item{
+  margin:0;
+  padding:14px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-note-tone-wrong.jy-notes-all-item{
+  border-color:#c9e5f5;
+  background:#fbfeff;
+}
+.jy-note-tone-lecture.jy-notes-all-item{
+  border-color:#f1c9d6;
+  background:#fffafd;
+}
+.jy-note-tone-grammar.jy-notes-all-item{
+  border-color:#eadf9e;
+  background:#fffdf7;
+}
+.jy-note-tone-phrase.jy-notes-all-item{
+  border-color:#cfe6c4;
+  background:#fbfff8;
+}
+.jy-wrong-note-tabs{
+  margin:4px 0 16px;
+}
+.jy-wrong-note-group{
+  padding-top:14px;
+  margin-top:14px;
+  border-top:1px solid var(--line);
+  scroll-margin-top:20px;
+}
+.jy-wrong-note-group:first-of-type{
+  margin-top:0;
+}
+.jy-wrong-note-group .jy-book-top{
+  margin-bottom:10px;
+}
+.jy-notes-empty-page{
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  color:var(--muted);
+}
+.jy-notes-selected-panel .jy-lecture-proof-controls{
+  justify-content:space-between;
+}
+.jy-notes-selected-panel .jy-proof-nav-buttons{
+  display:flex;
+}
+.jy-notes-selected-panel .jy-proof-readonly [data-proof-clear-text],
+.jy-notes-selected-panel .jy-proof-readonly [data-proof-save-text]{
+  display:none !important;
+}
+
+
+/* v158 Notes single-button view and full document display */
+.jy-notes-single-panel .jy-notes-single-view{
+  margin:0;
+  padding:16px;
+  min-height:0;
+}
+.jy-notes-single-panel .jy-note-body-page,
+.jy-notes-selected-panel .jy-proof-text-item .jy-proof-text-page{
+  max-height:none !important;
+  overflow:visible !important;
+}
+.jy-notes-single-panel .jy-note-body-page{
+  min-height:520px;
+}
+.jy-notes-selected-panel .jy-proof-text-item .jy-proof-text-page{
+  min-height:620px;
+}
+.jy-notes-single-panel .jy-submitted-content{
+  white-space:normal;
+}
+.jy-notes-page-controls{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:12px;
+}
+.jy-wrong-note-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:4px 0 14px;
+}
+.jy-wrong-note-current-title{
+  margin-top:4px;
+}
+.jy-notes-selected-panel .jy-lecture-proof-viewport,
+.jy-notes-selected-panel .jy-lecture-proof-item,
+.jy-notes-selected-panel .jy-lecture-proof-pdf-page{
+  min-height:0;
+}
+.jy-notes-selected-panel .jy-lecture-proof-pdf-page{
+  overflow:visible;
+}
+@media(max-width:820px){
+  .jy-notes-single-panel .jy-note-body-page,
+  .jy-notes-selected-panel .jy-proof-text-item .jy-proof-text-page{
+    min-height:420px;
+  }
+}
+
+/* v160 submit-only fix and Notes star position lock */
+.jy-submitted-content,
+.jy-note-body-page,
+.jy-note-body-page > div,
+.jy-notes-single-view{
+  position:relative;
+}
+.jy-notes-single-panel .jy-submitted-content .jy-pencil-star,
+.jy-note-body-page .jy-pencil-star,
+.jy-notes-single-view .jy-pencil-star{
+  pointer-events:none;
+}
+
+/* v161 Notes wrong-note page ratio lock */
+.jy-notes-selected-panel .jy-note-body-spread{
+  align-items:start;
+}
+.jy-notes-selected-panel .jy-note-body-page{
+  padding:0 !important;
+  background:transparent;
+  border:0;
+  overflow:visible !important;
+  max-height:none !important;
+  min-height:0 !important;
+}
+.jy-notes-selected-panel .jy-note-body-page > span{
+  display:block;
+  margin:0 0 5px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:600;
+  line-height:1.35;
+}
+.jy-notes-selected-panel .jy-note-body-page > div,
+.jy-notes-selected-panel .jy-submitted-content{
+  position:relative;
+  width:100%;
+  min-height:520px;
+  padding:12px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  font-size:var(--fs-2);
+  line-height:1.65;
+  white-space:normal;
+  overflow:visible !important;
+  max-height:none !important;
+}
+.jy-notes-selected-panel .jy-note-tone-wrong .jy-note-body-page > div,
+.jy-notes-selected-panel .jy-note-tone-wrong .jy-submitted-content{
+  border-color:#c9e5f5;
+  background:#fbfeff;
+}
+.jy-notes-selected-panel .jy-note-tone-lecture .jy-note-body-page > div,
+.jy-notes-selected-panel .jy-note-tone-lecture .jy-submitted-content{
+  border-color:#f1c9d6;
+  background:#fffafd;
+}
+.jy-notes-selected-panel .jy-note-tone-grammar .jy-note-body-page > div,
+.jy-notes-selected-panel .jy-note-tone-grammar .jy-submitted-content{
+  border-color:#eadf9e;
+  background:#fffdf7;
+}
+.jy-notes-selected-panel .jy-note-tone-phrase .jy-note-body-page > div,
+.jy-notes-selected-panel .jy-note-tone-phrase .jy-submitted-content{
+  border-color:#cfe6c4;
+  background:#fbfff8;
+}
+.jy-notes-selected-panel .jy-note-body-page > div .jy-pencil-star,
+.jy-notes-selected-panel .jy-submitted-content .jy-pencil-star{
+  pointer-events:none;
+}
+.jy-notes-selected-panel .jy-proof-stamp-surface{
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  overflow:visible;
+}
+.jy-notes-selected-panel .jy-proof-stamp-surface > img,
+.jy-notes-selected-panel .jy-proof-stamp-surface > .jy-lecture-proof-pdf-page,
+.jy-notes-selected-panel .jy-proof-stamp-surface > .jy-proof-text-page{
+  display:block;
+  width:100%;
+}
+@media(max-width:820px){
+  .jy-notes-selected-panel .jy-note-body-page > div,
+  .jy-notes-selected-panel .jy-submitted-content{
+    min-height:420px;
+  }
+}
+
+
+/* v162 Wrong Notes: show saved-note buttons inside each section */
+.jy-wrong-note-item-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin:0 0 12px;
+  padding:10px;
+  border:1px solid #c9e5f5;
+  background:#f7fcff;
+}
+.jy-wrong-note-item-btn{
+  max-width:100%;
+  justify-content:flex-start;
+  white-space:normal;
+  text-align:left;
+  line-height:1.35;
+}
+.jy-wrong-note-current-title{
+  align-items:center;
+}
+
+
+/* v165 Wrong Notes cleanup and note body page turn */
+.jy-wrong-note-item-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:0 0 10px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.jy-wrong-note-item-btn{
+  min-width:34px;
+  max-width:none;
+  justify-content:center;
+  white-space:nowrap;
+  text-align:center;
+  padding-left:10px;
+  padding-right:10px;
+}
+.jy-note-body-turn-controls{
+  align-items:center;
+  justify-content:center;
+  margin-top:10px;
+}
+.jy-note-body-turn-controls span{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 8px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-note-body-turn-controls .jy-btn{
+  min-width:36px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.jy-note-body-page-empty > div{
+  background:#fff !important;
+}
+
+/* v166 Notes page unified panel and links */
+.jy-notes-panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.jy-note-resource-link{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.jy-note-resource-btn{
+  min-height:30px;
+  padding:5px 10px;
+  font-size:var(--fs-1);
+}
+.jy-wrong-notes-panel > .jy-notes-panel-head{
+  margin-bottom:10px;
+}
+.jy-wrong-note-tabs{
+  margin:0 0 14px;
+}
+.jy-wrong-note-current-title,
+.jy-wrong-note-item-buttons{
+  display:none !important;
+}
+.jy-note-body-turn-controls{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin:10px 0;
+  padding:8px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.jy-note-body-turn-controls span{
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-notes-single-panel .jy-note-page-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.jy-notes-single-panel .jy-note-body-turn-controls{
+  justify-content:center;
+}
+@media(max-width:820px){
+  .jy-notes-panel-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .jy-note-resource-link{
+    justify-content:flex-start;
+  }
+}
+
+
+/* v169 schedule table, compact lecture labels, lecture accordion */
+.jy-schedule-table{
+  table-layout:fixed;
+  min-width:980px;
+}
+.jy-schedule-table th:nth-child(1),
+.jy-schedule-table td:nth-child(1){width:96px;}
+.jy-schedule-table th:nth-child(2),
+.jy-schedule-table td:nth-child(2){width:66px;}
+.jy-schedule-table th:nth-child(3),
+.jy-schedule-table td:nth-child(3){width:170px;}
+.jy-schedule-table th:nth-child(4),
+.jy-schedule-table td:nth-child(4){width:420px;}
+.jy-schedule-table th:nth-child(5),
+.jy-schedule-table td:nth-child(5){width:70px;}
+.jy-schedule-table th:nth-child(6),
+.jy-schedule-table td:nth-child(6){width:190px;}
+.jy-schedule-lecture-list{
+  display:grid;
+  gap:4px;
+}
+.jy-schedule-lecture-list span{
+  display:block;
+  line-height:1.42;
+}
+.jy-lecture-table-compact th:nth-child(1),
+.jy-lecture-table-compact td:nth-child(1){width:74px;text-align:center;}
+.jy-lecture-table-compact th:nth-child(3),
+.jy-lecture-table-compact td:nth-child(3){width:120px;}
+.jy-lecture-table-compact td small{
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:var(--fs-1);
+}
+.jy-lecture-accordion{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.jy-lecture-group{
+  border:1px solid var(--line);
+  background:#fff;
+}
+.jy-lecture-group summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:16px 18px;
+  cursor:pointer;
+  color:#77768c;
+  font-size:17px;
+  font-weight:600;
+  list-style:none;
+}
+.jy-lecture-group summary::-webkit-details-marker{display:none;}
+.jy-lecture-group summary::after{
+  content:'⌄';
+  color:#8e8da0;
+  font-size:28px;
+  line-height:1;
+}
+.jy-lecture-group[open] summary::after{content:'⌃';}
+.jy-lecture-group summary small{
+  margin-left:auto;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  font-weight:500;
+}
+.jy-lecture-group .jy-table-scroll{
+  border-top:1px solid var(--line);
+}
+@media(max-width:820px){
+  .jy-schedule-table{min-width:920px;}
+  .jy-lecture-group summary{padding:13px 14px;font-size:15px;}
+}
+
+
+/* v170 schedule reflow and readable table */
+.jy-schedule-table{
+  table-layout:auto;
+  min-width:1180px;
+}
+.jy-schedule-table th:nth-child(1),
+.jy-schedule-table td:nth-child(1){width:108px;white-space:nowrap;}
+.jy-schedule-table th:nth-child(2),
+.jy-schedule-table td:nth-child(2){width:72px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(3),
+.jy-schedule-table td:nth-child(3){width:190px;}
+.jy-schedule-table th:nth-child(4),
+.jy-schedule-table td:nth-child(4){min-width:560px;}
+.jy-schedule-table th:nth-child(5),
+.jy-schedule-table td:nth-child(5){width:80px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(6),
+.jy-schedule-table td:nth-child(6){width:170px;}
+.jy-schedule-lecture-list{
+  display:grid;
+  gap:3px;
+}
+.jy-schedule-lecture-list span{
+  display:block;
+  line-height:1.45;
+  word-break:keep-all;
+}
+.jy-lecture-table-compact td:nth-child(2){line-height:1.45;}
+
+
+/* v170 schedule reflow and readable table */
+.jy-schedule-table{
+  table-layout:auto;
+  min-width:1180px;
+}
+.jy-schedule-table th:nth-child(1),
+.jy-schedule-table td:nth-child(1){width:108px;white-space:nowrap;}
+.jy-schedule-table th:nth-child(2),
+.jy-schedule-table td:nth-child(2){width:72px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(3),
+.jy-schedule-table td:nth-child(3){width:190px;}
+.jy-schedule-table th:nth-child(4),
+.jy-schedule-table td:nth-child(4){min-width:560px;}
+.jy-schedule-table th:nth-child(5),
+.jy-schedule-table td:nth-child(5){width:80px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(6),
+.jy-schedule-table td:nth-child(6){width:170px;}
+.jy-schedule-lecture-list{
+  display:grid;
+  gap:3px;
+}
+.jy-schedule-lecture-list span{
+  display:block;
+  line-height:1.45;
+  word-break:keep-all;
+}
+.jy-lecture-table-compact td:nth-child(2){line-height:1.45;}
+
+
+/* v170 schedule reflow and readable table */
+.jy-schedule-table{
+  table-layout:auto;
+  min-width:1180px;
+}
+.jy-schedule-table th:nth-child(1),
+.jy-schedule-table td:nth-child(1){width:108px;white-space:nowrap;}
+.jy-schedule-table th:nth-child(2),
+.jy-schedule-table td:nth-child(2){width:72px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(3),
+.jy-schedule-table td:nth-child(3){width:190px;}
+.jy-schedule-table th:nth-child(4),
+.jy-schedule-table td:nth-child(4){min-width:560px;}
+.jy-schedule-table th:nth-child(5),
+.jy-schedule-table td:nth-child(5){width:80px;white-space:nowrap;text-align:center;}
+.jy-schedule-table th:nth-child(6),
+.jy-schedule-table td:nth-child(6){width:170px;}
+.jy-schedule-lecture-list{
+  display:grid;
+  gap:3px;
+}
+.jy-schedule-lecture-list span{
+  display:block;
+  line-height:1.45;
+  word-break:keep-all;
+}
+.jy-lecture-table-compact td:nth-child(2){line-height:1.45;}
+
+/* v171 Notes page controls, fixed media page ratio, and note/page deletion */
+.jy-notes-top-controls{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin:0 0 10px;
+  padding:8px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.jy-notes-top-controls span{
+  flex:1 1 auto;
+  text-align:center;
+  color:var(--muted);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-notes-top-controls .jy-delete{
+  flex:0 0 auto;
+}
+.jy-notes-selected-panel .jy-lecture-proof-gallery .jy-lecture-proof-controls{
+  margin:0 0 8px;
+  padding:0 0 8px;
+  border-top:0;
+  border-bottom:1px solid var(--line);
+}
+.jy-notes-selected-panel .jy-proof-media-item{
+  display:flex;
+  flex-direction:column;
+  min-height:0 !important;
+}
+.jy-notes-selected-panel .jy-proof-media-item .jy-proof-stamp-surface{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  aspect-ratio:1 / 1.414;
+  min-height:0;
+  overflow:hidden;
+  background:#fff;
+}
+.jy-notes-selected-panel .jy-proof-media-item .jy-proof-stamp-surface > img,
+.jy-notes-selected-panel .jy-proof-media-item .jy-proof-stamp-surface > .jy-lecture-proof-pdf-page,
+.jy-notes-selected-panel .jy-proof-media-item .jy-proof-stamp-surface > .jy-lecture-proof-file-box{
+  width:100%;
+  height:100%;
+  min-height:0 !important;
+  max-height:none !important;
+  object-fit:contain;
+}
+.jy-notes-selected-panel .jy-proof-text-item .jy-proof-stamp-surface{
+  aspect-ratio:auto;
+  min-height:0;
+  overflow:visible;
+}
+.jy-notes-selected-panel .jy-proof-readonly [data-proof-clear-text],
+.jy-notes-selected-panel .jy-proof-readonly [data-proof-save-text]{
+  display:none !important;
+}
+@media(max-width:820px){
+  .jy-notes-top-controls{
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+  .jy-notes-top-controls span{
+    flex:0 0 auto;
+    text-align:left;
+  }
+}
+
+
+/* v172 equal daily lecture-time schedule */
+.jy-schedule-table{
+  table-layout:auto;
+  min-width:1220px;
+}
+.jy-schedule-table th:nth-child(4),
+.jy-schedule-table td:nth-child(4){
+  min-width:600px;
+}
+.jy-schedule-table th:nth-child(5),
+.jy-schedule-table td:nth-child(5){
+  width:92px;
+  white-space:nowrap;
+  text-align:center;
+  font-weight:600;
+}
+.jy-schedule-lecture-list{
+  display:grid;
+  gap:2px;
+}
+.jy-schedule-lecture-list span{
+  line-height:1.38;
+}
+
+/* v173 daily phrase structure practice */
+.jy-phrase-practice-card{
+  background:#f8fff4;
+  border-color:#cfe6c4;
+}
+.jy-phrase-practice-paper{
+  min-height:720px;
+  resize:vertical;
+  white-space:pre-wrap;
+  line-height:1.75;
+  background:#fbfff8;
+  border-color:#cfe6c4;
+}
+.jy-phrase-practice-actions{
+  margin-top:10px;
+}
+#phrase-practice-status:empty{
+  display:none;
+}
+
+/* v175 Notes page: remove redundant file-only labels and empty note area */
+.jy-notes-selected-panel .jy-notes-file-only{
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  line-height:1.58 !important;
+}
+.jy-notes-selected-panel .jy-notes-file-only > .jy-note-proof-book{
+  margin:0 !important;
+  padding:0 !important;
+  border-top:0 !important;
+}
+.jy-notes-selected-panel .jy-notes-file-only .jy-lecture-proof-gallery{
+  margin-top:0 !important;
+}
+.jy-notes-selected-panel .jy-notes-file-only .jy-lecture-proof-controls{
+  margin-top:0;
+}
+.jy-notes-selected-panel .jy-notes-file-only .jy-mock-file-preview{
+  margin-top:0;
+}
+
+
+/* v181 vocabulary format, same-day test, inline wrong answers */
+.jy-vocab-book-card{
+  background:#fff;
+}
+.jy-vocab-book-group{
+  margin-top:16px;
+}
+.jy-vocab-book-group h3{
+  margin:0 0 8px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+  font-size:var(--fs-3);
+  font-weight:600;
+}
+.jy-vocab-book-table th:nth-child(1),
+.jy-vocab-book-table td:nth-child(1){
+  width:150px;
+}
+.jy-vocab-book-table th:nth-child(2),
+.jy-vocab-book-table td:nth-child(2){
+  width:220px;
+}
+.jy-word-test-answer{
+  min-height:18px;
+  margin-top:4px;
+  color:var(--red);
+  font-size:var(--fs-1);
+  line-height:1.35;
+}
+.jy-word-table th:nth-child(4),
+.jy-word-table td:nth-child(4){
+  min-width:260px;
+}
+
+/* v183 vocabulary audit: preserve meanings, compact necessary stats */
+.jy-word-test-answer{font-size:11px;color:var(--red);line-height:1.35;margin-top:4px;}
+
+/* v186 Task 1 expression test */
+.jy-task1-expression-card{
+  background:#f8fff4;
+  border-color:#cfe6c4;
+}
+.jy-task1-expression-controls{
+  display:grid;
+  grid-template-columns:minmax(160px,240px) auto auto auto;
+  gap:8px;
+  align-items:end;
+  margin:10px 0 14px;
+}
+.jy-task1-expression-controls .jy-label{
+  grid-column:1 / -1;
+  margin-bottom:-4px;
+  color:#4e7f39;
+}
+.jy-task1-expression-table th:nth-child(1),
+.jy-task1-expression-table td:nth-child(1){
+  width:52px;
+  text-align:center;
+}
+.jy-task1-expression-table th:nth-child(2),
+.jy-task1-expression-table td:nth-child(2){
+  min-width:190px;
+}
+.jy-task1-expression-table th:nth-child(3),
+.jy-task1-expression-table td:nth-child(3){
+  min-width:210px;
+}
+.jy-task1-expression-table th:nth-child(4),
+.jy-task1-expression-table td:nth-child(4){
+  min-width:280px;
+}
+.jy-task1-expression-table th:nth-child(5),
+.jy-task1-expression-table td:nth-child(5){
+  width:70px;
+  text-align:center;
+}
+.jy-task1-expression-note{
+  margin-top:4px;
+  color:var(--red);
+  font-size:var(--fs-1);
+  line-height:1.35;
+  font-weight:400;
+}
+@media(max-width:820px){
+  .jy-task1-expression-controls{
+    grid-template-columns:1fr;
+    align-items:stretch;
+  }
+  .jy-task1-expression-controls .jy-label{
+    grid-column:auto;
+    margin-bottom:0;
+  }
+}
+
+
+/* v187 Vocabulary internal word/phrase tabs */
+.jy-vocab-subnav{
+  margin-top:-8px;
+  margin-bottom:18px;
+  background:#fff;
+}
+.jy-vocab-subnav .jy-btns{
+  margin:0;
+}
+.jy-vocab-subnav .jy-btn{
+  min-width:76px;
+}

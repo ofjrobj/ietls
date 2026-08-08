@@ -1,0 +1,63 @@
+{
+  "version": "v194_part2_noun_topic_expression_fix",
+  "source_files": [
+    "필수 핵심 동사.pdf",
+    "필수 핵심 명사.pdf",
+    "IELTS_필수_핵심_동사_명사_통합본.docx"
+  ],
+  "previous_v193_part2_items": 239,
+  "updated_v194_part2_items_after_duplicate_removal": 338,
+  "category_counts": {
+    "coreVerb": 103,
+    "advantageDisadvantage": 6,
+    "problemSolution": 5,
+    "causeEffect": 5,
+    "opinionArgument": 5,
+    "coreNounWord": 100,
+    "coreNounExpression": 99,
+    "nounPhrase": 15
+  },
+  "noun_source_rows": 100,
+  "noun_word_items_added": 100,
+  "noun_topic_expression_items_added": 99,
+  "noun_topic_expressions_skipped_as_duplicates": 1,
+  "noun_phrase_items_kept": 15,
+  "duplicate_examples_skipped": [
+    "improve productivity"
+  ],
+  "verification_samples": {
+    "supply": {
+      "cat": "coreNounWord",
+      "expression": "supply",
+      "meaning": "공급",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 명사 단어",
+      "aliases": []
+    },
+    "meet demand": {
+      "cat": "coreNounExpression",
+      "expression": "meet demand",
+      "meaning": "수요를 충족하다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 명사 주제별 표현",
+      "aliases": []
+    },
+    "decrease labor costs": {
+      "cat": "coreVerb",
+      "expression": "decrease labor costs",
+      "meaning": "인건비를 감소시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    }
+  },
+  "rule": "Verb section uses verb + topic keyword as one answer. Noun section tests both the noun word and the topic expression from the same row as separate answers. Examples are not displayed in Part 2 questions.",
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ]
+}

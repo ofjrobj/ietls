@@ -1,0 +1,24 @@
+{
+  "version": "v183_vocab_full_audit_preserve_meaning",
+  "uploaded_base_entries": 2099,
+  "uploaded_base_duplicate_keys": 0,
+  "uploaded_base_missing_meaning": 1911,
+  "uploaded_base_missing_example": 0,
+  "important_note": "The attached base vocab-data.js still contains many word-only entries. The app now preserves meanings stored in the browser/localStorage and fills only missing examples without overwriting existing meanings.",
+  "display_removed_terms": [
+    "오늘 표시",
+    "목표 100개",
+    "문장 예문이 있는 학습 가능 단어"
+  ],
+  "display_kept_terms": [
+    "날짜",
+    "오늘 단어",
+    "남은 단어",
+    "외운 단어",
+    "다시 외울 단어 if non-zero"
+  ],
+  "mastered_storage": "state.masteredVocabBank",
+  "daily_quota": 100,
+  "meaning_preservation": "Existing meaning is kept first. Curated/override meaning is used only when the existing meaning is empty.",
+  "duplicate_rule": "Duplicate words are merged by filling empty fields only; existing populated fields are preserved."
+}

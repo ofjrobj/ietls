@@ -1,0 +1,40 @@
+{
+  "version": "v196_part2_verb_priority_test",
+  "priority_order": [
+    "Part 2 core verb sentence test",
+    "Part 2 writing verb phrase sentence test",
+    "Part 2 noun and noun expression test"
+  ],
+  "part2_priority_items": 120,
+  "part2_priority_breakdown": {
+    "core_verbs": 100,
+    "writing_verb_phrases": 20
+  },
+  "part2_noun_items_separated_for_later": 215,
+  "batch_size": 50,
+  "rolling_rule": "Correct answers are removed from the next round. Wrong or manually checked items remain, and new items fill the batch up to 50.",
+  "prompt_rule": {
+    "core_verb": "Show the verb and Korean example; answer is the full English example sentence.",
+    "writing_verb_phrase": "Show the verb phrase and Korean meaning; answer is the full English example sentence.",
+    "noun_later": "Noun word and topic expressions are separated into a later test button."
+  },
+  "examples": [
+    {
+      "prompt": "improve / 기술은 생산성을 향상시킨다.",
+      "answer": "Technology improves productivity."
+    },
+    {
+      "prompt": "decrease / 자동화는 인건비를 감소시킨다.",
+      "answer": "Automation decreases labor costs."
+    },
+    {
+      "later_noun_prompt": "공급",
+      "answer": "supply"
+    },
+    {
+      "later_noun_prompt": "수요를 충족하다",
+      "answer": "meet demand"
+    }
+  ],
+  "updated_files": ["app.js", "index.html", "README.md"]
+}

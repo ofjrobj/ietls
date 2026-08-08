@@ -1,0 +1,23 @@
+{
+  "version": "v193_part2_full_source_audit",
+  "source_docx": "IELTS_필수_핵심_동사_명사_통합본.docx",
+  "previous_v192_part2_items": 124,
+  "updated_part2_items_after_duplicate_removal": 239,
+  "category_counts": {
+    "coreVerb": 103,
+    "advantageDisadvantage": 6,
+    "problemSolution": 5,
+    "causeEffect": 5,
+    "opinionArgument": 5,
+    "coreNoun": 100,
+    "nounPhrase": 15
+  },
+  "added_core_noun_items": 100,
+  "added_noun_phrase_items": 15,
+  "rule": "Part 2 questions show only short Korean meanings. Verb rows use verb + topic keyword answers; noun rows use noun answers; noun phrase rows use full noun-phrase answers. Examples and category names are not shown inside test questions.",
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ]
+}

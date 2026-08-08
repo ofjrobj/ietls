@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IELT6.5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=197">
+</head>
+<body>
+  <div class="jy-ielts">
+    <nav class="jy-nav">
+      <a class="jy-logo" href="#home"><span class="jy-logo-main">IELT6.5</span><span class="jy-logo-meta" id="meta-date"></span></a>
+      <div class="jy-menu" id="nav-menu">
+        <div class="jy-menu-row jy-menu-row-main">
+          <a href="#home" data-route="home">Home</a>
+          <a href="#lecture" data-route="lecture">Lecture</a>
+          <a href="#mocktest" data-route="mocktest">Mock Test</a>
+          <a href="#words" data-route="words">Vocabulary</a>
+          <a href="#grammar" data-route="grammar">Grammar</a>
+        </div>
+        <div class="jy-menu-row jy-menu-row-sub">
+          <a href="#listening" data-route="listening">Listening</a>
+          <a href="#reading" data-route="reading">Reading</a>
+          <a href="#writing" data-route="writing">Writing</a>
+          <a href="#speaking" data-route="speaking">Speaking</a>
+          <a href="#notes" data-route="notes">Notes</a>
+          <a href="#school" data-route="school" class="school-link">Schools</a>
+          <a href="https://mail.naver.com/v2/folders/-1" target="_blank" rel="noopener" class="school-link">Mail</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="app"></main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="./vocab-data.js?v=197"></script>
+  <script src="./app.js?v=197"></script>
+</body>
+</html>

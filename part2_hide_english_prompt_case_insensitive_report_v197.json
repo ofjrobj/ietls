@@ -1,0 +1,20 @@
+{
+  "version": "v197_part2_hide_english_prompt_case_insensitive",
+  "updated_files": [
+    "app.js",
+    "index.html",
+    "README.md"
+  ],
+  "changes": [
+    "Part 2 동사 우선 시험에서 영어 동사와 동사구를 문제 칸에서 숨김",
+    "Part 2 동사 우선 시험 표를 번호, 한국어 문장, 영어 문장 입력, 다시 보기 구조로 변경",
+    "Part 2 동사 우선 시험은 한국어 문장만 보고 전체 영어 문장을 입력하도록 유지",
+    "Part 2 채점은 대소문자를 구분하지 않음",
+    "index.html 캐시 버전을 v197로 변경"
+  ],
+  "unchanged": [
+    "Part 2 명사 시험은 별도 탭으로 유지",
+    "50개 단위 회차 시험 유지",
+    "정답 항목 제외, 오답 항목 다음 회차 유지, 빈자리 새 항목 보충 유지"
+  ]
+}

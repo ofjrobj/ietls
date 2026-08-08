@@ -1,0 +1,94 @@
+{
+  "version": "v192_part2_collocation_cleanup",
+  "source_docx": "IELTS_필수_핵심_동사_명사_통합본.docx",
+  "part2_items": 124,
+  "categories": {
+    "all": "전체",
+    "coreVerb": "필수 동사+키워드",
+    "advantageDisadvantage": "장점·단점",
+    "problemSolution": "문제·해결책",
+    "causeEffect": "원인·결과",
+    "opinionArgument": "의견·찬반"
+  },
+  "behaviour": [
+    "Part 2 English-expression test shows Korean phrase meanings only.",
+    "Part 2 questions do not show examples.",
+    "Part 2 questions do not show per-item category labels or source notes.",
+    "Part 2 accepts full verb+keyword expressions such as improve productivity.",
+    "Noun-only expression categories are excluded from Part 2."
+  ],
+  "sample": [
+    {
+      "cat": "coreVerb",
+      "expression": "improve productivity",
+      "meaning": "생산성을 개선하다, 향상시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "enhance learning opportunities",
+      "meaning": "학습 기회를 높이다, 향상시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "increase employment prospects",
+      "meaning": "취업 전망을 증가시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "reduce environmental pollution",
+      "meaning": "환경 오염을 줄이다, 감소시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "decrease labor costs",
+      "meaning": "인건비를 감소시키다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "affect human behavior",
+      "meaning": "인간 행동에 영향을 미치다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "influence consumer choices",
+      "meaning": "소비자 선택에 영향을 주다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    },
+    {
+      "cat": "coreVerb",
+      "expression": "encourage creativity and innovation",
+      "meaning": "창의성과 혁신을 장려하다, 부추기다",
+      "example": "",
+      "exampleKo": "",
+      "source": "필수 핵심 동사",
+      "aliases": []
+    }
+  ]
+}
