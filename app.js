@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v5';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v6';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -30,6 +30,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260903-english', date: '2026-09-03', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20260906-english', date: '2026-09-06', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260908-craft', date: '2026-09-08', title: '공예 기획 · 실무교육 4강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260908-sibling-birthday', date: '2026-09-08', title: '동생 생일', time: '', category: 'personal' },
   { id: 'doc-20260909-heritage', date: '2026-09-09', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
   { id: 'doc-20260910-heritage', date: '2026-09-10', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
   { id: 'doc-20260910-english', date: '2026-09-10', title: 'Cambly 수업', time: '21:00', category: 'english' },
@@ -60,6 +61,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20261018-english', date: '2026-10-18', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20261021-heritage', date: '2026-10-21', title: '디지털헤리티지 공주 · 프로젝트 종료', time: '', category: 'heritage' },
   { id: 'doc-20261022-english', date: '2026-10-22', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20261023-mother-birthday', date: '2026-10-23', title: '엄마 생일', time: '', category: 'personal' },
   { id: 'doc-20261029-exam', date: '2026-10-29', title: 'IELTS 시험', time: '', category: 'exam' },
   { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' }
 ];
