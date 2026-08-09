@@ -109,18 +109,20 @@ const MONTH_NAMES = [
 const SUBSCRIPTIONS = [
   {
     name: 'ChatGPT Plus',
-    plan: '개인 · 매월 결제',
+    plan: '매월 결제',
     price: 'US$20 · 약 ₩28,160 / 월',
     note: '갱신일 확인 필요 · 웹 결제 기준',
+    monthlyAmount: 28160,
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://learn.chatgpt.com/docs/pricing'
   },
   {
     name: 'YouTube Premium',
-    plan: '개인 · KT 휴대폰 요금 합산',
+    plan: 'KT 휴대폰 요금 합산',
     price: '₩12,636 / 월',
     note: '실제 청구액',
+    monthlyAmount: 12636,
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://www.youtube.com/premium?hl=ko'
@@ -130,6 +132,7 @@ const SUBSCRIPTIONS = [
     plan: '30분 × 주 2회 · 매월 결제',
     price: '₩243,800 / 월',
     note: '다음 갱신 2026년 8월 13일',
+    monthlyAmount: 243800,
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://www.cambly.com/en/subscribe?lang=ko'
@@ -139,6 +142,7 @@ const SUBSCRIPTIONS = [
     plan: 'Personal · 12개월마다 결제',
     price: 'US$4 · 약 ₩5,630 / 월',
     note: '연간 결제 환산가',
+    monthlyAmount: 5630,
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://wordpress.com/pricing/'
@@ -148,6 +152,7 @@ const SUBSCRIPTIONS = [
     plan: '5G 슬림 4GB · Y덤',
     price: '₩37,000 / 월',
     note: 'Y덤 기본 데이터 2배 · 합산 청구 총 ₩61,836',
+    monthlyAmount: 37000,
     status: 'active',
     statusLabel: '이용 중',
     source: ''
@@ -157,6 +162,7 @@ const SUBSCRIPTIONS = [
     plan: 'KT 휴대폰 요금 합산',
     price: '₩8,900 / 월',
     note: '',
+    monthlyAmount: 8900,
     status: 'active',
     statusLabel: '이용 중',
     source: ''
@@ -166,6 +172,7 @@ const SUBSCRIPTIONS = [
     plan: 'KT 휴대폰 요금 합산',
     price: '₩3,300 / 월',
     note: '',
+    monthlyAmount: 3300,
     status: 'active',
     statusLabel: '이용 중',
     source: ''
@@ -175,6 +182,7 @@ const SUBSCRIPTIONS = [
     plan: '12개월 무이자 할부',
     price: '₩82,500 / 월',
     note: '12회 납부 예정 · 총 ₩990,000',
+    monthlyAmount: 82500,
     status: 'active',
     statusLabel: '12개월',
     source: ''
@@ -184,6 +192,7 @@ const SUBSCRIPTIONS = [
     plan: 'Standard · 매월 결제',
     price: 'US$19 · 약 ₩28,000 / 월',
     note: '2026년 8월까지만 사용',
+    monthlyAmount: 28000,
     status: 'ending',
     statusLabel: '8월 종료',
     source: 'https://cargo.site/'
@@ -193,15 +202,17 @@ const SUBSCRIPTIONS = [
     plan: 'Standard · 매월 결제',
     price: 'US$6.99 · 약 ₩9,840 / 월',
     note: '2026년 8월까지만 사용',
+    monthlyAmount: 9840,
     status: 'ending',
     statusLabel: '8월 종료',
     source: 'https://kling.ai/explore/kling_ai_pricing'
   },
   {
     name: '배민클럽',
-    plan: '개인 · 매월 결제',
+    plan: '매월 결제',
     price: '₩0',
     note: '2026년 8월까지만 사용',
+    monthlyAmount: 0,
     status: 'ending',
     statusLabel: '8월 종료',
     source: ''
@@ -231,10 +242,11 @@ function loadState() {
     const saved = JSON.parse(localStorage.getItem(STATE_KEY)) || {};
     return {
       speaking: Array.isArray(saved.speaking) ? saved.speaking : [],
-      schedule: Array.isArray(saved.schedule) ? saved.schedule : []
+      schedule: Array.isArray(saved.schedule) ? saved.schedule : [],
+      expenses: Array.isArray(saved.expenses) ? saved.expenses : []
     };
   } catch {
-    return { speaking: [], schedule: [] };
+    return { speaking: [], schedule: [], expenses: [] };
   }
 }
 
@@ -406,6 +418,73 @@ function subscriptionMarkup() {
   </section>`;
 }
 
+function formatWon(amount) {
+  return `₩${Math.round(amount).toLocaleString('ko-KR')}`;
+}
+
+function budgetMarkup() {
+  const state = loadState();
+  const monthKey = todayValue().slice(0, 7);
+  const monthNumber = Number(monthKey.slice(5, 7));
+  const expenses = state.expenses
+    .filter(item => item.date.startsWith(monthKey))
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const recurringTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + item.monthlyAmount, 0);
+  const nextMonthTotal = SUBSCRIPTIONS
+    .filter(item => item.status !== 'ending')
+    .reduce((sum, item) => sum + item.monthlyAmount, 0);
+  const extraTotal = expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+
+  return `<section class="budget-card">
+    <div class="budget-head">
+      <p class="eyebrow">Monthly Budget</p>
+      <h2>${monthNumber}월 가계부</h2>
+    </div>
+    <div class="budget-summary">
+      <div><span>정기비용</span><strong>${formatWon(recurringTotal)}</strong><small>월 환산 금액 포함</small></div>
+      <div><span>추가 지출</span><strong>${formatWon(extraTotal)}</strong></div>
+      <div class="budget-total"><span>이번 달 합계</span><strong>${formatWon(recurringTotal + extraTotal)}</strong></div>
+      <div><span>다음 달 예상</span><strong>${formatWon(nextMonthTotal)}</strong><small>8월 종료 항목 제외</small></div>
+    </div>
+    <form class="expense-form" id="expense-form">
+      <h3>지출 추가</h3>
+      <label>날짜<input type="date" name="date" value="${todayValue()}" required></label>
+      <label>항목<input name="title" maxlength="50" placeholder="예: 교통비" required></label>
+      <label>금액<input type="number" name="amount" min="0" step="1" placeholder="0" required></label>
+      <button type="submit">추가</button>
+    </form>
+    <div class="expense-list">
+      ${expenses.length ? expenses.map(item => `<div class="expense-item">
+        <span><small>${escapeHtml(item.date.slice(5))}</small>${escapeHtml(item.title)}</span>
+        <strong>${formatWon(item.amount)}</strong>
+        <button class="danger" type="button" data-delete-expense="${escapeHtml(item.id)}">삭제</button>
+      </div>`).join('') : '<p class="empty">추가로 기록한 지출이 없습니다.</p>'}
+    </div>
+  </section>`;
+}
+
+function bindBudget() {
+  document.getElementById('expense-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const state = loadState();
+    state.expenses.push({
+      id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
+      date: String(data.get('date')),
+      title: String(data.get('title')).trim(),
+      amount: Number(data.get('amount'))
+    });
+    saveState(state);
+    renderHome();
+  });
+  document.querySelectorAll('[data-delete-expense]').forEach(button => button.addEventListener('click', () => {
+    const state = loadState();
+    state.expenses = state.expenses.filter(item => item.id !== button.dataset.deleteExpense);
+    saveState(state);
+    renderHome();
+  }));
+}
+
 function renderHome() {
   applyMonthTheme(calendarCursor.getMonth());
   const today = new Date();
@@ -417,8 +496,12 @@ function renderHome() {
       <div class="dday-card"><span>NEXT MILESTONE</span><strong>${getDday()}</strong><div class="dday-meta"><small>IELTS TEST · Overall 6.5</small><small>29 October 2026</small></div></div>
     </section>
     ${calendarMarkup()}
-    ${subscriptionMarkup()}`;
+    <div class="finance-grid">
+      ${subscriptionMarkup()}
+      ${budgetMarkup()}
+    </div>`;
   bindCalendar();
+  bindBudget();
 }
 
 function renderSpeaking() {
