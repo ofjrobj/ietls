@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v17';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v18';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -37,6 +37,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260816-friends', date: '2026-08-16', title: '개인 · 고등학교 한국화 친구들 약속 (한남동)', time: '13:00', category: 'friend' },
   { id: 'doc-20260816-english', date: '2026-08-16', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260818-craft', date: '2026-08-18', title: '공예 기획 · 실무교육 1강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260818-friend', date: '2026-08-18', title: '계원 미술과 친구들 약속', time: '저녁', category: 'friend' },
   { id: 'doc-20260819-heritage', date: '2026-08-19', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
   { id: 'doc-20260820-heritage', date: '2026-08-20', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
   { id: 'doc-20260820-english', date: '2026-08-20', title: 'Cambly 수업', time: '21:00', category: 'english' },
@@ -439,6 +440,12 @@ function scheduleMetadata(item) {
         '주차 지원이 어려우므로 대중교통 이용',
         '문의: kcdfedu2026@naver.com'
       ]
+    };
+  }
+  if (item.id === 'doc-20260818-friend') {
+    return {
+      ...item,
+      details: ['계원 미술과 친구들과 저녁 약속', '정확한 시간과 장소 미정']
     };
   }
   if (item.id === 'doc-20261108-cambly-end') {
