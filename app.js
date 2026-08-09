@@ -118,9 +118,9 @@ const SUBSCRIPTIONS = [
   },
   {
     name: 'YouTube Premium',
-    plan: '개인 · 매월 결제',
-    price: '₩14,900 / 월',
-    note: '한국 웹 가입 기준',
+    plan: '개인 · KT 휴대폰 요금 합산',
+    price: '₩12,636 / 월',
+    note: '실제 청구액',
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://www.youtube.com/premium?hl=ko'
@@ -147,7 +147,25 @@ const SUBSCRIPTIONS = [
     name: 'KT 휴대폰 요금',
     plan: '5G 슬림 4GB · Y덤',
     price: '₩37,000 / 월',
-    note: 'Y덤 기본 데이터 2배',
+    note: 'Y덤 기본 데이터 2배 · 합산 청구 총 ₩61,836',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: ''
+  },
+  {
+    name: 'Microsoft 이용료',
+    plan: 'KT 휴대폰 요금 합산',
+    price: '₩8,900 / 월',
+    note: '',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: ''
+  },
+  {
+    name: 'iCloud+',
+    plan: 'KT 휴대폰 요금 합산',
+    price: '₩3,300 / 월',
+    note: '',
     status: 'active',
     statusLabel: '이용 중',
     source: ''
