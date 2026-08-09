@@ -2,21 +2,25 @@ const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
 const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260809_v11';
-const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v1';
+const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
 const DEFAULT_TODOS = [
   { id: 'todo-20260811-clothes', title: '캐리어 안에 여름 가을 옷', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', group: 'shipping', done: false },
   { id: 'todo-20260811-charger', title: '배터리 충전기', date: '2026-08-11', group: 'carry', done: false },
   { id: 'todo-20260811-ipad', title: '아이패드', date: '2026-08-11', group: 'carry', done: false },
   { id: 'todo-20260811-cosmetics', title: '화장품', date: '2026-08-11', group: 'carry', done: false },
   { id: 'todo-20260811-tumbler', title: '텀블러', date: '2026-08-11', group: 'carry', done: false },
   { id: 'todo-20260811-seagate', title: '시게이트 외장하드', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', group: 'shipping', done: false },
+  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', group: 'shipping', done: false },
   { id: 'todo-20260811-hair-iron', title: '고데기', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', group: 'carry', done: false }
+  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-english-books', title: '영어 책', date: '2026-08-11', group: 'shipping', done: false },
+  { id: 'todo-20260811-some-clothes', title: '일부 옷', date: '2026-08-11', group: 'shipping', done: false },
+  { id: 'todo-20260811-spare-shoes', title: '여분의 신발', date: '2026-08-11', group: 'shipping', done: false },
+  { id: 'todo-20260811-mouse', title: '마우스', date: '2026-08-11', group: 'shipping', done: false }
 ];
 
 const DOC_SCHEDULE = [
@@ -319,6 +323,10 @@ function seedDocumentSchedule() {
 function seedDefaultTodos() {
   if (localStorage.getItem(TODO_SEED_KEY)) return;
   const state = loadState();
+  const currentById = new Map(DEFAULT_TODOS.map(item => [item.id, item]));
+  state.todos = state.todos.map(item => currentById.has(item.id)
+    ? { ...currentById.get(item.id), done: Boolean(item.done) }
+    : item);
   const existing = new Set(state.todos.map(item => `${item.date}|${item.title}`));
   DEFAULT_TODOS.forEach(item => {
     const signature = `${item.date}|${item.title}`;
