@@ -121,9 +121,9 @@ const SUBSCRIPTIONS = [
   {
     name: 'ChatGPT Plus',
     plan: '매월 결제',
-    price: 'US$20 · 약 ₩28,160 / 월',
-    note: '갱신일 확인 필요 · 웹 결제 기준',
-    monthlyAmount: 28160,
+    price: 'US$22 · 약 ₩30,980 / 월',
+    note: '매월 24일 갱신',
+    monthlyAmount: 30980,
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://learn.chatgpt.com/docs/pricing'
