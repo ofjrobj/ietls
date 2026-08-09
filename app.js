@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v15';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v16';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -86,6 +86,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20261022-english', date: '2026-10-22', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20261023-mother-birthday', date: '2026-10-23', title: '엄마 생일', time: '', category: 'personal' },
   { id: 'doc-20261029-exam', date: '2026-10-29', title: 'IELTS 시험', time: '', category: 'exam' },
+  { id: 'doc-20261108-cambly-end', date: '2026-11-08', title: 'Cambly PRO 플랜 종료 예정', time: '', category: 'english' },
   { id: 'doc-20261126-craft', date: '2026-11-26', title: '공예 기획 · 사업 종료일', time: '', category: 'craft' },
   { id: 'holiday-20260101', date: '2026-01-01', title: '신정', time: '', category: 'holiday' },
   { id: 'holiday-20260216', date: '2026-02-16', title: '설날 연휴', time: '', category: 'holiday' },
@@ -151,12 +152,13 @@ const SUBSCRIPTIONS = [
   },
   {
     name: 'Cambly',
-    plan: '30분 × 주 2회 · 매월 결제',
+    plan: 'PRO · 주당 1시간',
     price: '₩243,800 / 월',
-    note: '다음 갱신 2026년 8월 13일',
+    note: '자동 갱신 꺼짐 · 2026년 11월 8일 종료 예정',
     monthlyAmount: 243800,
-    status: 'active',
-    statusLabel: '이용 중',
+    activeThrough: '2026-11',
+    status: 'ending',
+    statusLabel: '11월 8일 종료',
     source: 'https://www.cambly.com/en/subscribe?lang=ko'
   },
   {
@@ -390,6 +392,16 @@ function scheduleMetadata(item) {
         '강의자료 확인용 개인 노트북 또는 태블릿 지참',
         '주차 지원이 어려우므로 대중교통 이용',
         '문의: kcdfedu2026@naver.com'
+      ]
+    };
+  }
+  if (item.id === 'doc-20261108-cambly-end') {
+    return {
+      ...item,
+      details: [
+        'Cambly PRO 플랜 · 주당 1시간',
+        '자동 갱신 꺼짐',
+        '2026년 11월 8일 플랜 종료 예정'
       ]
     };
   }
