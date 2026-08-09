@@ -289,6 +289,25 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .expense-item span small { margin-right: 7px; color: var(--muted); }
 .expense-item strong { font-size: 12px; }
 
+.todo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.todo-head h2 { margin-bottom: 12px; }
+.todo-list { display: grid; }
+.todo-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.todo-item:last-child { border-bottom: 0; }
+.todo-check { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+.todo-copy { display: grid; min-width: 0; gap: 2px; }
+.todo-copy strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.todo-copy small { color: var(--muted); font-size: 11px; }
+.todo-item.done .todo-copy { color: var(--muted); }
+.todo-item.done .todo-copy strong { text-decoration: line-through; }
+
 @media (max-width: 760px) {
   .site-shell { width: min(100% - 28px, 960px); }
   .site-header { align-items: flex-start; flex-direction: column; gap: 14px; padding-top: 22px; }
