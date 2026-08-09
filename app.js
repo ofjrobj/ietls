@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v12';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v13';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -24,9 +24,10 @@ const DEFAULT_TODOS = [
 ];
 
 const DOC_SCHEDULE = [
-  { id: 'doc-20260810-interview', date: '2026-08-10', title: '면접', time: '10:00', category: 'personal' },
+  { id: 'doc-20260810-interview', date: '2026-08-10', title: '디지털헤리티지 과정 면접', time: '10:00', category: 'heritage' },
+  { id: 'doc-20260810-gifts', date: '2026-08-10', title: '즈믈 · 친구들 선물 사기', time: '11:00', category: 'personal' },
   { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
-  { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 공통교육 1강', time: '14:00–16:00', category: 'craft' },
+  { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 오리엔테이션 및 공통교육 1회차', time: '14:00–17:00', category: 'craft' },
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'friend' },
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
@@ -363,9 +364,73 @@ function pageHead(name, description) {
   return `<header class="page-head"><p class="eyebrow">IELTS 6.5</p><h1>${name}</h1><p class="lede">${description}</p></header>`;
 }
 
+function scheduleMetadata(item) {
+  if (item.id === 'doc-20260810-interview') {
+    return {
+      ...item,
+      location: 'Google Meet',
+      details: [
+        '디지털헤리티지 큐레이터 양성과정 면접',
+        '온라인 면접 · 종료 시간은 안내받는 대로 수정'
+      ],
+      link: 'https://meet.google.com/kmw-oymv-avd',
+      linkLabel: '면접 참여 링크'
+    };
+  }
+  if (item.id === 'doc-20260810-gifts') {
+    return { ...item, location: '즈믈', details: ['매장 오픈 시간 11:00', '친구들에게 줄 제주 선물 구매'] };
+  }
+  if (item.id === 'doc-20260811-craft') {
+    return {
+      ...item,
+      location: 'KCDF 갤러리 B2 다목적홀 · 서울 종로구 인사동11길 8',
+      details: [
+        '2026 전통문화 전문인력 양성교육 오리엔테이션 및 공통교육 1회차',
+        '강의자료 확인용 개인 노트북 또는 태블릿 지참',
+        '주차 지원이 어려우므로 대중교통 이용',
+        '문의: kcdfedu2026@naver.com'
+      ]
+    };
+  }
+  if (item.category === 'heritage' && item.title.startsWith('디지털헤리티지 공주')) {
+    const isSeoulOnboarding = item.date >= '2026-08-19' && item.date <= '2026-08-21';
+    return {
+      ...item,
+      location: isSeoulOnboarding ? '서울 글로벌마케팅센터' : '국립공주대학교 · 충남 공주시',
+      details: [
+        '3기 디지털헤리티지 큐레이터 양성 과정(충남)',
+        isSeoulOnboarding ? '주황색 일정 장소: 서울 글로벌마케팅센터' : '노란색·연두색 일정 장소: 공주시 국립공주대학교',
+        '서울–공주 별도 셔틀 없음',
+        '편도 60km 이상인 참여자는 별도 체류지원비 제공 대상'
+      ]
+    };
+  }
+  return item;
+}
+
+function scheduleDetailMarkup(item) {
+  if (!item) return '';
+  const detail = scheduleMetadata(item);
+  const detailLines = Array.isArray(detail.details) ? detail.details : [];
+  return `<div class="schedule-detail-backdrop" data-close-schedule-detail>
+    <article class="schedule-detail" role="dialog" aria-modal="true" aria-labelledby="schedule-detail-title">
+      <button class="schedule-detail-close" type="button" data-close-schedule-detail aria-label="상세 일정 닫기">×</button>
+      <p class="eyebrow">${escapeHtml(detail.date)}</p>
+      <h3 id="schedule-detail-title">${escapeHtml(detail.title)}</h3>
+      <dl>
+        ${detail.time ? `<div><dt>시간</dt><dd>${escapeHtml(detail.time)}</dd></div>` : ''}
+        ${detail.location ? `<div><dt>장소</dt><dd>${escapeHtml(detail.location)}</dd></div>` : ''}
+      </dl>
+      ${detailLines.length ? `<ul>${detailLines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>` : '<p class="empty">추가 안내가 없습니다.</p>'}
+      ${detail.link ? `<a class="schedule-detail-link" href="${escapeHtml(detail.link)}" target="_blank" rel="noreferrer">${escapeHtml(detail.linkLabel || '링크 열기')} ↗</a>` : ''}
+    </article>
+  </div>`;
+}
+
 const initialDate = new Date();
 let calendarCursor = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1);
 let selectedDate = todayValue();
+let openScheduleId = null;
 applyMonthTheme(initialDate.getMonth());
 
 function dateKey(year, month, day) {
@@ -386,15 +451,16 @@ function calendarMarkup() {
     const events = state.schedule.filter(item => item.date === key).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
     const isHoliday = events.some(item => item.category === 'holiday');
     const isSunday = new Date(year, month, day).getDay() === 0;
-    cells.push(`<button class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}${isHoliday ? ' holiday-date' : ''}${isSunday ? ' sunday' : ''}" type="button" data-calendar-date="${key}">
+    cells.push(`<div class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}${isHoliday ? ' holiday-date' : ''}${isSunday ? ' sunday' : ''}" data-calendar-date="${key}">
       <span>${day}</span>
-      <div class="calendar-events">${events.slice(0, 2).map(item => `<small class="event-${escapeHtml(item.category || 'manual')}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</small>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
-    </button>`);
+      <div class="calendar-events">${events.slice(0, 2).map(item => `<button type="button" class="calendar-event event-${escapeHtml(item.category || 'manual')}" data-schedule-detail="${escapeHtml(item.id)}" data-event-date="${key}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</button>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
+    </div>`);
   }
 
   const selectedEvents = state.schedule
     .filter(item => item.date === selectedDate)
     .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+  const openSchedule = openScheduleId ? state.schedule.find(item => item.id === openScheduleId) : null;
 
   return `<section class="calendar-card">
     <div class="calendar-head">
@@ -411,7 +477,7 @@ function calendarMarkup() {
       <div>
         <p class="eyebrow">${escapeHtml(selectedDate)}</p>
         <h3>선택한 날짜의 일정</h3>
-        <div class="schedule-list">${selectedEvents.length ? selectedEvents.map(item => `<div class="schedule-item"><span>${item.time ? `<time>${escapeHtml(item.time)}</time>` : ''}${escapeHtml(item.title)}</span><button class="danger" type="button" data-delete-schedule="${escapeHtml(item.id)}">삭제</button></div>`).join('') : '<p class="empty">등록된 일정이 없습니다.</p>'}</div>
+        <div class="schedule-list">${selectedEvents.length ? selectedEvents.map(item => `<div class="schedule-item"><button class="schedule-title-button" type="button" data-schedule-detail="${escapeHtml(item.id)}" data-event-date="${escapeHtml(item.date)}">${item.time ? `<time>${escapeHtml(item.time)}</time>` : ''}${escapeHtml(item.title)} <small>상세 ›</small></button><button class="danger" type="button" data-delete-schedule="${escapeHtml(item.id)}">삭제</button></div>`).join('') : '<p class="empty">등록된 일정이 없습니다.</p>'}</div>
       </div>
       <form id="schedule-form">
         <label>일정<input name="title" maxlength="80" placeholder="일정을 입력하세요" required></label>
@@ -419,6 +485,7 @@ function calendarMarkup() {
         <button type="submit">일정 추가</button>
       </form>
     </div>
+    ${scheduleDetailMarkup(openSchedule)}
   </section>`;
 }
 
@@ -433,8 +500,20 @@ function bindCalendar() {
     selectedDate = dateKey(calendarCursor.getFullYear(), calendarCursor.getMonth(), 1);
     renderHome();
   });
-  document.querySelectorAll('[data-calendar-date]').forEach(button => button.addEventListener('click', () => {
-    selectedDate = button.dataset.calendarDate;
+  document.querySelectorAll('[data-calendar-date]').forEach(day => day.addEventListener('click', () => {
+    selectedDate = day.dataset.calendarDate;
+    openScheduleId = null;
+    renderHome();
+  }));
+  document.querySelectorAll('[data-schedule-detail]').forEach(button => button.addEventListener('click', event => {
+    event.stopPropagation();
+    selectedDate = button.dataset.eventDate || selectedDate;
+    openScheduleId = button.dataset.scheduleDetail;
+    renderHome();
+  }));
+  document.querySelectorAll('[data-close-schedule-detail]').forEach(element => element.addEventListener('click', event => {
+    if (event.target !== element && !element.classList.contains('schedule-detail-close')) return;
+    openScheduleId = null;
     renderHome();
   }));
   document.getElementById('schedule-form').addEventListener('submit', event => {
