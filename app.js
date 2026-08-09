@@ -445,7 +445,8 @@ function scheduleMetadata(item) {
   if (item.id === 'doc-20260818-friend') {
     return {
       ...item,
-      details: ['계원 미술과 친구들과 저녁 약속', '정확한 시간과 장소 미정']
+      location: '선정릉',
+      details: ['계원 미술과 친구들과 저녁 약속', '정확한 시간 미정']
     };
   }
   if (item.id === 'doc-20261108-cambly-end') {
