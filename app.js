@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v14';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v15';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -371,7 +371,8 @@ function scheduleMetadata(item) {
       location: 'Google Meet',
       details: [
         '디지털헤리티지 큐레이터 양성과정 면접',
-        '온라인 면접 · 종료 시간은 안내받는 대로 수정'
+        '온라인 면접 · 종료 시간은 안내받는 대로 수정',
+        '8월 10일 최종합격자 대상 오픈채팅방 개설 예정'
       ],
       link: 'https://meet.google.com/kmw-oymv-avd',
       linkLabel: '면접 참여 링크'
