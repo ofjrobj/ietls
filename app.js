@@ -427,10 +427,27 @@ function scheduleMetadata(item) {
     };
   }
   if (item.id === 'doc-20260812-english-makeup') {
-    return { ...item, details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 9일 수업을 8월 12일로 변경'] };
+    return {
+      ...item,
+      details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 9일 수업을 8월 12일로 변경'],
+      link: 'https://www.cambly.com/',
+      linkLabel: 'Cambly 바로가기'
+    };
   }
   if (item.id === 'doc-20260830-english') {
-    return { ...item, details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 30일 수업을 8월 28일로 변경'] };
+    return {
+      ...item,
+      details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 30일 수업을 8월 28일로 변경'],
+      link: 'https://www.cambly.com/',
+      linkLabel: 'Cambly 바로가기'
+    };
+  }
+  if (item.title === 'Cambly 수업') {
+    return {
+      ...item,
+      link: 'https://www.cambly.com/',
+      linkLabel: 'Cambly 바로가기'
+    };
   }
   if (item.category === 'heritage' && item.title.startsWith('디지털헤리티지 공주')) {
     const isSeoulOnboarding = item.date >= '2026-08-19' && item.date <= '2026-08-21';
