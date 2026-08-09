@@ -242,6 +242,10 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .subscription-item.installment { background: #f8f5fc; }
 .status-pill.installment { background: #e8def3; color: #6d4b88; }
 .subscription-item.installment .subscription-price strong { color: #6d4b88; }
+.subscription-item.billing-kt { background: #f1f6fa; border-left: 3px solid #6b92b1; }
+.subscription-item.billing-kt + .subscription-item.billing-kt { border-top: 1px dashed #bfd0dc; }
+.subscription-item.billing-kt .subscription-price strong { color: #426b8a; }
+.subscription-item.billing-kt .status-pill { background: #dce9f2; color: #426b8a; }
 .subscription-plan { display: grid; gap: 2px; }
 .subscription-plan span { font-size: 13px; }
 .subscription-plan small { color: var(--muted); font-size: 11px; }
