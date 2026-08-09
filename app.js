@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v16';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v17';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -28,6 +28,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260810-gifts', date: '2026-08-10', title: '즈믈 · 친구들 선물 사기', time: '11:00 이후', category: 'personal' },
   { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
   { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 오리엔테이션 및 공통교육 1회차', time: '14:00–17:00', category: 'craft' },
+  { id: 'doc-20260812-english-makeup', date: '2026-08-12', title: 'Cambly 수업', time: '15:00', category: 'english' },
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'friend' },
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
@@ -45,7 +46,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260826-heritage', date: '2026-08-26', title: '디지털헤리티지 공주 · 심화 직무교육', time: '', category: 'heritage' },
   { id: 'doc-20260827-heritage', date: '2026-08-27', title: '디지털헤리티지 공주 · 심화 직무교육', time: '', category: 'heritage' },
   { id: 'doc-20260827-english', date: '2026-08-27', title: 'Cambly 수업', time: '21:00', category: 'english' },
-  { id: 'doc-20260830-english', date: '2026-08-30', title: 'Cambly 수업', time: '22:00', category: 'english' },
+  { id: 'doc-20260830-english', date: '2026-08-28', title: 'Cambly 수업', time: '23:00', category: 'english' },
   { id: 'doc-20260901-craft', date: '2026-09-01', title: '공예 기획 · 실무교육 3강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260902-heritage', date: '2026-09-02', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
   { id: 'doc-20260903-heritage', date: '2026-09-03', title: '디지털헤리티지 공주 · 프로젝트', time: '', category: 'heritage' },
@@ -404,6 +405,12 @@ function scheduleMetadata(item) {
         '2026년 11월 8일 플랜 종료 예정'
       ]
     };
+  }
+  if (item.id === 'doc-20260812-english-makeup') {
+    return { ...item, details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 9일 수업을 8월 12일로 변경'] };
+  }
+  if (item.id === 'doc-20260830-english') {
+    return { ...item, details: ['Gill McQ 튜터 · PRO 레슨 30분', '8월 30일 수업을 8월 28일로 변경'] };
   }
   if (item.category === 'heritage' && item.title.startsWith('디지털헤리티지 공주')) {
     const isSeoulOnboarding = item.date >= '2026-08-19' && item.date <= '2026-08-21';
