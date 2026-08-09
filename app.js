@@ -135,6 +135,33 @@ const SUBSCRIPTIONS = [
     source: 'https://www.cambly.com/en/subscribe?lang=ko'
   },
   {
+    name: 'WordPress.com',
+    plan: 'Personal · 12개월마다 결제',
+    price: 'US$4 / 월',
+    note: '연간 결제 환산가',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: 'https://wordpress.com/pricing/'
+  },
+  {
+    name: '휴대폰 요금',
+    plan: '매월 결제',
+    price: '',
+    note: '',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: ''
+  },
+  {
+    name: 'Cargo',
+    plan: '포트폴리오 사이트 · 정기 결제',
+    price: '결제 내역 확인',
+    note: '2026년 8월까지만 사용',
+    status: 'ending',
+    statusLabel: '8월 종료',
+    source: 'https://cargo.site/'
+  },
+  {
     name: 'Kling AI',
     plan: '요금제 확인 필요',
     price: '결제 내역 확인',
