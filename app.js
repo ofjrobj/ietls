@@ -645,7 +645,22 @@ function renderVocabulary() {
 }
 
 function route() {
-  renderHome();
+  const requestedRoute = (window.location.hash.slice(1) || 'home').toLowerCase();
+  const routes = {
+    home: renderHome,
+    speaking: renderSpeaking,
+    reading: () => renderSimpleSkill('Reading'),
+    listening: () => renderSimpleSkill('Listening'),
+    vocabulary: renderVocabulary
+  };
+  const currentRoute = routes[requestedRoute] ? requestedRoute : 'home';
+  routes[currentRoute]();
+  document.querySelectorAll('[data-route]').forEach(link => {
+    const isActive = link.dataset.route === currentRoute;
+    link.classList.toggle('active', isActive);
+    if (isActive) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
   window.scrollTo({ top: 0, behavior: 'smooth' });
   app.focus({ preventScroll: true });
 }
