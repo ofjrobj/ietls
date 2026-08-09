@@ -295,8 +295,19 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .budget-summary span { color: var(--muted); font-size: 11px; }
 .budget-summary strong { font-size: 18px; letter-spacing: -.02em; }
 .budget-summary small { color: var(--muted); font-size: 9px; }
+.budget-summary .budget-income { background: #e8f4ec; color: #2f7650; }
+.budget-summary .budget-income span { color: inherit; }
 .budget-summary .budget-total { background: var(--accent-soft); color: var(--accent); }
 .budget-summary .budget-total span { color: inherit; }
+.income-section { padding: 18px 20px 10px; border-bottom: 1px solid var(--line); background: #f7fbf8; }
+.income-section h3 { margin-bottom: 10px; }
+.income-list { display: grid; }
+.income-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #dbe9df; }
+.income-item:last-child { border-bottom: 0; }
+.income-item span { display: flex; min-width: 0; align-items: baseline; gap: 7px; font-size: 12px; }
+.income-item span small { color: var(--muted); }
+.income-item span em { color: #2f7650; font-size: 10px; font-style: normal; }
+.income-item strong { color: #2f7650; font-size: 12px; }
 .expense-form { padding: 20px 20px 10px; border-bottom: 1px solid var(--line); }
 .expense-form h3 { margin-bottom: 14px; }
 .expense-form label { margin-bottom: 10px; }
