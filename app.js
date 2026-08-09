@@ -428,7 +428,6 @@ function subscriptionMarkup() {
         <p class="eyebrow">Monthly</p>
         <h2>구독 중인 프로그램</h2>
       </div>
-      <small>실제 청구액은 결제 경로와 프로모션에 따라 달라질 수 있습니다.</small>
     </div>
     <div class="subscription-list">
       ${SUBSCRIPTIONS.map(item => `<article class="subscription-item ${escapeHtml(item.status)}${item.billingGroup ? ` billing-${escapeHtml(item.billingGroup)}` : ''}">
