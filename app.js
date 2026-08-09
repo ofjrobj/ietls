@@ -106,6 +106,54 @@ const MONTH_NAMES = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
+const SUBSCRIPTIONS = [
+  {
+    name: 'ChatGPT Plus',
+    plan: '개인 · 매월 결제',
+    price: 'US$20 / 월',
+    note: '웹 결제 기준',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: 'https://learn.chatgpt.com/docs/pricing'
+  },
+  {
+    name: 'YouTube Premium',
+    plan: '개인 · 매월 결제',
+    price: '₩14,900 / 월',
+    note: '한국 웹 가입 기준',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: 'https://www.youtube.com/premium?hl=ko'
+  },
+  {
+    name: 'Cambly',
+    plan: '30분 × 주 2회 · 매월 결제',
+    price: '결제 내역 확인',
+    note: '플랜 유형에 따라 금액이 달라짐',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: 'https://www.cambly.com/en/subscribe?lang=ko'
+  },
+  {
+    name: 'Kling AI',
+    plan: '요금제 확인 필요',
+    price: '결제 내역 확인',
+    note: '2026년 8월까지만 사용',
+    status: 'ending',
+    statusLabel: '8월 종료',
+    source: 'https://kling.ai/explore/kling_ai_pricing'
+  },
+  {
+    name: '배민클럽',
+    plan: '개인 · 매월 결제',
+    price: '₩3,990 / 월',
+    note: '정상가 · 2026년 8월까지만 사용',
+    status: 'ending',
+    statusLabel: '8월 종료',
+    source: ''
+  }
+];
+
 function applyMonthTheme(month) {
   const theme = MONTH_THEMES[month] || MONTH_THEMES[7];
   document.documentElement.style.setProperty('--accent', theme.accent);
@@ -276,6 +324,34 @@ function bindCalendar() {
   }));
 }
 
+function subscriptionMarkup() {
+  return `<section class="subscriptions-card" id="subscriptions">
+    <div class="subscriptions-head">
+      <div>
+        <p class="eyebrow">Monthly</p>
+        <h2>구독 중인 프로그램</h2>
+      </div>
+      <small>실제 청구액은 결제 경로와 프로모션에 따라 달라질 수 있습니다.</small>
+    </div>
+    <div class="subscription-list">
+      ${SUBSCRIPTIONS.map(item => `<article class="subscription-item">
+        <div class="subscription-name">
+          <h3>${escapeHtml(item.name)}</h3>
+          <span class="status-pill ${escapeHtml(item.status)}">${escapeHtml(item.statusLabel)}</span>
+        </div>
+        <div class="subscription-plan">
+          <span>${escapeHtml(item.plan)}</span>
+          <small>${escapeHtml(item.note)}</small>
+        </div>
+        <div class="subscription-price">
+          <strong>${escapeHtml(item.price)}</strong>
+          ${item.source ? `<a href="${escapeHtml(item.source)}" target="_blank" rel="noreferrer">요금 정보 ↗</a>` : ''}
+        </div>
+      </article>`).join('')}
+    </div>
+  </section>`;
+}
+
 function renderHome() {
   applyMonthTheme(calendarCursor.getMonth());
   const today = new Date();
@@ -284,9 +360,10 @@ function renderHome() {
       <div class="hero-copy">
         <h1>${today.getDate()} ${MONTH_NAMES[today.getMonth()]}<br>${today.getFullYear()}</h1>
       </div>
-      <div class="dday-card"><span>IELTS TEST</span><strong>${getDday()}</strong><div class="dday-meta"><small>목표 Overall 6.5</small><small>시험일 29 October 2026</small></div></div>
+      <div class="dday-card"><span>NEXT MILESTONE</span><strong>${getDday()}</strong><div class="dday-meta"><small>IELTS TEST · Overall 6.5</small><small>29 October 2026</small></div></div>
     </section>
-    ${calendarMarkup()}`;
+    ${calendarMarkup()}
+    ${subscriptionMarkup()}`;
   bindCalendar();
 }
 
@@ -389,13 +466,7 @@ function renderVocabulary() {
 }
 
 function route() {
-  const name = location.hash.replace('#', '') || 'home';
-  document.querySelectorAll('[data-route]').forEach(link => link.classList.toggle('active', link.dataset.route === name));
-  if (name === 'speaking') renderSpeaking();
-  else if (name === 'reading') renderSimpleSkill('Reading');
-  else if (name === 'listening') renderSimpleSkill('Listening');
-  else if (name === 'vocabulary') renderVocabulary();
-  else renderHome();
+  renderHome();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   app.focus({ preventScroll: true });
 }
