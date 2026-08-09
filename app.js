@@ -388,6 +388,22 @@ function scheduleMetadata(item) {
   if (item.id === 'doc-20260810-gifts') {
     return { ...item, location: '즈믈', details: ['매장 오픈 시간 11:00', '디지털헤리티지 면접 후 방문', '친구들에게 줄 제주 선물 구매'] };
   }
+  if (item.id === 'doc-20260811-personal') {
+    return {
+      ...item,
+      location: '어바웃스테이 논현점 · 서울 서초구 사평대로55길 123',
+      details: [
+        '계약 방: Room 4 스탠다드 타입',
+        '월 530,000원 · 내창',
+        '개별 화장실과 샤워실',
+        '침대, 책상, 옷장, 선반, 냉장고, 에어컨, 모니터 제공'
+      ],
+      links: [
+        { url: 'https://map.naver.com/p/entry/place/33093128', label: '고시원 지도' },
+        { url: 'https://sites.google.com/view/aboutstaynonhyeon/rooms/room-4', label: 'Room 4 안내' }
+      ]
+    };
+  }
   if (item.id === 'doc-20260811-craft') {
     return {
       ...item,
@@ -436,6 +452,9 @@ function scheduleDetailMarkup(item) {
   if (!item) return '';
   const detail = scheduleMetadata(item);
   const detailLines = Array.isArray(detail.details) ? detail.details : [];
+  const detailLinks = Array.isArray(detail.links)
+    ? detail.links
+    : detail.link ? [{ url: detail.link, label: detail.linkLabel || '링크 열기' }] : [];
   return `<div class="schedule-detail-backdrop" data-close-schedule-detail>
     <article class="schedule-detail" role="dialog" aria-modal="true" aria-labelledby="schedule-detail-title">
       <button class="schedule-detail-close" type="button" data-close-schedule-detail aria-label="상세 일정 닫기">×</button>
@@ -446,7 +465,7 @@ function scheduleDetailMarkup(item) {
         ${detail.location ? `<div><dt>장소</dt><dd>${escapeHtml(detail.location)}</dd></div>` : ''}
       </dl>
       ${detailLines.length ? `<ul>${detailLines.map(line => `<li>${escapeHtml(line)}</li>`).join('')}</ul>` : '<p class="empty">추가 안내가 없습니다.</p>'}
-      ${detail.link ? `<a class="schedule-detail-link" href="${escapeHtml(detail.link)}" target="_blank" rel="noreferrer">${escapeHtml(detail.linkLabel || '링크 열기')} ↗</a>` : ''}
+      ${detailLinks.map(link => `<a class="schedule-detail-link" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)} ↗</a>`).join('')}
     </article>
   </div>`;
 }
