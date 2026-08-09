@@ -24,7 +24,7 @@ body {
   word-break: keep-all;
 }
 
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 a { color: inherit; text-decoration: none; }
 
 .site-shell {
@@ -94,7 +94,7 @@ h3 { margin-bottom: 6px; font-size: 16px; }
 .stack { display: grid; gap: 12px; }
 
 label { display: grid; gap: 6px; margin-bottom: 14px; color: var(--muted); font-size: 12px; font-weight: 600; }
-input, textarea {
+input, textarea, select {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -103,7 +103,7 @@ input, textarea {
   padding: 11px 12px;
   outline: none;
 }
-input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 textarea { min-height: 110px; resize: vertical; }
 
 .button-row { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -291,6 +291,11 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 
 .todo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .todo-head h2 { margin-bottom: 12px; }
+.todo-groups { display: grid; gap: 24px; }
+.todo-group + .todo-group { padding-top: 20px; border-top: 1px solid var(--line); }
+.todo-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.todo-group-head h3 { margin-bottom: 6px; }
+.todo-group-head span { color: var(--muted); font-size: 11px; }
 .todo-list { display: grid; }
 .todo-item {
   display: grid;
