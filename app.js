@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260808_v7';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260809_v8';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -83,7 +83,17 @@ const DOC_SCHEDULE = [
   { id: 'holiday-20261003', date: '2026-10-03', title: '개천절', time: '', category: 'holiday' },
   { id: 'holiday-20261005', date: '2026-10-05', title: '개천절 대체공휴일', time: '', category: 'holiday' },
   { id: 'holiday-20261009', date: '2026-10-09', title: '한글날', time: '', category: 'holiday' },
-  { id: 'holiday-20261225', date: '2026-12-25', title: '크리스마스', time: '', category: 'holiday' }
+  { id: 'holiday-20261225', date: '2026-12-25', title: '크리스마스', time: '', category: 'holiday' },
+  { id: 'finance-20260823-card', date: '2026-08-23', title: '카드 결제일', time: '', category: 'finance' },
+  { id: 'finance-20260923-card', date: '2026-09-23', title: '카드 결제일', time: '', category: 'finance' },
+  { id: 'finance-20261023-card', date: '2026-10-23', title: '카드 결제일', time: '', category: 'finance' },
+  { id: 'finance-20261123-card', date: '2026-11-23', title: '카드 결제일', time: '', category: 'finance' },
+  { id: 'finance-20261223-card', date: '2026-12-23', title: '카드 결제일', time: '', category: 'finance' },
+  { id: 'finance-20260812-card-cutoff', date: '2026-08-12', title: '카드 이용분 마감', time: '', category: 'finance' },
+  { id: 'finance-20260912-card-cutoff', date: '2026-09-12', title: '카드 이용분 마감', time: '', category: 'finance' },
+  { id: 'finance-20261012-card-cutoff', date: '2026-10-12', title: '카드 이용분 마감', time: '', category: 'finance' },
+  { id: 'finance-20261112-card-cutoff', date: '2026-11-12', title: '카드 이용분 마감', time: '', category: 'finance' },
+  { id: 'finance-20261212-card-cutoff', date: '2026-12-12', title: '카드 이용분 마감', time: '', category: 'finance' }
 ];
 
 const MONTH_THEMES = [
@@ -183,8 +193,21 @@ const SUBSCRIPTIONS = [
     price: '₩82,500 / 월',
     note: '12회 납부 예정 · 총 ₩990,000',
     monthlyAmount: 82500,
-    status: 'active',
+    activeFrom: '2026-08',
+    activeThrough: '2027-07',
+    status: 'installment',
     statusLabel: '12개월',
+    source: ''
+  },
+  {
+    name: 'IELTS 시험 응시료',
+    plan: '2회 무이자 할부',
+    price: '₩109,800 / 월',
+    note: '2026년 8월·9월 각 1회 · 총 ₩219,600',
+    monthlyAmount: 109800,
+    activeMonths: ['2026-08', '2026-09'],
+    status: 'installment',
+    statusLabel: '2회 할부',
     source: ''
   },
   {
@@ -193,6 +216,7 @@ const SUBSCRIPTIONS = [
     price: 'US$19 · 약 ₩28,000 / 월',
     note: '2026년 8월까지만 사용',
     monthlyAmount: 28000,
+    activeThrough: '2026-08',
     status: 'ending',
     statusLabel: '8월 종료',
     source: 'https://cargo.site/'
@@ -203,6 +227,7 @@ const SUBSCRIPTIONS = [
     price: 'US$6.99 · 약 ₩9,840 / 월',
     note: '2026년 8월까지만 사용',
     monthlyAmount: 9840,
+    activeThrough: '2026-08',
     status: 'ending',
     statusLabel: '8월 종료',
     source: 'https://kling.ai/explore/kling_ai_pricing'
@@ -213,6 +238,7 @@ const SUBSCRIPTIONS = [
     price: '₩0',
     note: '2026년 8월까지만 사용',
     monthlyAmount: 0,
+    activeThrough: '2026-08',
     status: 'ending',
     statusLabel: '8월 종료',
     source: ''
@@ -400,7 +426,7 @@ function subscriptionMarkup() {
       <small>실제 청구액은 결제 경로와 프로모션에 따라 달라질 수 있습니다.</small>
     </div>
     <div class="subscription-list">
-      ${SUBSCRIPTIONS.map(item => `<article class="subscription-item">
+      ${SUBSCRIPTIONS.map(item => `<article class="subscription-item ${escapeHtml(item.status)}">
         <div class="subscription-name">
           <h3>${escapeHtml(item.name)}</h3>
           <span class="status-pill ${escapeHtml(item.status)}">${escapeHtml(item.statusLabel)}</span>
@@ -422,29 +448,41 @@ function formatWon(amount) {
   return `₩${Math.round(amount).toLocaleString('ko-KR')}`;
 }
 
+function shiftMonthKey(monthKey, offset) {
+  const [year, month] = monthKey.split('-').map(Number);
+  const date = new Date(year, month - 1 + offset, 1);
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+}
+
+function subscriptionAmountForMonth(item, monthKey) {
+  if (Array.isArray(item.activeMonths)) return item.activeMonths.includes(monthKey) ? item.monthlyAmount : 0;
+  if (item.activeFrom && monthKey < item.activeFrom) return 0;
+  if (item.activeThrough && monthKey > item.activeThrough) return 0;
+  return item.monthlyAmount;
+}
+
 function budgetMarkup() {
   const state = loadState();
   const monthKey = todayValue().slice(0, 7);
+  const nextMonthKey = shiftMonthKey(monthKey, 1);
   const monthNumber = Number(monthKey.slice(5, 7));
   const expenses = state.expenses
     .filter(item => item.date.startsWith(monthKey))
     .sort((a, b) => b.date.localeCompare(a.date));
-  const recurringTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + item.monthlyAmount, 0);
-  const nextMonthTotal = SUBSCRIPTIONS
-    .filter(item => item.status !== 'ending')
-    .reduce((sum, item) => sum + item.monthlyAmount, 0);
+  const recurringTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + subscriptionAmountForMonth(item, monthKey), 0);
+  const nextMonthTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + subscriptionAmountForMonth(item, nextMonthKey), 0);
   const extraTotal = expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
 
   return `<section class="budget-card">
     <div class="budget-head">
-      <p class="eyebrow">Monthly Budget</p>
-      <h2>${monthNumber}월 가계부</h2>
+      <div><p class="eyebrow">Monthly Budget</p><h2>${monthNumber}월 가계부</h2></div>
+      <span>매월 12일 마감 · 23일 결제</span>
     </div>
     <div class="budget-summary">
       <div><span>정기비용</span><strong>${formatWon(recurringTotal)}</strong><small>월 환산 금액 포함</small></div>
       <div><span>추가 지출</span><strong>${formatWon(extraTotal)}</strong></div>
       <div class="budget-total"><span>이번 달 합계</span><strong>${formatWon(recurringTotal + extraTotal)}</strong></div>
-      <div><span>다음 달 예상</span><strong>${formatWon(nextMonthTotal)}</strong><small>8월 종료 항목 제외</small></div>
+      <div><span>다음 달 예상</span><strong>${formatWon(nextMonthTotal)}</strong><small>납부·종료 월 자동 반영</small></div>
     </div>
     <form class="expense-form" id="expense-form">
       <h3>지출 추가</h3>
