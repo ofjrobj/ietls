@@ -6,17 +6,17 @@ const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v1';
 const app = document.getElementById('app');
 
 const DEFAULT_TODOS = [
-  { id: 'todo-20260811-clothes', title: '캐리어 안에 여름 가을 옷', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-charger', title: '배터리 충전기', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-ipad', title: '아이패드', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-cosmetics', title: '화장품', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-tumbler', title: '텀블러', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-seagate', title: '시게이트 외장하드', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-hair-iron', title: '고데기', date: '2026-08-11', done: false },
-  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', done: false }
+  { id: 'todo-20260811-clothes', title: '캐리어 안에 여름 가을 옷', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-charger', title: '배터리 충전기', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-ipad', title: '아이패드', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-cosmetics', title: '화장품', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-tumbler', title: '텀블러', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-seagate', title: '시게이트 외장하드', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-hair-iron', title: '고데기', date: '2026-08-11', group: 'carry', done: false },
+  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', group: 'carry', done: false }
 ];
 
 const DOC_SCHEDULE = [
@@ -627,22 +627,35 @@ function renderTodo() {
   const state = loadState();
   const todos = [...state.todos].sort((a, b) => Number(a.done) - Number(b.done) || (a.date || '').localeCompare(b.date || ''));
   const remaining = todos.filter(item => !item.done).length;
+  const carryTodos = todos.filter(item => (item.group || 'carry') === 'carry');
+  const shippingTodos = todos.filter(item => item.group === 'shipping');
+  const todoItemsMarkup = items => items.length ? items.map(item => `
+    <div class="todo-item${item.done ? ' done' : ''}">
+      <input class="todo-check" type="checkbox" data-toggle-todo="${escapeHtml(item.id)}" aria-label="${escapeHtml(item.title)} 완료" ${item.done ? 'checked' : ''}>
+      <span class="todo-copy"><strong>${escapeHtml(item.title)}</strong>${item.date ? `<small>${escapeHtml(item.date)}</small>` : ''}</span>
+      <button class="danger" type="button" data-delete-todo="${escapeHtml(item.id)}">삭제</button>
+    </div>`).join('') : '<p class="empty">등록된 항목이 없습니다.</p>';
   app.innerHTML = `<header class="page-head"><h1>Todo</h1><p class="lede">해야 할 일을 간단히 기록합니다.</p></header>
     <section class="content-grid">
       <form class="card" id="todo-form">
         <h2>할 일 추가</h2>
         <label>할 일<input name="title" maxlength="120" placeholder="할 일을 입력하세요" required></label>
+        <label>분류<select name="group"><option value="carry">캐리어 안에 넣을 것</option><option value="shipping">택배로 부칠 것</option></select></label>
         <label>날짜<input type="date" name="date" value="${todayValue()}"></label>
         <button type="submit">추가</button>
       </form>
       <section class="card">
         <div class="todo-head"><h2>목록</h2><span class="result-count">남은 할 일 ${remaining}개</span></div>
-        <div class="todo-list">${todos.length ? todos.map(item => `
-          <div class="todo-item${item.done ? ' done' : ''}">
-            <input class="todo-check" type="checkbox" data-toggle-todo="${escapeHtml(item.id)}" aria-label="${escapeHtml(item.title)} 완료" ${item.done ? 'checked' : ''}>
-            <span class="todo-copy"><strong>${escapeHtml(item.title)}</strong>${item.date ? `<small>${escapeHtml(item.date)}</small>` : ''}</span>
-            <button class="danger" type="button" data-delete-todo="${escapeHtml(item.id)}">삭제</button>
-          </div>`).join('') : '<p class="empty">등록된 할 일이 없습니다.</p>'}</div>
+        <div class="todo-groups">
+          <section class="todo-group">
+            <div class="todo-group-head"><h3>캐리어 안에 넣을 것</h3><span>${carryTodos.filter(item => !item.done).length}개 남음</span></div>
+            <div class="todo-list">${todoItemsMarkup(carryTodos)}</div>
+          </section>
+          <section class="todo-group">
+            <div class="todo-group-head"><h3>택배로 부칠 것</h3><span>${shippingTodos.filter(item => !item.done).length}개 남음</span></div>
+            <div class="todo-list">${todoItemsMarkup(shippingTodos)}</div>
+          </section>
+        </div>
       </section>
     </section>`;
 
@@ -654,6 +667,7 @@ function renderTodo() {
       id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
       title: String(data.get('title')).trim(),
       date: String(data.get('date') || ''),
+      group: String(data.get('group') || 'carry'),
       done: false
     });
     saveState(current);
