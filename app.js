@@ -274,10 +274,11 @@ function loadState() {
     return {
       speaking: Array.isArray(saved.speaking) ? saved.speaking : [],
       schedule: Array.isArray(saved.schedule) ? saved.schedule : [],
-      expenses: Array.isArray(saved.expenses) ? saved.expenses : []
+      expenses: Array.isArray(saved.expenses) ? saved.expenses : [],
+      todos: Array.isArray(saved.todos) ? saved.todos : []
     };
   } catch {
-    return { speaking: [], schedule: [], expenses: [] };
+    return { speaking: [], schedule: [], expenses: [], todos: [] };
   }
 }
 
@@ -594,6 +595,58 @@ function renderSpeaking() {
   }));
 }
 
+function renderTodo() {
+  const state = loadState();
+  const todos = [...state.todos].sort((a, b) => Number(a.done) - Number(b.done) || (a.date || '').localeCompare(b.date || ''));
+  const remaining = todos.filter(item => !item.done).length;
+  app.innerHTML = `<header class="page-head"><h1>Todo</h1><p class="lede">해야 할 일을 간단히 기록합니다.</p></header>
+    <section class="content-grid">
+      <form class="card" id="todo-form">
+        <h2>할 일 추가</h2>
+        <label>할 일<input name="title" maxlength="120" placeholder="할 일을 입력하세요" required></label>
+        <label>날짜<input type="date" name="date" value="${todayValue()}"></label>
+        <button type="submit">추가</button>
+      </form>
+      <section class="card">
+        <div class="todo-head"><h2>목록</h2><span class="result-count">남은 할 일 ${remaining}개</span></div>
+        <div class="todo-list">${todos.length ? todos.map(item => `
+          <div class="todo-item${item.done ? ' done' : ''}">
+            <input class="todo-check" type="checkbox" data-toggle-todo="${escapeHtml(item.id)}" aria-label="${escapeHtml(item.title)} 완료" ${item.done ? 'checked' : ''}>
+            <span class="todo-copy"><strong>${escapeHtml(item.title)}</strong>${item.date ? `<small>${escapeHtml(item.date)}</small>` : ''}</span>
+            <button class="danger" type="button" data-delete-todo="${escapeHtml(item.id)}">삭제</button>
+          </div>`).join('') : '<p class="empty">등록된 할 일이 없습니다.</p>'}</div>
+      </section>
+    </section>`;
+
+  document.getElementById('todo-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const current = loadState();
+    current.todos.push({
+      id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
+      title: String(data.get('title')).trim(),
+      date: String(data.get('date') || ''),
+      done: false
+    });
+    saveState(current);
+    renderTodo();
+  });
+
+  document.querySelectorAll('[data-toggle-todo]').forEach(input => input.addEventListener('change', () => {
+    const current = loadState();
+    current.todos = current.todos.map(item => item.id === input.dataset.toggleTodo ? { ...item, done: input.checked } : item);
+    saveState(current);
+    renderTodo();
+  }));
+
+  document.querySelectorAll('[data-delete-todo]').forEach(button => button.addEventListener('click', () => {
+    const current = loadState();
+    current.todos = current.todos.filter(item => item.id !== button.dataset.deleteTodo);
+    saveState(current);
+    renderTodo();
+  }));
+}
+
 function renderSimpleSkill(name) {
   app.innerHTML = `${pageHead(name, '현재는 별도 진도표나 자료를 넣지 않았습니다.')}
     <section class="simple-message"><div class="card"><h2>${name} 공부</h2><p>사용하고 있는 교재와 자료로 공부하세요. 필요한 기능이 생기면 이 페이지에 추가할 수 있습니다.</p></div></section>`;
@@ -648,6 +701,7 @@ function route() {
   const requestedRoute = (window.location.hash.slice(1) || 'home').toLowerCase();
   const routes = {
     home: renderHome,
+    todo: renderTodo,
     speaking: renderSpeaking,
     reading: () => renderSimpleSkill('Reading'),
     listening: () => renderSimpleSkill('Listening'),
