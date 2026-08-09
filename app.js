@@ -153,13 +153,17 @@ const SUBSCRIPTIONS = [
   },
   {
     name: 'Cambly',
-    plan: 'PRO · 주당 1시간',
-    price: '₩243,800 / 월',
-    note: '자동 갱신 꺼짐 · 2026년 11월 8일 종료 예정',
-    monthlyAmount: 243800,
-    activeThrough: '2026-11',
-    status: 'ending',
-    statusLabel: '11월 8일 종료',
+    plan: 'PRO · 주당 1시간 · 3개월 할부 예정',
+    price: '8월 ₩243,800 · 9–11월 약 ₩166,667',
+    note: '총 약 ₩500,000 할부 예정 · 2026년 11월 8일 종료',
+    monthlyAmounts: {
+      '2026-08': 243800,
+      '2026-09': 166667,
+      '2026-10': 166667,
+      '2026-11': 166666
+    },
+    status: 'installment',
+    statusLabel: '3개월 할부 예정',
     source: 'https://www.cambly.com/en/subscribe?lang=ko'
   },
   {
@@ -596,6 +600,7 @@ function shiftMonthKey(monthKey, offset) {
 }
 
 function subscriptionAmountForMonth(item, monthKey) {
+  if (item.monthlyAmounts) return item.monthlyAmounts[monthKey] || 0;
   if (Array.isArray(item.activeMonths)) return item.activeMonths.includes(monthKey) ? item.monthlyAmount : 0;
   if (item.activeFrom && monthKey < item.activeFrom) return 0;
   if (item.activeThrough && monthKey > item.activeThrough) return 0;
