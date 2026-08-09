@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v13';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260810_v14';
 const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
 const app = document.getElementById('app');
 
@@ -25,7 +25,7 @@ const DEFAULT_TODOS = [
 
 const DOC_SCHEDULE = [
   { id: 'doc-20260810-interview', date: '2026-08-10', title: '디지털헤리티지 과정 면접', time: '10:00', category: 'heritage' },
-  { id: 'doc-20260810-gifts', date: '2026-08-10', title: '즈믈 · 친구들 선물 사기', time: '11:00', category: 'personal' },
+  { id: 'doc-20260810-gifts', date: '2026-08-10', title: '즈믈 · 친구들 선물 사기', time: '11:00 이후', category: 'personal' },
   { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
   { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 오리엔테이션 및 공통교육 1회차', time: '14:00–17:00', category: 'craft' },
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'friend' },
@@ -378,7 +378,7 @@ function scheduleMetadata(item) {
     };
   }
   if (item.id === 'doc-20260810-gifts') {
-    return { ...item, location: '즈믈', details: ['매장 오픈 시간 11:00', '친구들에게 줄 제주 선물 구매'] };
+    return { ...item, location: '즈믈', details: ['매장 오픈 시간 11:00', '디지털헤리티지 면접 후 방문', '친구들에게 줄 제주 선물 구매'] };
   }
   if (item.id === 'doc-20260811-craft') {
     return {
