@@ -473,7 +473,7 @@ function calendarMarkup() {
     const isSunday = new Date(year, month, day).getDay() === 0;
     cells.push(`<div class="calendar-day${key === selectedDate ? ' selected' : ''}${key === todayValue() ? ' today' : ''}${isHoliday ? ' holiday-date' : ''}${isSunday ? ' sunday' : ''}" data-calendar-date="${key}">
       <span>${day}</span>
-      <div class="calendar-events">${events.slice(0, 2).map(item => `<button type="button" class="calendar-event event-${escapeHtml(item.category || 'manual')}" data-schedule-detail="${escapeHtml(item.id)}" data-event-date="${key}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</button>`).join('')}${events.length > 2 ? `<small>+${events.length - 2}</small>` : ''}</div>
+      <div class="calendar-events">${events.map(item => `<button type="button" class="calendar-event event-${escapeHtml(item.category || 'manual')}" data-schedule-detail="${escapeHtml(item.id)}" data-event-date="${key}">${item.time ? `${escapeHtml(item.time)} ` : ''}${escapeHtml(item.title)}</button>`).join('')}</div>
     </div>`);
   }
 
