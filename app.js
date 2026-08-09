@@ -171,6 +171,15 @@ const SUBSCRIPTIONS = [
     source: ''
   },
   {
+    name: 'iPhone 할부금',
+    plan: '12개월 무이자 할부',
+    price: '₩82,500 / 월',
+    note: '12회 납부 예정 · 총 ₩990,000',
+    status: 'active',
+    statusLabel: '12개월',
+    source: ''
+  },
+  {
     name: 'Cargo',
     plan: 'Standard · 매월 결제',
     price: 'US$19 · 약 ₩28,000 / 월',
