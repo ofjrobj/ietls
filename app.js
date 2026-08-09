@@ -110,8 +110,8 @@ const SUBSCRIPTIONS = [
   {
     name: 'ChatGPT Plus',
     plan: '개인 · 매월 결제',
-    price: 'US$20 / 월',
-    note: '웹 결제 기준',
+    price: 'US$20 · 약 ₩28,160 / 월',
+    note: '갱신일 확인 필요 · 웹 결제 기준',
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://learn.chatgpt.com/docs/pricing'
@@ -128,8 +128,8 @@ const SUBSCRIPTIONS = [
   {
     name: 'Cambly',
     plan: '30분 × 주 2회 · 매월 결제',
-    price: '결제 내역 확인',
-    note: '플랜 유형에 따라 금액이 달라짐',
+    price: '₩243,800 / 월',
+    note: '다음 갱신 2026년 8월 13일',
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://www.cambly.com/en/subscribe?lang=ko'
@@ -137,25 +137,25 @@ const SUBSCRIPTIONS = [
   {
     name: 'WordPress.com',
     plan: 'Personal · 12개월마다 결제',
-    price: 'US$4 / 월',
+    price: 'US$4 · 약 ₩5,630 / 월',
     note: '연간 결제 환산가',
     status: 'active',
     statusLabel: '이용 중',
     source: 'https://wordpress.com/pricing/'
   },
   {
-    name: '휴대폰 요금',
-    plan: '매월 결제',
-    price: '',
-    note: '',
+    name: 'KT 휴대폰 요금',
+    plan: '5G 슬림 4GB · Y덤',
+    price: '₩37,000 / 월',
+    note: 'Y덤 기본 데이터 2배',
     status: 'active',
     statusLabel: '이용 중',
     source: ''
   },
   {
     name: 'Cargo',
-    plan: '포트폴리오 사이트 · 정기 결제',
-    price: '결제 내역 확인',
+    plan: 'Standard · 매월 결제',
+    price: 'US$19 · 약 ₩28,000 / 월',
     note: '2026년 8월까지만 사용',
     status: 'ending',
     statusLabel: '8월 종료',
@@ -163,8 +163,8 @@ const SUBSCRIPTIONS = [
   },
   {
     name: 'Kling AI',
-    plan: '요금제 확인 필요',
-    price: '결제 내역 확인',
+    plan: 'Standard · 매월 결제',
+    price: 'US$6.99 · 약 ₩9,840 / 월',
     note: '2026년 8월까지만 사용',
     status: 'ending',
     statusLabel: '8월 종료',
@@ -173,8 +173,8 @@ const SUBSCRIPTIONS = [
   {
     name: '배민클럽',
     plan: '개인 · 매월 결제',
-    price: '₩3,990 / 월',
-    note: '정상가 · 2026년 8월까지만 사용',
+    price: '₩0',
+    note: '2026년 8월까지만 사용',
     status: 'ending',
     statusLabel: '8월 종료',
     source: ''
