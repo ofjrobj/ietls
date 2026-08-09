@@ -192,7 +192,7 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .calendar-events .event-heritage { color: #c56f28; }
 .calendar-events .event-english { color: #2f7650; }
 .calendar-events .event-personal { color: #77558f; }
-.calendar-events .event-friend { color: #d75b91; }
+.calendar-events .event-friend { color: #f5007a; font-weight: 600; }
 .calendar-events .event-holiday { color: #a74747; }
 .calendar-events .event-exam { color: #1f2823; font-weight: 600; }
 .calendar-events .event-finance { color: #6d4b88; font-weight: 600; }
