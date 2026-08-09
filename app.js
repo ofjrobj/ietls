@@ -2,7 +2,22 @@ const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
 const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260809_v11';
+const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v1';
 const app = document.getElementById('app');
+
+const DEFAULT_TODOS = [
+  { id: 'todo-20260811-clothes', title: '캐리어 안에 여름 가을 옷', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-charger', title: '배터리 충전기', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-ipad', title: '아이패드', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-cosmetics', title: '화장품', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-tumbler', title: '텀블러', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-seagate', title: '시게이트 외장하드', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-hair-iron', title: '고데기', date: '2026-08-11', done: false },
+  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', done: false }
+];
 
 const DOC_SCHEDULE = [
   { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
@@ -267,6 +282,7 @@ function resetLegacyDataOnce() {
 
 resetLegacyDataOnce();
 seedDocumentSchedule();
+seedDefaultTodos();
 
 function loadState() {
   try {
@@ -298,6 +314,18 @@ function seedDocumentSchedule() {
   });
   saveState(state);
   localStorage.setItem(DOC_SCHEDULE_KEY, 'done');
+}
+
+function seedDefaultTodos() {
+  if (localStorage.getItem(TODO_SEED_KEY)) return;
+  const state = loadState();
+  const existing = new Set(state.todos.map(item => `${item.date}|${item.title}`));
+  DEFAULT_TODOS.forEach(item => {
+    const signature = `${item.date}|${item.title}`;
+    if (!existing.has(signature)) state.todos.push(item);
+  });
+  saveState(state);
+  localStorage.setItem(TODO_SEED_KEY, 'done');
 }
 
 function escapeHtml(value = '') {
