@@ -655,11 +655,11 @@ function renderTodo() {
       <section class="card">
         <div class="todo-head"><h2>목록</h2><span class="result-count">남은 할 일 ${remaining}개</span></div>
         <div class="todo-groups">
-          <section class="todo-group">
+          <section class="todo-group carry">
             <div class="todo-group-head"><h3>캐리어 안에 넣을 것</h3><span>${carryTodos.filter(item => !item.done).length}개 남음</span></div>
             <div class="todo-list">${todoItemsMarkup(carryTodos)}</div>
           </section>
-          <section class="todo-group">
+          <section class="todo-group shipping">
             <div class="todo-group-head"><h3>택배로 부칠 것</h3><span>${shippingTodos.filter(item => !item.done).length}개 남음</span></div>
             <div class="todo-list">${todoItemsMarkup(shippingTodos)}</div>
           </section>
