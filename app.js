@@ -278,6 +278,31 @@ const SUBSCRIPTIONS = [
   }
 ];
 
+const INCOME_ENTRIES = [
+  {
+    id: 'income-monthly-salary',
+    title: '월급',
+    amount: 1000000,
+    bank: '하나은행',
+    recurringDay: 20,
+    activeFrom: '2026-08'
+  },
+  {
+    id: 'income-202608-stock-return',
+    title: '주식 반환금',
+    amount: 300000,
+    bank: '국민은행',
+    month: '2026-08'
+  },
+  {
+    id: 'income-20260809-used-sale',
+    title: '중고 판매대금',
+    amount: 350000,
+    bank: '',
+    date: '2026-08-09'
+  }
+];
+
 function applyMonthTheme(month) {
   const theme = MONTH_THEMES[month] || MONTH_THEMES[7];
   document.documentElement.style.setProperty('--accent', theme.accent);
@@ -643,6 +668,19 @@ function subscriptionAmountForMonth(item, monthKey) {
   return item.monthlyAmount;
 }
 
+function incomeEntriesForMonth(monthKey) {
+  return INCOME_ENTRIES.filter(item => {
+    if (item.recurringDay) return !item.activeFrom || monthKey >= item.activeFrom;
+    if (item.month) return item.month === monthKey;
+    return item.date && item.date.startsWith(monthKey);
+  }).map(item => ({
+    ...item,
+    displayDate: item.recurringDay
+      ? `${monthKey.slice(5)}.${String(item.recurringDay).padStart(2, '0')}`
+      : item.date ? item.date.slice(5) : `${monthKey.slice(5)}월`
+  }));
+}
+
 function budgetMarkup() {
   const state = loadState();
   const monthKey = todayValue().slice(0, 7);
@@ -654,6 +692,10 @@ function budgetMarkup() {
   const recurringTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + subscriptionAmountForMonth(item, monthKey), 0);
   const nextMonthTotal = SUBSCRIPTIONS.reduce((sum, item) => sum + subscriptionAmountForMonth(item, nextMonthKey), 0);
   const extraTotal = expenses.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+  const incomeEntries = incomeEntriesForMonth(monthKey);
+  const incomeTotal = incomeEntries.reduce((sum, item) => sum + item.amount, 0);
+  const nextMonthIncomeTotal = incomeEntriesForMonth(nextMonthKey).reduce((sum, item) => sum + item.amount, 0);
+  const spendingTotal = recurringTotal + extraTotal;
 
   return `<section class="budget-card">
     <div class="budget-head">
@@ -661,11 +703,20 @@ function budgetMarkup() {
       <span>매월 12일 마감 · 23일 결제</span>
     </div>
     <div class="budget-summary">
-      <div><span>정기비용</span><strong>${formatWon(recurringTotal)}</strong><small>월 환산 금액 포함</small></div>
-      <div><span>추가 지출</span><strong>${formatWon(extraTotal)}</strong></div>
-      <div class="budget-total"><span>이번 달 합계</span><strong>${formatWon(recurringTotal + extraTotal)}</strong></div>
-      <div><span>다음 달 예상</span><strong>${formatWon(nextMonthTotal)}</strong><small>납부·종료 월 자동 반영</small></div>
+      <div class="budget-income"><span>이번 달 수입</span><strong>${formatWon(incomeTotal)}</strong></div>
+      <div><span>이번 달 지출</span><strong>${formatWon(spendingTotal)}</strong><small>정기 ${formatWon(recurringTotal)} · 추가 ${formatWon(extraTotal)}</small></div>
+      <div class="budget-total"><span>이번 달 잔액</span><strong>${formatWon(incomeTotal - spendingTotal)}</strong></div>
+      <div><span>다음 달 예상 잔액</span><strong>${formatWon(nextMonthIncomeTotal - nextMonthTotal)}</strong><small>수입 ${formatWon(nextMonthIncomeTotal)} · 지출 ${formatWon(nextMonthTotal)}</small></div>
     </div>
+    <section class="income-section">
+      <h3>수입 내역</h3>
+      <div class="income-list">
+        ${incomeEntries.map(item => `<div class="income-item">
+          <span><small>${escapeHtml(item.displayDate)}</small>${escapeHtml(item.title)}${item.bank ? `<em>${escapeHtml(item.bank)}</em>` : ''}</span>
+          <strong>+${formatWon(item.amount)}</strong>
+        </div>`).join('')}
+      </div>
+    </section>
     <form class="expense-form" id="expense-form">
       <h3>지출 추가</h3>
       <label>날짜<input type="date" name="date" value="${todayValue()}" required></label>
