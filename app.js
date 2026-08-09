@@ -128,16 +128,6 @@ const SUBSCRIPTIONS = [
     source: 'https://learn.chatgpt.com/docs/pricing'
   },
   {
-    name: 'YouTube Premium',
-    plan: 'KT 휴대폰 요금 합산',
-    price: '₩12,636 / 월',
-    note: '실제 청구액',
-    monthlyAmount: 12636,
-    status: 'active',
-    statusLabel: '이용 중',
-    source: 'https://www.youtube.com/premium?hl=ko'
-  },
-  {
     name: 'Cambly',
     plan: '30분 × 주 2회 · 매월 결제',
     price: '₩243,800 / 월',
@@ -163,9 +153,21 @@ const SUBSCRIPTIONS = [
     price: '₩37,000 / 월',
     note: 'Y덤 기본 데이터 2배 · 합산 청구 총 ₩61,836',
     monthlyAmount: 37000,
+    billingGroup: 'kt',
     status: 'active',
     statusLabel: '이용 중',
     source: ''
+  },
+  {
+    name: 'YouTube Premium',
+    plan: 'KT 휴대폰 요금 합산',
+    price: '₩12,636 / 월',
+    note: '실제 청구액',
+    monthlyAmount: 12636,
+    billingGroup: 'kt',
+    status: 'active',
+    statusLabel: '이용 중',
+    source: 'https://www.youtube.com/premium?hl=ko'
   },
   {
     name: 'Microsoft 이용료',
@@ -173,6 +175,7 @@ const SUBSCRIPTIONS = [
     price: '₩8,900 / 월',
     note: '',
     monthlyAmount: 8900,
+    billingGroup: 'kt',
     status: 'active',
     statusLabel: '이용 중',
     source: ''
@@ -183,6 +186,7 @@ const SUBSCRIPTIONS = [
     price: '₩3,300 / 월',
     note: '',
     monthlyAmount: 3300,
+    billingGroup: 'kt',
     status: 'active',
     statusLabel: '이용 중',
     source: ''
@@ -426,7 +430,7 @@ function subscriptionMarkup() {
       <small>실제 청구액은 결제 경로와 프로모션에 따라 달라질 수 있습니다.</small>
     </div>
     <div class="subscription-list">
-      ${SUBSCRIPTIONS.map(item => `<article class="subscription-item ${escapeHtml(item.status)}">
+      ${SUBSCRIPTIONS.map(item => `<article class="subscription-item ${escapeHtml(item.status)}${item.billingGroup ? ` billing-${escapeHtml(item.billingGroup)}` : ''}">
         <div class="subscription-name">
           <h3>${escapeHtml(item.name)}</h3>
           <span class="status-pill ${escapeHtml(item.status)}">${escapeHtml(item.statusLabel)}</span>
