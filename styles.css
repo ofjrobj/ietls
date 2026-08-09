@@ -201,6 +201,51 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
 .schedule-item { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); }
 .schedule-item time { margin-right: 8px; color: var(--accent); font-size: 12px; }
 
+.subscriptions-card {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.subscriptions-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.subscriptions-head h2 { margin-bottom: 0; }
+.subscriptions-head > small { max-width: 340px; color: var(--muted); text-align: right; }
+.subscription-list { display: grid; }
+.subscription-item {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr .75fr;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.subscription-item:last-child { border-bottom: 0; }
+.subscription-name { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+.subscription-name h3 { margin: 0; }
+.status-pill {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+}
+.status-pill.ending { background: #fff0dc; color: #b35e1e; }
+.subscription-plan { display: grid; gap: 2px; }
+.subscription-plan span { font-size: 13px; }
+.subscription-plan small { color: var(--muted); font-size: 11px; }
+.subscription-price { display: grid; justify-items: end; gap: 2px; text-align: right; }
+.subscription-price strong { font-size: 14px; }
+.subscription-price a { color: var(--accent); font-size: 10px; font-weight: 600; }
+
 @media (max-width: 760px) {
   .site-shell { width: min(100% - 28px, 960px); }
   .site-header { align-items: flex-start; flex-direction: column; gap: 14px; padding-top: 22px; }
@@ -215,4 +260,8 @@ button.danger { background: transparent; color: var(--danger); padding: 5px 0; f
   .calendar-events small { max-width: 100%; font-size: 8px; }
   .schedule-editor { grid-template-columns: 1fr; gap: 20px; }
   .schedule-editor form { padding: 20px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+  .subscriptions-head { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .subscriptions-head > small { text-align: left; }
+  .subscription-item { grid-template-columns: 1fr; gap: 8px; }
+  .subscription-price { justify-items: start; text-align: left; }
 }
