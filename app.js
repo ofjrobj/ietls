@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260809_v8';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260809_v9';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -10,6 +10,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'personal' },
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260814-friend', date: '2026-08-14', title: '개인 · 친구 약속 (분당)', time: '18:30 이후', category: 'personal' },
   { id: 'doc-20260815-personal', date: '2026-08-15', title: '개인 · 대학 한국화 친구들 약속 (상수)', time: '', category: 'personal' },
   { id: 'doc-20260816-friends', date: '2026-08-16', title: '개인 · 고등학교 한국화 친구들 약속 (한남동)', time: '13:00', category: 'personal' },
   { id: 'doc-20260816-english', date: '2026-08-16', title: 'Cambly 수업', time: '22:00', category: 'english' },
