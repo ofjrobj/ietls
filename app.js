@@ -37,7 +37,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260816-friends', date: '2026-08-16', title: '개인 · 고등학교 한국화 친구들 약속 (한남동)', time: '13:00', category: 'friend' },
   { id: 'doc-20260816-english', date: '2026-08-16', title: 'Cambly 수업', time: '22:00', category: 'english' },
   { id: 'doc-20260818-craft', date: '2026-08-18', title: '공예 기획 · 실무교육 1강', time: '14:00–16:00', category: 'craft' },
-  { id: 'doc-20260818-friend', date: '2026-08-18', title: '계원 미술과 친구들 약속', time: '저녁', category: 'friend' },
+  { id: 'doc-20260818-friend', date: '2026-08-18', title: '계원 미술과 친구들 약속', time: '19:30 이후', category: 'friend' },
   { id: 'doc-20260819-heritage', date: '2026-08-19', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
   { id: 'doc-20260820-heritage', date: '2026-08-20', title: '디지털헤리티지 공주 · 온보딩', time: '', category: 'heritage' },
   { id: 'doc-20260820-english', date: '2026-08-20', title: 'Cambly 수업', time: '21:00', category: 'english' },
@@ -446,7 +446,7 @@ function scheduleMetadata(item) {
     return {
       ...item,
       location: '선정릉',
-      details: ['계원 미술과 친구들과 저녁 약속', '정확한 시간 미정']
+      details: ['계원 미술과 친구들과 저녁 약속', '오후 7시 30분 이후']
     };
   }
   if (item.id === 'doc-20261108-cambly-end') {
