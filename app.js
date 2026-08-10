@@ -1,32 +1,13 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v18';
-const TODO_SEED_KEY = 'jy_ielts_todos_20260811_v2';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v19';
 const app = document.getElementById('app');
-
-const DEFAULT_TODOS = [
-  { id: 'todo-20260811-clothes', title: '캐리어 안에 여름 가을 옷', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-phone-case', title: '휴대폰(13프로 케이스)', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-charger', title: '배터리 충전기', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-ipad', title: '아이패드', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-cosmetics', title: '화장품', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-tumbler', title: '텀블러', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-seagate', title: '시게이트 외장하드', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-medicine', title: '생리약', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-stationery', title: '필기도구', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-hair-iron', title: '고데기', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-gifts', title: '친구들 제주 선물', date: '2026-08-11', group: 'carry', done: false },
-  { id: 'todo-20260811-english-books', title: '영어 책', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-some-clothes', title: '일부 옷', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-spare-shoes', title: '여분의 신발', date: '2026-08-11', group: 'shipping', done: false },
-  { id: 'todo-20260811-mouse', title: '마우스', date: '2026-08-11', group: 'shipping', done: false }
-];
 
 const DOC_SCHEDULE = [
   { id: 'doc-20260810-interview', date: '2026-08-10', title: '디지털헤리티지 과정 면접', time: '10:00', category: 'heritage' },
   { id: 'doc-20260810-gifts', date: '2026-08-10', title: '즈믈 · 친구들 선물 사기', time: '11:00 이후', category: 'personal' },
-  { id: 'doc-20260811-personal', date: '2026-08-11', title: '개인 · 비행기, 고시원 계약', time: '', category: 'personal' },
+  { id: 'doc-20260811-personal', date: '2026-08-11', title: '비행기 · 제주→김포, 고시원 계약', time: '07:55', category: 'personal' },
   { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 오리엔테이션 및 공통교육 1회차', time: '14:00–17:00', category: 'craft' },
   { id: 'doc-20260812-english-makeup', date: '2026-08-12', title: 'Cambly 수업', time: '15:00', category: 'english' },
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'friend' },
@@ -321,7 +302,6 @@ function resetLegacyDataOnce() {
 
 resetLegacyDataOnce();
 seedDocumentSchedule();
-seedDefaultTodos();
 
 function loadState() {
   try {
@@ -329,11 +309,10 @@ function loadState() {
     return {
       speaking: Array.isArray(saved.speaking) ? saved.speaking : [],
       schedule: Array.isArray(saved.schedule) ? saved.schedule : [],
-      expenses: Array.isArray(saved.expenses) ? saved.expenses : [],
-      todos: Array.isArray(saved.todos) ? saved.todos : []
+      expenses: Array.isArray(saved.expenses) ? saved.expenses : []
     };
   } catch {
-    return { speaking: [], schedule: [], expenses: [], todos: [] };
+    return { speaking: [], schedule: [], expenses: [] };
   }
 }
 
@@ -353,22 +332,6 @@ function seedDocumentSchedule() {
   });
   saveState(state);
   localStorage.setItem(DOC_SCHEDULE_KEY, 'done');
-}
-
-function seedDefaultTodos() {
-  if (localStorage.getItem(TODO_SEED_KEY)) return;
-  const state = loadState();
-  const currentById = new Map(DEFAULT_TODOS.map(item => [item.id, item]));
-  state.todos = state.todos.map(item => currentById.has(item.id)
-    ? { ...currentById.get(item.id), done: Boolean(item.done) }
-    : item);
-  const existing = new Set(state.todos.map(item => `${item.date}|${item.title}`));
-  DEFAULT_TODOS.forEach(item => {
-    const signature = `${item.date}|${item.title}`;
-    if (!existing.has(signature)) state.todos.push(item);
-  });
-  saveState(state);
-  localStorage.setItem(TODO_SEED_KEY, 'done');
 }
 
 function escapeHtml(value = '') {
@@ -417,8 +380,13 @@ function scheduleMetadata(item) {
   if (item.id === 'doc-20260811-personal') {
     return {
       ...item,
-      location: '어바웃스테이 논현점 · 서울 서초구 사평대로55길 123',
+      location: '제주공항 → 김포공항 · 어바웃스테이 논현점',
       details: [
+        '에어서울 RS902 · 예약번호 P58J33',
+        '출발 07:55 · 제주(CJU) → 김포(GMP)',
+        '수하물 위탁카운터: 제주공항 국내선 출발 3층 63–64번',
+        '출발 30분 전까지 수속 가능',
+        '고시원 주소: 서울 서초구 사평대로55길 123',
         '계약 방: Room 4 스탠다드 타입',
         '월 530,000원 · 내창',
         '개별 화장실과 샤워실',
@@ -831,72 +799,6 @@ function renderSpeaking() {
   }));
 }
 
-function renderTodo() {
-  const state = loadState();
-  const todos = [...state.todos].sort((a, b) => Number(a.done) - Number(b.done) || (a.date || '').localeCompare(b.date || ''));
-  const remaining = todos.filter(item => !item.done).length;
-  const carryTodos = todos.filter(item => (item.group || 'carry') === 'carry');
-  const shippingTodos = todos.filter(item => item.group === 'shipping');
-  const todoItemsMarkup = items => items.length ? items.map(item => `
-    <div class="todo-item${item.done ? ' done' : ''}">
-      <input class="todo-check" type="checkbox" data-toggle-todo="${escapeHtml(item.id)}" aria-label="${escapeHtml(item.title)} 완료" ${item.done ? 'checked' : ''}>
-      <span class="todo-copy"><strong>${escapeHtml(item.title)}</strong>${item.date ? `<small>${escapeHtml(item.date)}</small>` : ''}</span>
-      <button class="danger" type="button" data-delete-todo="${escapeHtml(item.id)}">삭제</button>
-    </div>`).join('') : '<p class="empty">등록된 항목이 없습니다.</p>';
-  app.innerHTML = `<header class="page-head"><h1>Todo</h1><p class="lede">해야 할 일을 간단히 기록합니다.</p></header>
-    <section class="content-grid">
-      <form class="card" id="todo-form">
-        <h2>할 일 추가</h2>
-        <label>할 일<input name="title" maxlength="120" placeholder="할 일을 입력하세요" required></label>
-        <label>분류<select name="group"><option value="carry">캐리어 안에 넣을 것</option><option value="shipping">택배로 부칠 것</option></select></label>
-        <label>날짜<input type="date" name="date" value="${todayValue()}"></label>
-        <button type="submit">추가</button>
-      </form>
-      <section class="card">
-        <div class="todo-head"><h2>목록</h2><span class="result-count">남은 할 일 ${remaining}개</span></div>
-        <div class="todo-groups">
-          <section class="todo-group carry">
-            <div class="todo-group-head"><h3>캐리어 안에 넣을 것</h3><span>${carryTodos.filter(item => !item.done).length}개 남음</span></div>
-            <div class="todo-list">${todoItemsMarkup(carryTodos)}</div>
-          </section>
-          <section class="todo-group shipping">
-            <div class="todo-group-head"><h3>택배로 부칠 것</h3><span>${shippingTodos.filter(item => !item.done).length}개 남음</span></div>
-            <div class="todo-list">${todoItemsMarkup(shippingTodos)}</div>
-          </section>
-        </div>
-      </section>
-    </section>`;
-
-  document.getElementById('todo-form').addEventListener('submit', event => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const current = loadState();
-    current.todos.push({
-      id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}`,
-      title: String(data.get('title')).trim(),
-      date: String(data.get('date') || ''),
-      group: String(data.get('group') || 'carry'),
-      done: false
-    });
-    saveState(current);
-    renderTodo();
-  });
-
-  document.querySelectorAll('[data-toggle-todo]').forEach(input => input.addEventListener('change', () => {
-    const current = loadState();
-    current.todos = current.todos.map(item => item.id === input.dataset.toggleTodo ? { ...item, done: input.checked } : item);
-    saveState(current);
-    renderTodo();
-  }));
-
-  document.querySelectorAll('[data-delete-todo]').forEach(button => button.addEventListener('click', () => {
-    const current = loadState();
-    current.todos = current.todos.filter(item => item.id !== button.dataset.deleteTodo);
-    saveState(current);
-    renderTodo();
-  }));
-}
-
 function renderSimpleSkill(name) {
   app.innerHTML = `${pageHead(name, '현재는 별도 진도표나 자료를 넣지 않았습니다.')}
     <section class="simple-message"><div class="card"><h2>${name} 공부</h2><p>사용하고 있는 교재와 자료로 공부하세요. 필요한 기능이 생기면 이 페이지에 추가할 수 있습니다.</p></div></section>`;
@@ -951,7 +853,6 @@ function route() {
   const requestedRoute = (window.location.hash.slice(1) || 'home').toLowerCase();
   const routes = {
     home: renderHome,
-    todo: renderTodo,
     speaking: renderSpeaking,
     reading: () => renderSimpleSkill('Reading'),
     listening: () => renderSimpleSkill('Listening'),
