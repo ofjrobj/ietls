@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v19';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v20';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -10,7 +10,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260811-personal', date: '2026-08-11', title: '비행기 · 제주→김포, 고시원 계약', time: '07:55', category: 'personal' },
   { id: 'doc-20260811-craft', date: '2026-08-11', title: '공예 기획 · 오리엔테이션 및 공통교육 1회차', time: '14:00–17:00', category: 'craft' },
   { id: 'doc-20260812-english-makeup', date: '2026-08-12', title: 'Cambly 수업', time: '15:00', category: 'english' },
-  { id: 'doc-20260812-personal', date: '2026-08-12', title: '개인 · 예지 언니 약속 (홍대)', time: '18:00 이후', category: 'friend' },
+  { id: 'doc-20260812-personal', date: '2026-08-12', title: '친구 약속 · 잠원한강공원', time: '16:00', category: 'friend' },
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
   { id: 'doc-20260814-friend', date: '2026-08-14', title: '개인 · 친구 약속 (분당)', time: '18:30 이후', category: 'friend' },
@@ -408,6 +408,13 @@ function scheduleMetadata(item) {
         '주차 지원이 어려우므로 대중교통 이용',
         '문의: kcdfedu2026@naver.com'
       ]
+    };
+  }
+  if (item.id === 'doc-20260812-personal') {
+    return {
+      ...item,
+      location: '잠원한강공원',
+      details: ['친구 약속', '오후 4시']
     };
   }
   if (item.id === 'doc-20260818-friend') {
