@@ -1,7 +1,7 @@
 const EXAM_DATE = '2026-10-29';
 const STATE_KEY = 'jy_ielts_simple_v1';
 const RESET_KEY = 'jy_ielts_reset_20261029';
-const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v20';
+const DOC_SCHEDULE_KEY = 'jy_ielts_schedule_docs_20260818_v21';
 const app = document.getElementById('app');
 
 const DOC_SCHEDULE = [
@@ -13,6 +13,7 @@ const DOC_SCHEDULE = [
   { id: 'doc-20260812-personal', date: '2026-08-12', title: '친구 약속 · 잠원한강공원', time: '16:00', category: 'friend' },
   { id: 'doc-20260813-craft', date: '2026-08-13', title: '공예 기획 · 공통교육 2강', time: '14:00–16:00', category: 'craft' },
   { id: 'doc-20260813-english', date: '2026-08-13', title: 'Cambly 수업', time: '21:00', category: 'english' },
+  { id: 'doc-20260814-heritage-ot', date: '2026-08-14', title: '디지털헤리티지 충남 · 사전 OT', time: '14:00–15:00', category: 'heritage' },
   { id: 'doc-20260814-friend', date: '2026-08-14', title: '개인 · 친구 약속 (분당)', time: '18:30 이후', category: 'friend' },
   { id: 'doc-20260815-personal', date: '2026-08-15', title: '개인 · 대학 한국화 친구들 약속 (상수)', time: '', category: 'friend' },
   { id: 'doc-20260816-friends', date: '2026-08-16', title: '개인 · 고등학교 한국화 친구들 약속 (한남동)', time: '13:00', category: 'friend' },
@@ -361,6 +362,19 @@ function pageHead(name, description) {
 }
 
 function scheduleMetadata(item) {
+  if (item.id === 'doc-20260814-heritage-ot') {
+    return {
+      ...item,
+      location: 'Google Meet',
+      details: [
+        '디지털헤리티지 큐레이터 양성 과정 3기(충남) 사전 OT',
+        '프로그램 세부 내용과 출결·수당 안내',
+        '실시간 참여가 어려우면 사전 OT 종료 후 공유되는 녹화본으로 확인 가능'
+      ],
+      link: 'https://meet.google.com/ams-bunr-mik',
+      linkLabel: '사전 OT 참여 링크'
+    };
+  }
   if (item.id === 'doc-20260810-interview') {
     return {
       ...item,
