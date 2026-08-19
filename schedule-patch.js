@@ -21,6 +21,18 @@
       return item;
     });
 
+  const friendEventId = 'doc-20260829-friend-evening';
+  if (!state.schedule.some(item => item.id === friendEventId)) {
+    state.schedule.push({
+      id: friendEventId,
+      date: '2026-08-29',
+      title: '친구 약속',
+      time: '저녁 · 시간 미정',
+      category: 'friend'
+    });
+    changed = true;
+  }
+
   if (changed) saveState(state);
 
   const currentRoute = (window.location.hash.slice(1) || 'home').toLowerCase();
